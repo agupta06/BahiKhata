@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "980996830737",
+    "firebase_url": "https://bahikhata6.firebaseio.com",
+    "project_id": "bahikhata6",
+    "storage_bucket": "bahikhata6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980996830737:android:218defa010a9de9a",
+        "android_client_info": {
+          "package_name": "com.resolvebugs.app.bahikhata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980996830737-9b0049kkg3bf2i6acjlu49r97i2r5e62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.resolvebugs.app.bahikhata",
+            "certificate_hash": "62dd0d69f51848ca6792911225dab2ca8ae8b508"
+          }
+        },
+        {
+          "client_id": "980996830737-hblmvt9aa87659vqm8k7m5q8vhlnffoq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsmmHLbjLsUWvBbwRS9jdPdAh_rdUzKG4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980996830737-hblmvt9aa87659vqm8k7m5q8vhlnffoq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
