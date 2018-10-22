@@ -1,5 +1,51 @@
 <resources>
-    <string name="app_name">BahiKhata</string>
+    // properties
+    <string name="app_name">Bahi Khata</string>
+    <string name="firebaseRootUrl">https://bahikhata6.firebaseio.com/</string>
+    <string name="font_app_name">fonts/Cookie-Regular.ttf</string>
+    <string name="facebook_app_id">2176285355980937</string>
+    <string name="fb_login_protocol_scheme">fb2176285355980937</string>
+
+    // validations, errors and exceptions
+    <string name="exception_facebook">Facebook Exception</string>
+    <string name="error_empty_field">Fields are Empty</string>
+    <string name="error_signin">Problem with Sign In</string>
+
+    // literals
+    <string name="OPEN">Open</string>
+    <string name="CLOSE">Close</string>
+    <string name="MESSAGE">message</string>
+    <string name="AMOUNT">amount</string>
+    <string name="TAP_TO_SELECT">Tap to Select</string>
+    <string name="EMPTY_STRING"></string>
+    <string name="DEBIT_AMOUNT">Debit Amount</string>
+    <string name="CREDIT_AMOUNT">Credit Amount</string>
+    <string name="MAKE_A_NOTE">Make a Note</string>
+    <string name="DATE">Date</string>
+    <string name="BALANCE">Balance</string>
+    <string name="CREDIT">Credit</string>
+    <string name="DEBIT">Debit</string>
+    <string name="NOTE">Note</string>
+    <string name="LOGIN">Login</string>
+    <string name="LOGOUT">Logout</string>
+    <string name="ERROR">Error</string>
+    <string name="CANCELLED">Cancelled</string>
+
+    // symbols
+    <string name="forward_slash">/</string>
+    <string name="currency_rupee">\u20B9</string>
+
+    // success messages
+    <string name="success_tx_credit">Amount has been Credited</string>
+    <string name="success_tx_debit">Amount has been Debited</string>
+    <string name="success_tx_note">Amount has been Noted</string>
+    <string name="success_registration">Registration Successful</string>
+
+    // failure messages
+    <string name="fail_authentication">Authentication Failed</string>
+    <string name="fail_google_signin">Google sign in failed</string>
+    <string name="fail_firebase_registration">Firebase Registration Failed</string>
+    <string name="fail_registration">Registration Failed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

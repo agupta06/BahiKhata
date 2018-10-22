@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#282828</color>
+    <color name="colorPrimaryDark">#131313</color>
+    <color name="colorAccent">#FFA000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDebit">#D50000</color>
+    <color name="colorCardViewBackground">#FAFAFA</color>
+    <color name="colorBlue600">#1E88E5</color>
+    <color name="colorRed600">#E53935</color>
+    <color name="colorGreen600">#43A047</color>
+    <color name="colorGrey100">#F5F5F5</color>
+    <color name="colorLightGreen500">#8BC34A</color>
+    <color name="lightOrange">#fdf2df</color>
+    <color name="lightOrangeDark">#ebd6ab</color>
+
+    <!--youtube-->
+    <color name="red">#ff0200</color>
+    <color name="black">#000000</color>
+
+    <!--New color scheme-->
+    <color name="colorLogo">#ff0000</color>
+    <color name="colorAppName">#ffffff</color>
+    <color name="colorButton">#0b80e0</color>
+    <color name="colorLayoutSeparator">#e0e0e0</color>
+
+    <!--Dark Theme-->
+    <color name="nightColorPrimaryDark">#131313</color>
+    <color name="nightColorPrimary">#282828</color>
+    <color name="nightColorIconsInactive">#909090</color>
+    <color name="nightColorIconsActive">#ffffff</color>
+
+    <!--Light Theme-->
+    <color name="dayColorPrimaryDark">#cccccc</color>
+    <color name="dayColorPrimary">#ffffff</color>
+    <color name="dayColorIconsInactive">#606060</color>
+    <color name="dayColorIconsActive">#ff0000</color>
+
 </resources>
