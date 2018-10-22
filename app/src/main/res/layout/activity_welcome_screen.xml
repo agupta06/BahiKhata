@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomeScreen">
+    android:orientation="vertical"
+    android:weightSum="2"
+    tools:context=".WelcomeScreen"
+    android:background="@color/colorGrey100">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/upToDown"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/app_logo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/downToUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bahi Khata"
+            android:textAlignment="center"
+            android:textColor="@color/lightOrangeDark"
+            android:textSize="60sp" />
+
+        <!--<Button-->
+        <!--android:id="@+id/signup"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="@drawable/high_emphasis_button"-->
+        <!--android:text="New User" />-->
+
+        <!--<Button-->
+        <!--android:id="@+id/signin"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="@drawable/high_emphasis_button"-->
+        <!--android:text="Existing User" />-->
+    </LinearLayout>
+
+
+</LinearLayout>

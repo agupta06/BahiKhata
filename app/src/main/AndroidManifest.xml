@@ -20,7 +20,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".Themes" />
         <activity android:name=".ThemeTwo" />
-        <activity android:name=".WelcomeScreen"></activity>
+        <activity android:name=".WelcomeScreen" />
+        <activity android:name=".FirebaseCrud"></activity>
     </application>
 
 </manifest>
