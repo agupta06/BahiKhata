@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".Themes" />
+        <activity android:name=".ThemeTwo" />
+        <activity android:name=".WelcomeScreen"></activity>
     </application>
 
 </manifest>
