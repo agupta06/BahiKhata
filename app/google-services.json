@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:980996830737:android:218defa010a9de9a",
+        "mobilesdk_app_id": "1:980996830737:android:e7ceb5a396b8f804",
         "android_client_info": {
-          "package_name": "com.resolvebugs.app.bahikhata"
+          "package_name": "com.resolvebug.app.bahikhata"
         }
       },
       "oauth_client": [
         {
-          "client_id": "980996830737-9b0049kkg3bf2i6acjlu49r97i2r5e62.apps.googleusercontent.com",
+          "client_id": "980996830737-jkdd3glfj1s074hrbivjrmufj8t84qfh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.resolvebugs.app.bahikhata",
-            "certificate_hash": "62dd0d69f51848ca6792911225dab2ca8ae8b508"
+            "package_name": "com.resolvebug.app.bahikhata",
+            "certificate_hash": "68af6f3e283cb6214938df1b618a890750481184"
           }
         },
         {

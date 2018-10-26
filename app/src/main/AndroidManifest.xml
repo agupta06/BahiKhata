@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.resolvebugs.app.bahikhata">
+    package="com.resolvebug.app.bahikhata">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".GlobalOperations"
+        android:name="com.resolvebug.app.bahikhata.GlobalOperations"
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity" />
+        <activity android:name="com.resolvebug.app.bahikhata.HomeActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.resolvebug.app.bahikhata.LoginActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait"
@@ -51,12 +51,12 @@
         <!-- </activity> -->
 
         <activity
-            android:name=".Themes"
+            android:name="com.resolvebug.app.bahikhata.Themes"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".FirebaseCrud"
+            android:name="com.resolvebug.app.bahikhata.FirebaseCrud"
             android:configChanges="orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -86,9 +86,9 @@
 
         <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".WelcomeScreen" />
-        <activity android:name=".ThemeTwo"></activity>
+        <activity android:name="com.resolvebug.app.bahikhata.MainActivity" />
+        <activity android:name="com.resolvebug.app.bahikhata.WelcomeScreen" />
+        <activity android:name="com.resolvebug.app.bahikhata.ThemeTwo"></activity>
     </application>
 
 </manifest>
