@@ -40,7 +40,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="@string/app_name"
-                            android:textSize="40sp" />
+                            android:textSize="@dimen/dp30" />
 
                         <ImageButton
                             android:id="@+id/home_button"
@@ -174,7 +174,9 @@
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp36"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="168dp"
             android:background="@drawable/high_emphasis_button"
             android:elevation="@dimen/dp2"
             android:text="Logout"

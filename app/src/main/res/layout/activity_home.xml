@@ -35,7 +35,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/sp30" />
+                        android:textSize="@dimen/dp30" />
 
                 </android.support.v7.widget.Toolbar>
 
@@ -66,7 +66,7 @@
                 android:layout_gravity="end|bottom"
                 android:layout_margin="@dimen/dp16"
                 android:src="@drawable/ic_add_black_24dp"
-                app:layout_behavior="com.resolvebugs.app.bahikhata.ScrollFABBehaviour" />
+                app:layout_behavior="com.resolvebug.app.bahikhata.ScrollFABBehaviour" />
 
         </android.support.design.widget.CoordinatorLayout>
 

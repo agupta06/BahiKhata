@@ -32,7 +32,7 @@
                     android:layout_gravity="center"
                     android:text="@string/app_name"
                     android:textColor="#FFFFFF"
-                    android:textSize="@dimen/sp30" />
+                    android:textSize="@dimen/dp30" />
 
             </android.support.v7.widget.Toolbar>
 
@@ -83,7 +83,7 @@
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:text="OR"
-                android:textSize="@dimen/sp14" />
+                android:textSize="@dimen/dp14" />
 
             <LinearLayout
                 android:layout_width="@dimen/dp50"
@@ -121,7 +121,7 @@
                     android:layout_marginLeft="@dimen/dp30"
                     android:text="Social Login"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp20" />
+                    android:textSize="@dimen/dp20" />
 
             </LinearLayout>
 
@@ -163,7 +163,7 @@
                         android:paddingTop="@dimen/dp3"
                         android:text="Facebook"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp14" />
+                        android:textSize="@dimen/dp14" />
 
                 </LinearLayout>
 
@@ -193,7 +193,7 @@
                         android:paddingTop="@dimen/dp3"
                         android:text="Gmail"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/sp14" />
+                        android:textSize="@dimen/dp14" />
 
                 </LinearLayout>
 

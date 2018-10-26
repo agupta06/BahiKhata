@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp2"
                 android:layout_marginLeft="@dimen/dp30"
-                android:layout_marginTop="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp10"
                 android:background="@color/red" />
 
         </LinearLayout>
