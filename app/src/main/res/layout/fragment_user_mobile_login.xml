@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="UserResetPasswordFragment">
+    tools:context="UserSignInFragment">
 
     <LinearLayout
-        android:id="@+id/registration"
+        android:id="@+id/phoneLogin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp260"
         android:layout_below="@id/forFrame"
-        android:layout_alignParentStart="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="@dimen/dp30"
-                    android:text="Reset Password"
+                    android:text="Phone Sign In"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp20" />
 
@@ -45,35 +45,57 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/registrationInputForm"
+            android:id="@+id/form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp15"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/emailTextInput"
+                android:id="@+id/phoneInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp30"
                 android:layout_marginRight="@dimen/dp30">
 
                 <EditText
-                    android:id="@+id/resetPasswordEmail"
+                    android:id="@+id/signInMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
+                    android:hint="Phone Number"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:textColorHint="@color/black"
                     android:textSize="@dimen/dp14" />
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/otpInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phoneInput"
+                android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginRight="@dimen/dp30"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/signInOtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="One Time Password (OTP)"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/dp14" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/registerActionButton"
+            android:id="@+id/actionButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -87,57 +109,18 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/resetPasswordButton"
+                    android:id="@+id/phoneLoginButton"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp36"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/high_emphasis_button"
                     android:elevation="@dimen/dp2"
-                    android:text="Reset Password"
+                    android:text="Request OTP"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/dp14" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="59dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:paddingTop="@dimen/dp5"
-                        android:text="Existing User?  "
-                        android:textSize="@dimen/dp14" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/signinButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:gravity="center_horizontal"
-                        android:paddingTop="@dimen/dp5"
-                        android:text="Sign In"
-                        android:textColor="@color/colorButton"
-                        android:textSize="@dimen/dp14" />
-
-                </LinearLayout>
-
-            </LinearLayout>
 
         </LinearLayout>
 

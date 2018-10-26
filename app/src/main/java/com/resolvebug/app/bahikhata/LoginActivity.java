@@ -56,6 +56,9 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private ImageButton facebookLoginButton;
 
+    // Email or Phone Login
+    private ImageButton phoneLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +71,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setUserSignInFragment() {
+        final GlobalOperations globalOperations = (GlobalOperations) getApplication();
+        defaultLoginFragment(globalOperations);
+        phoneLogin = findViewById(R.id.phoneLogin);
+        phoneLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(globalOperations.isPhoneLogin()){
+                    mobileLoginFragment(globalOperations);
+                }
+                else {
+                    emailLoginFragment(globalOperations);
+                }
+            }
+        });
+    }
+
+    private void defaultLoginFragment(GlobalOperations globalOperations) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.loginFrame, new UserSignInFragment());
         transaction.commit();
+        globalOperations.setPhoneLogin(true);
+    }
+
+    private void mobileLoginFragment(GlobalOperations globalOperations) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.replace(R.id.loginFrame, new UserMobileLoginFragment());
+        transaction.commit();
+        globalOperations.setPhoneLogin(false);
+    }
+
+    private void emailLoginFragment(GlobalOperations globalOperations) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_left);
+        transaction.replace(R.id.loginFrame, new UserSignInFragment());
+        transaction.commit();
+        globalOperations.setPhoneLogin(true);
     }
 
     @Override

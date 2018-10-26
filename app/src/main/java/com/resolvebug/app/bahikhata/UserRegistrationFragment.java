@@ -87,7 +87,7 @@ public class UserRegistrationFragment extends Fragment {
     private void signInUserAccount() {
         UserSignInFragment createAccountFragment = new UserSignInFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_left);
         transaction.add(R.id.loginFrame, createAccountFragment, "SIGNIN_USER_ACCOUNT").commit();
     }
 

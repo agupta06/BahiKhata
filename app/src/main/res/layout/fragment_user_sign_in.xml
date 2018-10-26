@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="@dimen/dp30"
-                    android:text="Sign In"
+                    android:text="Email Sign In"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp20" />
 
@@ -71,7 +71,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/emailInput2"
+                android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/emailInput"
@@ -132,6 +132,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/registrationLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp10"

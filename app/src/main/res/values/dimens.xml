@@ -15,6 +15,7 @@
     <dimen name="dp20">20dp</dimen>
     <dimen name="dp24">24dp</dimen>
     <dimen name="dp30">30dp</dimen>
+    <dimen name="dp32">32dp</dimen>
     <dimen name="dp36">36dp</dimen>
     <dimen name="dp40">40dp</dimen>
     <dimen name="dp50">50dp</dimen>
