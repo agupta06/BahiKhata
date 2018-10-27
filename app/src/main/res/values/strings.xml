@@ -3,8 +3,8 @@
     <string name="app_name">Bahi Khata</string>
     <string name="firebaseRootUrl">https://bahikhata6.firebaseio.com/</string>
     <string name="font_app_name">fonts/Cookie-Regular.ttf</string>
-    <string name="facebook_app_id">2176285355980937</string>
-    <string name="fb_login_protocol_scheme">fb2176285355980937</string>
+    <string name="facebook_app_id">301740853768350</string>
+    <string name="fb_login_protocol_scheme">fb301740853768350</string>
 
     // validations, errors and exceptions
     <string name="exception_facebook">Facebook Exception</string>

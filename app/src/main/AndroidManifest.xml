@@ -50,18 +50,6 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
 
-        <activity
-            android:name="com.resolvebug.app.bahikhata.Themes"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.resolvebug.app.bahikhata.FirebaseCrud"
-            android:configChanges="orientation"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"
@@ -83,6 +71,18 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.resolvebug.app.bahikhata.Themes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.resolvebug.app.bahikhata.FirebaseCrud"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
         <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
 
