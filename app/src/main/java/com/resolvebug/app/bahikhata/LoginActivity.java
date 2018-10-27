@@ -57,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
     private ImageButton facebookLoginButton;
 
     // Email or Phone Login
-    private ImageButton phoneLogin;
+    private ImageButton loginMethodImage;
+    private TextView loginMethodText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +68,15 @@ public class LoginActivity extends AppCompatActivity {
         setFirebaseAuthListener();
         setLoginMethods();
         setAdsView();
+        loginMethodImage = findViewById(R.id.loginMethodImage);
+        loginMethodText = findViewById(R.id.loginMethodText);
         setUserSignInFragment();
     }
 
     private void setUserSignInFragment() {
         final GlobalOperations globalOperations = (GlobalOperations) getApplication();
         defaultLoginFragment(globalOperations);
-        phoneLogin = findViewById(R.id.phoneLogin);
-        phoneLogin.setOnClickListener(new View.OnClickListener() {
+        loginMethodImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(globalOperations.isPhoneLogin()){
@@ -92,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
         transaction.replace(R.id.loginFrame, new UserSignInFragment());
         transaction.commit();
         globalOperations.setPhoneLogin(true);
+        loginMethodText.setText("Phone");
+        loginMethodImage.setImageResource(R.drawable.ic_smartphone);
     }
 
     private void mobileLoginFragment(GlobalOperations globalOperations) {
@@ -100,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
         transaction.replace(R.id.loginFrame, new UserMobileLoginFragment());
         transaction.commit();
         globalOperations.setPhoneLogin(false);
+        loginMethodText.setText("Email");
+        loginMethodImage.setImageResource(R.drawable.ic_email);
     }
 
     private void emailLoginFragment(GlobalOperations globalOperations) {
@@ -108,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
         transaction.replace(R.id.loginFrame, new UserSignInFragment());
         transaction.commit();
         globalOperations.setPhoneLogin(true);
+        loginMethodText.setText("Phone");
+        loginMethodImage.setImageResource(R.drawable.ic_smartphone);
     }
 
     @Override

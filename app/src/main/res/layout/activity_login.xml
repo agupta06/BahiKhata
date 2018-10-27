@@ -203,17 +203,18 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/phoneLogin"
+                        android:id="@+id/loginMethodImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_gravity="center"
                         android:background="@drawable/circularbackground"
                         android:elevation="@dimen/dp2"
-                        android:src="@drawable/ic_add_black_24dp" />
+                        android:src="@drawable/ic_smartphone" />
 
 
                     <TextView
+                        android:id="@+id/loginMethodText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
