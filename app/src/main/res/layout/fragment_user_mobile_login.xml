@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp260"
+        android:layout_height="wrap_content"
         android:layout_below="@id/forFrame"
         android:orientation="vertical">
 
@@ -103,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/form"
                 android:layout_marginTop="@dimen/dp32"
+                android:layout_marginBottom="85dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
