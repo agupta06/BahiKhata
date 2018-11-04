@@ -5,18 +5,19 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
-        android:name="com.resolvebug.app.bahikhata.GlobalOperations"
+        android:name=".GlobalOperations"
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.resolvebug.app.bahikhata.HomeActivity" />
+        <activity android:name=".HomeActivity" />
         <activity
-            android:name="com.resolvebug.app.bahikhata.LoginActivity"
+            android:name=".LoginActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait"
@@ -71,14 +72,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.resolvebug.app.bahikhata.Themes"
+            android:name=".Themes"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.resolvebug.app.bahikhata.FirebaseCrud"
+            android:name=".FirebaseCrud"
             android:configChanges="orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -86,9 +86,10 @@
 
         <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
 
-        <activity android:name="com.resolvebug.app.bahikhata.MainActivity" />
-        <activity android:name="com.resolvebug.app.bahikhata.WelcomeScreen" />
-        <activity android:name="com.resolvebug.app.bahikhata.ThemeTwo"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".WelcomeScreen" />
+        <activity android:name=".ThemeTwo" />
+        <activity android:name=".PinLockScreen"></activity>
     </application>
 
 </manifest>

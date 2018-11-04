@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -53,9 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView loginMethodText;
 
     // Facebook Login
-    private FirebaseUser firebaseUser;
     private CallbackManager mCallbackManager;
-    private ImageButton facebookLoginButton;
     private static final String EMAIL = "email";
 
     @Override
@@ -215,11 +214,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {    // existing user
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    startMainActivity();
                 }
             }
         };
+    }
+
+    private void startMainActivity() {
+        startActivity(new Intent(LoginActivity.this, PinLockScreen.class));
+        finish();
     }
 
     // Facebook Login
@@ -229,15 +232,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkFacebookUserRegistrationStatus() {
+        FirebaseUser firebaseUser;
         firebaseUser = firebaseAuth.getCurrentUser();
         mCallbackManager = CallbackManager.Factory.create();
         if (firebaseUser != null) {     // existing user
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            this.finish();
+            startMainActivity();
         }
     }
 
     private void setFacebookButtonOnClickListener() {
+        ImageButton facebookLoginButton;
         facebookLoginButton = findViewById(R.id.facebookLoginButton);
         facebookLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,8 +277,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    startMainActivity();
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.fail_firebase_registration, Toast.LENGTH_LONG).show();
                 }
