@@ -34,6 +34,7 @@
     <string name="CANCELLED">Cancelled</string>
     <string name="PHONE">Phone</string>
     <string name="EMAIL">Email</string>
+    <string name="ADD_TRANSACTION">Add Transaction</string>
 
     // symbols
     <string name="forward_slash">/</string>

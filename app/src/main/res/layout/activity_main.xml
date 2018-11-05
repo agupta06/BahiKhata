@@ -1,257 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/main_top"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:background="@color/colorLightGreen500">
+            android:layout_height="match_parent"
+            android:layout_above="@id/loginAdView"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/main_action_bar"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/home_appbarLayout"
+                <LinearLayout
+                    android:id="@+id/titleBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/home_toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@color/colorPrimary"
-                        app:layout_scrollFlags="scroll|enterAlways|snap"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-                        <TextView
-                            android:id="@+id/main_toolbar_title"
-                            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/app_name"
-                            android:textSize="@dimen/dp30" />
-
-                        <ImageButton
-                            android:id="@+id/home_button"
-                            android:layout_width="@dimen/dp30"
-                            android:layout_height="@dimen/dp30"
-                            android:layout_centerHorizontal="true"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="@dimen/dp20"
-                            android:background="@null"
-                            android:clickable="true"
-                            android:src="@drawable/ic_baseline_history_24px" />
-
-                    </android.support.v7.widget.Toolbar>
-
-                </android.support.design.widget.AppBarLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/top_panel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/main_action_bar">
-
-                <TextView
-                    android:id="@+id/balance_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/BALANCE"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp20" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/balance_message"
                     android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/balance_rupee_symbol"
-                        android:layout_width="wrap_content"
+                    <android.support.design.widget.AppBarLayout
+                        android:id="@+id/home_appbarLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/currency_rupee"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp40" />
+                        android:elevation="@dimen/dp2">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/balance_rupee_symbol"
-                        android:gravity="center"
-                        android:text="@string/BALANCE"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp40" />
+                        <android.support.v7.widget.Toolbar
+                            android:id="@+id/home_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimary">
 
-                </RelativeLayout>
+                            <TextView
+                                android:id="@+id/main_toolbar_title"
+                                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/app_name"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/dp30" />
 
-            </RelativeLayout>
+                        </android.support.v7.widget.Toolbar>
 
-        </RelativeLayout>
+                    </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
-            android:id="@+id/main_fab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp80"
-            android:layout_below="@id/main_top"
-            android:background="@color/colorWhite">
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/fab_selected_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="90dp"
-                android:text="@string/TAP_TO_SELECT"
-                android:textSize="20sp" />
+            </LinearLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/main_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/main_fab_layout"
-            android:background="@color/colorGrey100">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/amount"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:paddingTop="10dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                <EditText
-                    android:id="@+id/main_tx_amount"
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/AMOUNT"
-                    android:inputType="number|numberDecimal"
-                    android:maxLines="1"
-                    android:textSize="30sp" />
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:background="@color/nightColorPrimary"
+                    android:elevation="4dp"
+                    android:weightSum="3">
 
-            </android.support.design.widget.TextInputLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/amount"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="@dimen/dp30"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/main_tx_message"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:layout_marginTop="@dimen/dp10"
+                                    android:text="@string/ADD_TRANSACTION"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/dp20" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/dp30"
+                                android:layout_height="@dimen/dp2"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:background="@color/red" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:paddingTop="10dp"
+                            android:textColorHint="@color/colorWhite">
+
+                            <EditText
+                                android:id="@+id/main_tx_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Amount"
+                                android:inputType="number|numberDecimal"
+                                android:maxLines="1"
+                                android:textColor="@color/colorWhite"
+                                android:textColorHint="@color/colorButton"
+                                android:textSize="30sp"
+                                app:backgroundTint="@color/colorButton" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/message"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/amount"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:textColorHint="@color/colorWhite">
+
+                            <EditText
+                                android:id="@+id/main_tx_message"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Message"
+                                android:inputType="textAutoComplete"
+                                android:maxLines="1"
+                                android:textColor="@color/colorWhite"
+                                app:backgroundTint="@color/colorButton" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/MESSAGE"
-                    android:inputType="textAutoComplete"
-                    android:maxLines="1" />
+                    android:layout_height="wrap_content">
 
-            </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
-        </RelativeLayout>
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/logoutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp36"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="168dp"
-            android:background="@drawable/high_emphasis_button"
-            android:elevation="@dimen/dp2"
-            android:text="Logout"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/sp14" />
+        </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/action_fab"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp50">
-
-        </RelativeLayout>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/ic_touch_app_black_24dp"
-        app:layout_anchor="@id/main_fab_layout"
-        app:layout_anchorGravity="center|left" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_fab1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:src="@drawable/ic_remove_white_24dp"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorRed600"
-        app:layout_anchor="@id/main_fab_layout"
-        app:layout_anchorGravity="center|left" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_fab2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="140dp"
-        android:src="@drawable/ic_add_white_24dp"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorGreen600"
-        app:layout_anchor="@id/main_fab_layout"
-        app:layout_anchorGravity="center|left" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_fab3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:src="@drawable/ic_insert_comment_white_24dp"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorBlue600"
-        app:layout_anchor="@id/main_fab_layout"
-        app:layout_anchorGravity="center|left" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_fab4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_touch_app_black_24dp"
-        android:visibility="invisible"
-        app:layout_anchor="@id/main_fab_layout"
-        app:layout_anchorGravity="center|right" />
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/main_adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>
