@@ -10,6 +10,8 @@
     <string name="exception_facebook">Facebook Exception</string>
     <string name="error_empty_field">Fields are Empty</string>
     <string name="error_signin">Problem with Sign In</string>
+    <string name="unlock_app">Unlock Bahi Khata</string>
+    <string name="confirm_pattern_message">Confirm your screen lock pattern, PIN or password</string>
 
     // literals
     <string name="OPEN">Open</string>
@@ -48,7 +50,5 @@
     <string name="fail_google_signin">Google sign in failed</string>
     <string name="fail_firebase_registration">Firebase Registration Failed</string>
     <string name="fail_registration">Registration Failed</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
