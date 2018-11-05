@@ -1,72 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/colorWhite">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/pinText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:digits="0123456789"
-            android:inputType="number"
-            android:maxLength="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/loginAdView"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/pinText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:digits="0123456789"
-            android:inputType="number"
-            android:maxLength="1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/pinText3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:digits="0123456789"
-            android:inputType="number"
-            android:maxLength="1" />
+                <LinearLayout
+                    android:id="@+id/titleBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-        <EditText
-            android:id="@+id/pinText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:digits="0123456789"
-            android:inputType="number"
-            android:maxLength="1" />
+                    <android.support.design.widget.AppBarLayout
+                        android:id="@+id/home_appbarLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="@dimen/dp2">
 
-    </LinearLayout>
+                        <android.support.v7.widget.Toolbar
+                            android:id="@+id/home_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimary">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+                            <TextView
+                                android:id="@+id/main_toolbar_title"
+                                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/app_name"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/dp30" />
 
-        <Button
-            android:id="@+id/validatePin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go" />
+                        </android.support.v7.widget.Toolbar>
 
-    </LinearLayout>
+                    </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/fingerPrintMessage"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp30"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_baseline_lock_24px" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:text="Unlock Bahi Khata"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp20" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="@dimen/dp2"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:background="@color/red" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp20" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Use PIN or Fingerprint scanner to enter app" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="bottom|center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp10">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/pinText1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:inputType="number"
+                                android:maxLength="1" />
+
+                            <EditText
+                                android:id="@+id/pinText2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:inputType="number"
+                                android:maxLength="1" />
+
+                            <EditText
+                                android:id="@+id/pinText3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:inputType="number"
+                                android:maxLength="1" />
+
+                            <EditText
+                                android:id="@+id/pinText4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789"
+                                android:inputType="number"
+                                android:maxLength="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/validatePin"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="@drawable/ic_next_page"
+                                android:elevation="@dimen/dp2" />
+
+                            <TextView
+                                android:id="@+id/invalidPinText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp5"
+                                android:gravity="center"
+                                android:padding="@dimen/dp10"
+                                android:text="Wrong PIN"
+                                android:textColor="@color/colorLogo" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="bottom|center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/fingerPrintMessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Enter the App using Finger Print Scanner" />
+
+                        <ImageView
+                            android:id="@+id/fingerPrintScanner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:src="@drawable/ic_fingerprint" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            
+        </LinearLayout>
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/loginAdView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Enter the App using Finger Print Scanner"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
-    </LinearLayout>
-</LinearLayout>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

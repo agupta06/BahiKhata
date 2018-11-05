@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorWhite"
     tools:context=".LoginActivity">
 
     <RelativeLayout
@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/appLogo"
+            android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
@@ -48,7 +48,7 @@
             android:id="@+id/forFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/appLogo"
+            android:layout_below="@id/titleBar"
             android:layout_marginTop="@dimen/dp10">
 
             <FrameLayout

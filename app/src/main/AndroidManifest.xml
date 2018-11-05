@@ -89,7 +89,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".WelcomeScreen" />
         <activity android:name=".ThemeTwo" />
-        <activity android:name=".PinLockScreen"></activity>
+        <activity android:name=".PinLockScreen" android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
