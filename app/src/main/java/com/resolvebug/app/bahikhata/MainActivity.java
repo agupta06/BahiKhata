@@ -1,30 +1,33 @@
 package com.resolvebug.app.bahikhata;
 
+import android.app.DatePickerDialog;
 import android.app.KeyguardManager;
+import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.TimePicker;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Calendar;
+
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     //private FloatingActionButton fab, fab1, fab2, fab3, fab4;
     //private Animation fabOpen, fabClose, mainFabOpen;
@@ -34,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView appName, fabSelectedText;
 
-    //private ImageButton imageButton;
+    private Button homeButton;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    //private Button logoutButton;
+    private Button logoutButton;
 
     private static final int LOCK_REQUEST_CODE = 221;
     private static final int SECURITY_SETTING_REQUEST_CODE = 233;
@@ -56,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 //        fab2 = findViewById(R.id.main_fab2);
 //        fab3 = findViewById(R.id.main_fab3);
 //        fab4 = findViewById(R.id.main_fab4);
-//        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton = findViewById(R.id.logoutButton);
+        initializeDatePickerFragment();
 
 //        mainFabOpen = AnimationUtils.loadAnimation(this, R.anim.main_fab_open);
 //        fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
@@ -121,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
         appName.setTypeface(typeface);
 
-//        imageButton = findViewById(R.id.home_button);
-//        imageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -140,12 +144,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-//        logoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                firebaseAuth.signOut();
-//            }
-//        });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+            }
+        });
     }
 
     private void userAuthentication() {
@@ -285,5 +289,41 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         MainActivity.this.finish();
+    }
+
+
+    private void initializeDatePickerFragment() {
+        ImageView calendarImage = findViewById(R.id.calendarImage);
+        calendarImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(),"date picker");
+            }
+        });
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR,year);
+        calendar.set(Calendar.MONTH,month);
+        calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        TextView calendarDatePicker = findViewById(R.id.calendarDatePicker);
+        calendarDatePicker.setText(currentDate);
+        DialogFragment timePicker = new TimePickerFragment();
+        timePicker.show(getSupportFragmentManager(),"time picker");
+    }
+
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
+        calendar.set(Calendar.MINUTE,minute);
+        String currentTime = DateFormat.getTimeInstance(DateFormat.FULL).format(calendar.getTime());
+        TextView calendarTimePicker = findViewById(R.id.calendarTimePicker);
+        calendarTimePicker.setText(currentTime);
     }
 }

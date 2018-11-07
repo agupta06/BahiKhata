@@ -9,173 +9,248 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/loginAdView"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/titleBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <android.support.design.widget.AppBarLayout
-                        android:id="@+id/home_appbarLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="@dimen/dp2">
-
-                        <android.support.v7.widget.Toolbar
-                            android:id="@+id/home_toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/colorPrimary">
-
-                            <TextView
-                                android:id="@+id/main_toolbar_title"
-                                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="@string/app_name"
-                                android:textColor="#FFFFFF"
-                                android:textSize="@dimen/dp30" />
-
-                        </android.support.v7.widget.Toolbar>
-
-                    </android.support.design.widget.AppBarLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
+            android:layout_above="@id/main_adView">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:layout_above="@id/loginAdView"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="vertical"
-                    android:background="@color/nightColorPrimary"
-                    android:elevation="4dp"
-                    android:weightSum="3">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:layout_weight="1"
+                        android:id="@+id/titleBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <android.support.design.widget.AppBarLayout
+                            android:id="@+id/home_appbarLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="@dimen/dp2">
+
+                            <android.support.v7.widget.Toolbar
+                                android:id="@+id/home_toolbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/colorPrimary">
+
+                                <TextView
+                                    android:id="@+id/main_toolbar_title"
+                                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="@string/app_name"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="@dimen/dp30" />
+
+
+                            </android.support.v7.widget.Toolbar>
+
+                        </android.support.design.widget.AppBarLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:background="@color/nightColorPrimary"
+                        android:orientation="vertical"
+                        android:weightSum="3">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_marginLeft="@dimen/dp30"
-                            android:layout_marginTop="@dimen/dp10"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="@dimen/dp30"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:layout_weight="1"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="left"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:layout_marginTop="@dimen/dp10"
+                                        android:text="@string/ADD_TRANSACTION"
+                                        android:textColor="@color/colorWhite"
+                                        android:textSize="@dimen/dp20" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp2"
                                     android:layout_marginTop="@dimen/dp10"
-                                    android:text="@string/ADD_TRANSACTION"
-                                    android:textColor="@color/colorWhite"
-                                    android:textSize="@dimen/dp20" />
+                                    android:background="@color/red" />
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="@dimen/dp30"
-                                android:layout_height="@dimen/dp2"
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginRight="40dp"
+                                android:paddingTop="10dp"
+                                android:textColorHint="@color/colorWhite">
+
+                                <EditText
+                                    android:id="@+id/main_tx_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Amount"
+                                    android:inputType="number|numberDecimal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/colorWhite"
+                                    android:textColorHint="@color/colorButton"
+                                    android:textSize="30sp"
+                                    app:backgroundTint="@color/colorButton" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/message"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/amount"
+                                android:layout_marginLeft="40dp"
                                 android:layout_marginTop="@dimen/dp10"
-                                android:background="@color/red" />
+                                android:layout_marginRight="40dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColorHint="@color/colorWhite">
+
+                                <EditText
+                                    android:id="@+id/main_tx_message"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Message"
+                                    android:inputType="textAutoComplete"
+                                    android:maxLines="1"
+                                    android:textColor="@color/colorWhite"
+                                    app:backgroundTint="@color/colorButton" />
+
+                            </android.support.design.widget.TextInputLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_weight="2"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp50"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/amount"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginRight="40dp"
-                            android:paddingTop="10dp"
-                            android:textColorHint="@color/colorWhite">
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/dp10">
 
-                            <EditText
-                                android:id="@+id/main_tx_amount"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:id="@+id/calendarDatePicker"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:hint="Amount"
-                                android:inputType="number|numberDecimal"
-                                android:maxLines="1"
-                                android:textColor="@color/colorWhite"
-                                android:textColorHint="@color/colorButton"
-                                android:textSize="30sp"
-                                app:backgroundTint="@color/colorButton" />
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="@dimen/dp30"
+                                android:text="@string/DATE"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp14" />
 
-                        </android.support.design.widget.TextInputLayout>
+                            <TextView
+                                android:id="@+id/calendarTimePicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="@dimen/dp30"
+                                android:text="Time"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp14" />
 
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/message"
+                            <ImageView
+                                android:id="@+id/calendarImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:src="@android:drawable/ic_menu_my_calendar" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/amount"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginTop="@dimen/dp10"
-                            android:layout_marginRight="40dp"
-                            android:layout_marginBottom="5dp"
-                            android:textColorHint="@color/colorWhite">
+                            android:orientation="horizontal"
+                            android:gravity="center_horizontal">
+                        <Button
+                            android:id="@+id/logoutButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp36"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/high_emphasis_button"
+                            android:elevation="@dimen/dp2"
+                            android:text="@string/LOGOUT"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/dp14" />
 
-                            <EditText
-                                android:id="@+id/main_tx_message"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Message"
-                                android:inputType="textAutoComplete"
-                                android:maxLines="1"
-                                android:textColor="@color/colorWhite"
-                                app:backgroundTint="@color/colorButton" />
+                        <Button
+                            android:id="@+id/homeButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp36"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/dp50"
+                            android:background="@drawable/high_emphasis_button"
+                            android:elevation="@dimen/dp2"
+                            android:text="Home"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/dp14" />
 
-                        </android.support.design.widget.TextInputLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </LinearLayout>
-
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_adView"

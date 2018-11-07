@@ -52,4 +52,8 @@
     <string name="fail_firebase_registration">Firebase Registration Failed</string>
     <string name="fail_registration">Registration Failed</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    // others
+    <string name="add_date">Hire Date (DD/MM/YYYY)</string>
+
 </resources>
