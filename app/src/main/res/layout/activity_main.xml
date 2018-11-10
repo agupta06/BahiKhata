@@ -66,12 +66,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:weightSum="2">
+                    android:weightSum="3">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:background="@color/nightColorPrimary"
                         android:orientation="vertical"
                         android:weightSum="3">
@@ -123,7 +123,6 @@
                             android:orientation="vertical">
 
                             <android.support.design.widget.TextInputLayout
-                                android:id="@+id/amount"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="40dp"
@@ -132,7 +131,7 @@
                                 android:textColorHint="@color/colorWhite">
 
                                 <EditText
-                                    android:id="@+id/main_tx_amount"
+                                    android:id="@+id/transactionAmount"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Amount"
@@ -146,10 +145,8 @@
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                android:id="@+id/message"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@id/amount"
                                 android:layout_marginLeft="40dp"
                                 android:layout_marginTop="@dimen/dp10"
                                 android:layout_marginRight="40dp"
@@ -157,7 +154,7 @@
                                 android:textColorHint="@color/colorWhite">
 
                                 <EditText
-                                    android:id="@+id/main_tx_message"
+                                    android:id="@+id/transactionMessage"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Message"
@@ -175,13 +172,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp50"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:weightSum="3">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
                             android:orientation="vertical"
                             android:paddingBottom="@dimen/dp10">
 
@@ -216,31 +214,69 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_horizontal">
-                        <Button
-                            android:id="@+id/logoutButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dp36"
-                            android:layout_centerHorizontal="true"
-                            android:background="@drawable/high_emphasis_button"
-                            android:elevation="@dimen/dp2"
-                            android:text="@string/LOGOUT"
-                            android:textColor="#ffffff"
-                            android:textSize="@dimen/dp14" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
 
-                        <Button
-                            android:id="@+id/homeButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dp36"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="@dimen/dp50"
-                            android:background="@drawable/high_emphasis_button"
-                            android:elevation="@dimen/dp2"
-                            android:text="Home"
-                            android:textColor="#ffffff"
-                            android:textSize="@dimen/dp14" />
+                            <android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="@dimen/dp10"
+                                android:layout_marginRight="40dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColorHint="@color/colorWhite">
+
+                                <Spinner
+                                    android:id="@+id/transactionType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/transactionTypes" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/logoutButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp36"
+                                android:layout_centerHorizontal="true"
+                                android:background="@drawable/high_emphasis_button"
+                                android:elevation="@dimen/dp2"
+                                android:text="@string/LOGOUT"
+                                android:textColor="#ffffff"
+                                android:textSize="@dimen/dp14" />
+
+                            <Button
+                                android:id="@+id/saveButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp36"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="@dimen/dp50"
+                                android:background="@drawable/high_emphasis_button"
+                                android:elevation="@dimen/dp2"
+                                android:text="@string/SAVE"
+                                android:textColor="#ffffff"
+                                android:textSize="@dimen/dp14" />
+
+                            <Button
+                                android:id="@+id/homeButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp36"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="@dimen/dp50"
+                                android:background="@drawable/high_emphasis_button"
+                                android:elevation="@dimen/dp2"
+                                android:text="Home"
+                                android:textColor="#ffffff"
+                                android:textSize="@dimen/dp14" />
 
                         </LinearLayout>
 

@@ -35,6 +35,7 @@
     <string name="PHONE">Phone</string>
     <string name="EMAIL">Email</string>
     <string name="ADD_TRANSACTION">Add Transaction</string>
+    <string name="SAVE">Save</string>
 
     // symbols
     <string name="forward_slash">/</string>
@@ -55,5 +56,12 @@
 
     // others
     <string name="add_date">Hire Date (DD/MM/YYYY)</string>
+
+    // spinners
+    <array name="transactionTypes">
+        <item>Credit</item>
+        <item>Debit</item>
+        <item>Notes</item>
+    </array>
 
 </resources>
