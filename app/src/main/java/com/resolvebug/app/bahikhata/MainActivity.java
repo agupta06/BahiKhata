@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     // Database
     SQLiteDatabase mDatabase;
 
+    // Variables
+    private String txDate;
+    private String txTime;
+
     // Others
     //private FloatingActionButton fab, fab1, fab2, fab3, fab4;
     //private Animation fabOpen, fabClose, mainFabOpen;
@@ -284,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         TextView calendarDatePicker = findViewById(R.id.calendarDatePicker);
         calendarDatePicker.setText(currentDate);
+        txDate = currentDate;
         DialogFragment timePicker = new TimePickerFragment();
         timePicker.show(getSupportFragmentManager(), "time picker");
     }
@@ -297,17 +302,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String currentTime = DateFormat.getTimeInstance(DateFormat.FULL).format(calendar.getTime());
         TextView calendarTimePicker = findViewById(R.id.calendarTimePicker);
         calendarTimePicker.setText(currentTime);
+        txTime = currentTime;
     }
 
     private void createTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS TransactionDetails (\n" +
-                "    id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "    txAmount DOUBLE NOT NULL,\n" +
-                "    txMessage VARCHAR(200) NOT NULL,\n" +
-                "    txDate DATETIME NOT NULL,\n" +
-                "    txType VARCHAR(200) NOT NULL );";
+        String sql = "CREATE TABLE IF NOT EXISTS TRANSACTION_DETAILS (\n" +
+                "    ID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    TRANSACTION_DATE VARCHAR(10) NOT NULL,\n" +
+                "    TRANSACTION_TIME VARCHAR(8) NOT NULL,\n" +
+                "    TRANSACTION_TYPE VARCHAR(200) NOT NULL, \n" +
+                "    TRANSACTION_AMOUNT DOUBLE NOT NULL,\n" +
+                "    TRANSACTION_MESSAGE VARCHAR(200) NOT NULL );";
 
-//        String sql = "DROP TABLE IF EXISTS TransactionDetails";
+//        String sql = "DROP TABLE IF EXISTS TRANSACTION_DETAILS";
 
         mDatabase.execSQL(sql);
     }
@@ -317,17 +324,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String txMessage = transactionMessage.getText().toString().trim();
         String txType = transactionTypes.getSelectedItem().toString();
 
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String txDate = sdf.format(cal.getTime());
-
         if (inputsAreCorrect(txAmount, txMessage)) {
-
-            String insertSQL = "INSERT INTO TransactionDetails \n" +
-                    "(txAmount, txMessage, txDate, txType)\n" +
+            String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
+                    "(TRANSACTION_DATE, TRANSACTION_TIME, TRANSACTION_TYPE, TRANSACTION_AMOUNT, TRANSACTION_MESSAGE)\n" +
                     "VALUES \n" +
-                    "(?, ?, ?, ?);";
-            mDatabase.execSQL(insertSQL, new String[]{txAmount, txMessage, txDate, txType});
+                    "(?, ?, ?, ?, ?);";
+            mDatabase.execSQL(insertSQL, new String[]{txDate, txTime, txType, txAmount, txMessage});
             Toast.makeText(this, "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
             resetInputs();
         }
