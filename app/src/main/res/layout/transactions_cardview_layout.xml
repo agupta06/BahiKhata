@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/dp0"
-            android:paddingBottom="@dimen/dp2"
+            android:paddingBottom="@dimen/dp0"
             android:paddingLeft="@dimen/dp0"
             android:paddingRight="@dimen/dp0"
             android:background="@drawable/cardview_filled_green">

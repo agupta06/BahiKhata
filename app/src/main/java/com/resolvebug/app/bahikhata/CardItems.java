@@ -17,4 +17,8 @@ public class CardItems {
     public String getMessage() {
         return message;
     }
+
+    public void changeText(String text){
+        message = text;
+    }
 }
