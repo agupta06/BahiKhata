@@ -259,7 +259,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/dp36"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="@dimen/dp50"
                                 android:background="@drawable/high_emphasis_button"
                                 android:elevation="@dimen/dp2"
                                 android:text="@string/SAVE"
@@ -271,10 +270,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/dp36"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="@dimen/dp50"
                                 android:background="@drawable/high_emphasis_button"
                                 android:elevation="@dimen/dp2"
                                 android:text="Home"
+                                android:textColor="#ffffff"
+                                android:textSize="@dimen/dp14" />
+
+                            <Button
+                                android:id="@+id/exportCSV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp36"
+                                android:layout_centerHorizontal="true"
+                                android:background="@drawable/high_emphasis_button"
+                                android:elevation="@dimen/dp2"
+                                android:text="Export"
                                 android:textColor="#ffffff"
                                 android:textSize="@dimen/dp14" />
 

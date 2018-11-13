@@ -2,12 +2,16 @@ package com.resolvebug.app.bahikhata;
 
 import android.app.DatePickerDialog;
 import android.app.KeyguardManager;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -28,8 +32,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -45,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private Button homeButton;
     private Button saveButton;
     private Button logoutButton;
+    private Button exportCSV;
 
     // EditText
     private EditText transactionAmount;
@@ -81,18 +88,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         initialize();
         setTitleFont();
         setAdView();
-
-        // create a new table or update an existing database
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        createTable();
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addTransaction();
-            }
-        });
-
-
+        performDBOperations();
+        exportCSV();
         initializeDatePickerFragment();
         setHomeButton();
         setUserLogoutButton();
@@ -148,6 +145,30 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 //        });
     }
 
+    private void performDBOperations() {
+        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        createTable();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addTransaction();
+            }
+        });
+    }
+
+    private void exportCSV() {
+        exportCSV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    new ExportDatabaseCSVTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                } else {
+                    new ExportDatabaseCSVTask().execute();
+                }
+            }
+        });
+    }
+
     private void initialize() {
         appName = findViewById(R.id.main_toolbar_title);
         homeButton = findViewById(R.id.homeButton);
@@ -157,6 +178,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         saveButton = findViewById(R.id.saveButton);
         firebaseAuth = FirebaseAuth.getInstance();
         transactionTypes = findViewById(R.id.transactionType);
+        exportCSV = findViewById(R.id.exportCSV);
+
     }
 
     private void setHomeButton() {
@@ -358,6 +381,54 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             return false;
         }
         return true;
+    }
+
+    public class ExportDatabaseCSVTask extends AsyncTask<String, Void, Boolean> {
+        private final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        DbHelper dbhelper;
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Exporting database...");
+            this.dialog.show();
+            dbhelper = new DbHelper(MainActivity.this);
+        }
+
+        protected Boolean doInBackground(final String... args) {
+            File exportDir = new File(Environment.getExternalStorageDirectory(), "/bahikhata/");
+            if (!exportDir.exists()) {
+                exportDir.mkdirs();
+            }
+            File file = new File(exportDir, "Bahi Khata Transactions.csv");
+            try {
+                file.createNewFile();
+                CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
+                Cursor curCSV = dbhelper.fetchCSVData();
+                csvWrite.writeNext(curCSV.getColumnNames());
+                while (curCSV.moveToNext()) {
+                    String[] mySecondStringArray = new String[curCSV.getColumnNames().length];
+                    for (int i = 0; i < curCSV.getColumnNames().length; i++) {
+                        mySecondStringArray[i] = curCSV.getString(i);
+                    }
+                    csvWrite.writeNext(mySecondStringArray);
+                }
+                csvWrite.close();
+                curCSV.close();
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        }
+
+        protected void onPostExecute(final Boolean success) {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+            if (success) {
+                Toast.makeText(MainActivity.this, "Export successful!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Export failed", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 //        private void animateFab() {
