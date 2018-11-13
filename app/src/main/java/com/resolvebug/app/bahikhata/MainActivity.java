@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        String currentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
         TextView calendarDatePicker = findViewById(R.id.calendarDatePicker);
         calendarDatePicker.setText(currentDate);
         txDate = currentDate;
@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
-        String currentTime = DateFormat.getTimeInstance(DateFormat.FULL).format(calendar.getTime());
+        String currentTime = DateFormat.getTimeInstance(DateFormat.LONG).format(calendar.getTime());
         TextView calendarTimePicker = findViewById(R.id.calendarTimePicker);
         calendarTimePicker.setText(currentTime);
         txTime = currentTime;
@@ -312,9 +312,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 "    TRANSACTION_TIME VARCHAR(8) NOT NULL,\n" +
                 "    TRANSACTION_TYPE VARCHAR(200) NOT NULL, \n" +
                 "    TRANSACTION_AMOUNT DOUBLE NOT NULL,\n" +
-                "    TRANSACTION_MESSAGE VARCHAR(200) NOT NULL );";
+                "    TRANSACTION_MESSAGE VARCHAR(200) NOT NULL,\n" +
+                "    IMPORTANT BOOLEAN NOT NULL,\n" +
+                "    TIME_ZONE VARCHAR(10) NOT NULL );";
 
+//      DROP A TABLE
 //        String sql = "DROP TABLE IF EXISTS TRANSACTION_DETAILS";
+
+//      ADD A NEW COLUMN
+//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TIME_ZONE VARCHAR(10) DEFAULT 'GMT+05:30'";
 
         mDatabase.execSQL(sql);
     }

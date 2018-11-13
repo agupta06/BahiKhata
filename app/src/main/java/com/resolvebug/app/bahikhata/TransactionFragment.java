@@ -1,6 +1,8 @@
 package com.resolvebug.app.bahikhata;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +24,7 @@ public class TransactionFragment extends Fragment {
     private RecyclerView recyclerView;
     private TransactionsRecyclerViewAdapter transactionsRecyclerViewAdapter;
     List<CardItems> cardItemsList;
+    private SQLiteDatabase mDatabase;
 
     public TransactionFragment() {
 
@@ -41,12 +44,30 @@ public class TransactionFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
 
-        cardItemsList.add(new CardItems("60000", "Hello 1"));
-        cardItemsList.add(new CardItems("60000", "Hello 1"));
-        cardItemsList.add(new CardItems("60000", "Hello last"));
+        mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
+        getAllDataFromDB();
 
         transactionsRecyclerViewAdapter = new TransactionsRecyclerViewAdapter(getView().getContext(), cardItemsList);
         recyclerView.setAdapter(transactionsRecyclerViewAdapter);
+    }
+
+    private void getAllDataFromDB() {
+        //we used rawQuery(sql, selectionargs) for fetching all the employees
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS", null);
+
+        //if the cursor has some data
+        if (allData.moveToFirst()) {
+            //looping through all the records
+            do {
+                //pushing each record in the employee list
+                cardItemsList.add(new CardItems(
+                        allData.getString(4),
+                        allData.getString(5)
+                ));
+            } while (allData.moveToNext());
+        }
+        //closing the cursor
+        allData.close();
     }
 
 }
