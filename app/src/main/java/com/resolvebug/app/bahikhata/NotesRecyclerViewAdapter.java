@@ -1,6 +1,7 @@
 package com.resolvebug.app.bahikhata;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,8 +21,11 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     private LinearLayout notesCardLayout;
 
     // Database
-    public static final String DATABASE_NAME = "bahikhatadatabase";
     SQLiteDatabase mDatabase;
+
+//    // boolean
+//    private boolean importantTransactionClicked = false;
+//    private boolean importantTransaction = false;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -56,10 +60,10 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
             public void onClick(View v) {
                 if (cardItems.getImportant().equals("0")) {
                     holder.important.setImageResource(R.drawable.ic_baseline_favorite_24px);
-                    updateImportantTransaction("1", (position+1));
+                    updateImportantTransaction("1", (position + 1));
                 } else {
                     holder.important.setImageResource(R.drawable.ic_baseline_favorite_border_24px);
-                    updateImportantTransaction("0", (position+1));
+                    updateImportantTransaction("0", (position + 1));
                 }
             }
         });
@@ -78,8 +82,29 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                 "SET IMPORTANT = ? \n" +
                 "WHERE id = ?;\n";
         mDatabase.execSQL(sql, new String[]{importantTransaction, Integer.toString(position)});
+        reloadNotesTransactions();
+    }
+
+    private void reloadNotesTransactions() {
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes'", null);
+        if (allData.moveToFirst()) {
+            cardItemsList.clear();
+            do {
+                cardItemsList.add(new CardItems(
+                        allData.getString(1),
+                        allData.getString(2),
+                        allData.getString(3),
+                        allData.getString(4),
+                        allData.getString(5),
+                        allData.getString(6),
+                        allData.getString(7)
+                ));
+            } while (allData.moveToNext());
+        }
+        allData.close();
         notifyDataSetChanged();
     }
+
 
     @Override
     public int getItemCount() {
