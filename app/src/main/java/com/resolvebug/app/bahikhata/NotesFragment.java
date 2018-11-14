@@ -42,7 +42,7 @@ public class NotesFragment extends Fragment {
         mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME,android.content.Context.MODE_PRIVATE ,null);
         getAllDataFromDB();
 
-        notesRecyclerViewAdapter = new NotesRecyclerViewAdapter(getView().getContext(), cardItemsList);
+        notesRecyclerViewAdapter = new NotesRecyclerViewAdapter(getView().getContext(), cardItemsList,mDatabase);
         notesRecyclerViewAdapter.setOnItemClickListener(new NotesRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -57,7 +57,7 @@ public class NotesFragment extends Fragment {
 
     private void getAllDataFromDB() {
         //we used rawQuery(sql, selectionargs) for fetching all the employees
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TRANSACTION_TYPE='Notes'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes'", null);
 
         //if the cursor has some data
         if (allData.moveToFirst()) {
@@ -65,8 +65,13 @@ public class NotesFragment extends Fragment {
             do {
                 //pushing each record in the employee list
                 cardItemsList.add(new CardItems(
+                        allData.getString(1),
+                        allData.getString(2),
+                        allData.getString(3),
                         allData.getString(4),
-                        allData.getString(5)
+                        allData.getString(5),
+                        allData.getString(6),
+                        allData.getString(7)
                 ));
             } while (allData.moveToNext());
         }

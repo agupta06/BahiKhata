@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     // Variables
     private String txDate;
     private String txTime;
+    private String txTimeZone;
 
     // Others
     //private FloatingActionButton fab, fab1, fab2, fab3, fab4;
@@ -100,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         initializeDatePickerFragment();
         setHomeButton();
         setUserLogoutButton();
-
 
 //        fab = findViewById(R.id.main_fab);
 //        fab1 = findViewById(R.id.main_fab1);
@@ -364,7 +364,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String currentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
         TextView calendarDatePicker = findViewById(R.id.calendarDatePicker);
         calendarDatePicker.setText(currentDate);
-        txDate = currentDate;
+        FormatDateTime formatDateTime = new FormatDateTime();
+        txDate = formatDateTime.formatDate(currentDate);
         DialogFragment timePicker = new TimePickerFragment();
         timePicker.show(getSupportFragmentManager(), "time picker");
     }
@@ -378,19 +379,22 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String currentTime = DateFormat.getTimeInstance(DateFormat.LONG).format(calendar.getTime());
         TextView calendarTimePicker = findViewById(R.id.calendarTimePicker);
         calendarTimePicker.setText(currentTime);
-        txTime = currentTime;
+        FormatDateTime formatDateTime = new FormatDateTime();
+        String[] selectedTime = formatDateTime.formatTime(currentTime);
+        txTime = selectedTime[0];
+        txTimeZone = selectedTime[1];
     }
 
     private void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS TRANSACTION_DETAILS (\n" +
                 "    ID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "    TRANSACTION_DATE VARCHAR(10) NOT NULL,\n" +
-                "    TRANSACTION_TIME VARCHAR(8) NOT NULL,\n" +
-                "    TRANSACTION_TYPE VARCHAR(200) NOT NULL, \n" +
-                "    TRANSACTION_AMOUNT DOUBLE NOT NULL,\n" +
-                "    TRANSACTION_MESSAGE VARCHAR(200) NOT NULL,\n" +
-                "    IMPORTANT BOOLEAN NOT NULL,\n" +
-                "    TIME_ZONE VARCHAR(10) NOT NULL );";
+                "    DATE VARCHAR(10) NOT NULL,\n" +
+                "    TIME VARCHAR(10) NOT NULL,\n" +
+                "    TIME_ZONE VARCHAR(10) NOT NULL,\n" +
+                "    TYPE VARCHAR(200) NOT NULL, \n" +
+                "    AMOUNT VARCHAR(30) NOT NULL,\n" +
+                "    MESSAGE VARCHAR(200) NOT NULL,\n" +
+                "    IMPORTANT VARCHAR(2) NOT NULL DEFAULT '0');";
 
 //      DROP A TABLE
 //        String sql = "DROP TABLE IF EXISTS TRANSACTION_DETAILS";
@@ -408,10 +412,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         if (inputsAreCorrect(txAmount, txMessage)) {
             String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
-                    "(TRANSACTION_DATE, TRANSACTION_TIME, TRANSACTION_TYPE, TRANSACTION_AMOUNT, TRANSACTION_MESSAGE)\n" +
+                    "(DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
                     "VALUES \n" +
-                    "(?, ?, ?, ?, ?);";
-            mDatabase.execSQL(insertSQL, new String[]{txDate, txTime, txType, txAmount, txMessage});
+                    "(?, ?, ?, ?, ?, ?);";
+            mDatabase.execSQL(insertSQL, new String[]{txDate, txTime, txTimeZone, txType, txAmount, txMessage});
             Toast.makeText(this, "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
             resetInputs();
         }

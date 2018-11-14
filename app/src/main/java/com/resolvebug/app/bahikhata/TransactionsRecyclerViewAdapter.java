@@ -31,20 +31,20 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
     // "final" is added just because of image view. in case it creates any problem in future, remove image view and remove "final"
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, int position) {
-        CardItems cardItems = cardItemsList.get(position);
+        final CardItems cardItems = cardItemsList.get(position);
         holder.itemAmount.setText(String.valueOf(cardItems.getAmount()));
         holder.itemMessage.setText(cardItems.getMessage());
+        holder.item_date.setText(cardItems.getDate());
         holder.important.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                holder.important.setImageResource(R.drawable.ic_star_filled);
+                if (cardItems.getImportant().equals("0")) {
+                    holder.important.setImageResource(R.drawable.ic_baseline_favorite_24px);
+                }
+                else{
+                    holder.important.setImageResource(R.drawable.ic_baseline_favorite_border_24px);
+                }
             }
         });
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-
-        void onDeleteClick(int position);
     }
 
     @Override
@@ -53,7 +53,9 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        TextView itemAmount, itemMessage;
+        TextView itemAmount;
+        TextView itemMessage;
+        TextView item_date;
         ImageView important;
 
         public RecyclerViewHolder(View itemView) {
@@ -61,6 +63,7 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
             itemAmount = itemView.findViewById(R.id.item_amount);
             itemMessage = itemView.findViewById(R.id.item_message);
             important = itemView.findViewById(R.id.important);
+            item_date = itemView.findViewById(R.id.item_date);
         }
     }
 

@@ -61,8 +61,13 @@ public class TransactionFragment extends Fragment {
             do {
                 //pushing each record in the employee list
                 cardItemsList.add(new CardItems(
+                        allData.getString(1),
+                        allData.getString(2),
+                        allData.getString(3),
                         allData.getString(4),
-                        allData.getString(5)
+                        allData.getString(5),
+                        allData.getString(6),
+                        allData.getString(7)
                 ));
             } while (allData.moveToNext());
         }
