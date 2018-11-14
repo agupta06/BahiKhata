@@ -1,5 +1,7 @@
 package com.resolvebug.app.bahikhata;
 
+import java.sql.Timestamp;
+
 public class FormatDateTime {
 
     public String formatDate(String selectedDate) {
@@ -62,7 +64,7 @@ public class FormatDateTime {
         } else {
             selectedHour = Integer.parseInt(currentHour);
         }
-        if(Integer.toString(selectedHour).length()==1){
+        if (Integer.toString(selectedHour).length() == 1) {
             currentHour = "0" + Integer.toString(selectedHour);
         }
         String chosenTime = currentHour + ":" + currentMinute + ":" + currentSecond;
@@ -71,5 +73,10 @@ public class FormatDateTime {
         formattedTime[0] = chosenTime;
         formattedTime[1] = timeZone;
         return formattedTime;
+    }
+
+    public String getTimeStamp() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        return Long.toString(timestamp.getTime());
     }
 }

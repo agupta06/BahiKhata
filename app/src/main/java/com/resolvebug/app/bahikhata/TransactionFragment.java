@@ -43,23 +43,23 @@ public class TransactionFragment extends Fragment {
         recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
-
         mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
-
-        transactionsRecyclerViewAdapter = new TransactionsRecyclerViewAdapter(getView().getContext(), cardItemsList);
+        transactionsRecyclerViewAdapter = new TransactionsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
+        transactionsRecyclerViewAdapter.setOnItemClickListener(new TransactionsRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                cardItemsList.get(position).changeText("Working???");
+                transactionsRecyclerViewAdapter.notifyItemChanged(position);
+            }
+        });
         recyclerView.setAdapter(transactionsRecyclerViewAdapter);
     }
 
     private void getAllDataFromDB() {
-        //we used rawQuery(sql, selectionargs) for fetching all the employees
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS", null);
-
-        //if the cursor has some data
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit' OR TYPE='Debit'", null);
         if (allData.moveToFirst()) {
-            //looping through all the records
             do {
-                //pushing each record in the employee list
                 cardItemsList.add(new CardItems(
                         allData.getString(1),
                         allData.getString(2),
@@ -67,11 +67,11 @@ public class TransactionFragment extends Fragment {
                         allData.getString(4),
                         allData.getString(5),
                         allData.getString(6),
-                        allData.getString(7)
+                        allData.getString(7),
+                        allData.getString(8)
                 ));
             } while (allData.moveToNext());
         }
-        //closing the cursor
         allData.close();
     }
 

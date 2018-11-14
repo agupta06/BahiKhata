@@ -388,6 +388,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS TRANSACTION_DETAILS (\n" +
                 "    ID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    TRANSACTION_ID LONG NOT NULL,\n" +
                 "    DATE VARCHAR(10) NOT NULL,\n" +
                 "    TIME VARCHAR(10) NOT NULL,\n" +
                 "    TIME_ZONE VARCHAR(10) NOT NULL,\n" +
@@ -400,7 +401,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 //        String sql = "DROP TABLE IF EXISTS TRANSACTION_DETAILS";
 
 //      ADD A NEW COLUMN
-//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TIME_ZONE VARCHAR(10) DEFAULT 'GMT+05:30'";
+//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TRANSACTION_ID VARCHAR(20) DEFAULT 'GMT+05:30'";
+//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TRANSACTION_ID VARCHAR(20)";
 
         mDatabase.execSQL(sql);
     }
@@ -409,16 +411,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String txAmount = transactionAmount.getText().toString().trim();
         String txMessage = transactionMessage.getText().toString().trim();
         String txType = transactionTypes.getSelectedItem().toString();
-
+        String txId = getTransactionId();
         if (inputsAreCorrect(txAmount, txMessage)) {
             String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
-                    "(DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
+                    "(TRANSACTION_ID,DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
                     "VALUES \n" +
-                    "(?, ?, ?, ?, ?, ?);";
-            mDatabase.execSQL(insertSQL, new String[]{txDate, txTime, txTimeZone, txType, txAmount, txMessage});
+                    "(?, ?, ?, ?, ?, ?, ?);";
+            mDatabase.execSQL(insertSQL, new String[]{txId, txDate, txTime, txTimeZone, txType, txAmount, txMessage});
             Toast.makeText(this, "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
             resetInputs();
         }
+    }
+
+    private String getTransactionId() {
+        FormatDateTime formatDateTime = new FormatDateTime();
+        return formatDateTime.getTimeStamp();
     }
 
     private void resetInputs() {

@@ -2,6 +2,7 @@ package com.resolvebug.app.bahikhata;
 
 public class CardItems {
 
+    private String transactionId;
     private String date;
     private String time;
     private String timeZone;
@@ -10,7 +11,8 @@ public class CardItems {
     private String message;
     private String important;
 
-    public CardItems(String date, String time, String timeZone, String type, String amount, String message, String important) {
+    public CardItems(String transactionId, String date, String time, String timeZone, String type, String amount, String message, String important) {
+        this.transactionId = transactionId;
         this.date = date;
         this.time = time;
         this.timeZone = timeZone;
@@ -18,6 +20,14 @@ public class CardItems {
         this.amount = amount;
         this.message = message;
         this.important = important;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     public String getTimeZone() {

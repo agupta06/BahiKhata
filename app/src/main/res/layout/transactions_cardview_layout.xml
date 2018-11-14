@@ -9,11 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         card_view:cardCornerRadius="@dimen/dp10">
 
         <LinearLayout
-            android:id="@+id/notes_linear_layout"
+            android:id="@+id/transaction_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/dp0"

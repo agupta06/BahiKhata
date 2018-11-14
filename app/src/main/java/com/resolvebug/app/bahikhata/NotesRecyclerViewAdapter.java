@@ -23,10 +23,6 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     // Database
     SQLiteDatabase mDatabase;
 
-//    // boolean
-//    private boolean importantTransactionClicked = false;
-//    private boolean importantTransaction = false;
-
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
@@ -58,30 +54,33 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
         setDefaultImportantTransaction(holder, cardItems);
         holder.important.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (cardItems.getImportant().equals("0")) {
+                String importantTx = cardItems.getImportant();
+                String importantTxId = cardItems.getTransactionId();
+                if (importantTx.equals("0")) {
                     holder.important.setImageResource(R.drawable.ic_baseline_favorite_24px);
-                    updateImportantTransaction("1", (position + 1));
+                    updateImportantTransaction("1", importantTxId);
                 } else {
                     holder.important.setImageResource(R.drawable.ic_baseline_favorite_border_24px);
-                    updateImportantTransaction("0", (position + 1));
+                    updateImportantTransaction("0", importantTxId);
                 }
             }
         });
     }
 
     private void setDefaultImportantTransaction(RecyclerViewHolder holder, CardItems cardItems) {
-        if (cardItems.getImportant().equals("0")) {
+        String importantTx = cardItems.getImportant();
+        if (importantTx.equals("0")) {
             holder.important.setImageResource(R.drawable.ic_baseline_favorite_border_24px);
         } else {
             holder.important.setImageResource(R.drawable.ic_baseline_favorite_24px);
         }
     }
 
-    private void updateImportantTransaction(String importantTransaction, int position) {
+    private void updateImportantTransaction(String importantTransaction, String importantTxId) {
         String sql = "UPDATE TRANSACTION_DETAILS \n" +
                 "SET IMPORTANT = ? \n" +
-                "WHERE id = ?;\n";
-        mDatabase.execSQL(sql, new String[]{importantTransaction, Integer.toString(position)});
+                "WHERE TRANSACTION_ID = ?;\n";
+        mDatabase.execSQL(sql, new String[]{importantTransaction, importantTxId});
         reloadNotesTransactions();
     }
 
@@ -97,7 +96,8 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                         allData.getString(4),
                         allData.getString(5),
                         allData.getString(6),
-                        allData.getString(7)
+                        allData.getString(7),
+                        allData.getString(8)
                 ));
             } while (allData.moveToNext());
         }
