@@ -22,7 +22,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class HomeActivity extends AppCompatActivity {
+public class TransactionsActivity extends AppCompatActivity {
 
     private AdView adView;
 
@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                Intent intent = new Intent(TransactionsActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -115,8 +115,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TransactionFragment(), "TRANSACTIONS");
         adapter.addFragment(new NotesFragment(), "NOTES");
+        adapter.addFragment(new CreditsFragment(), "CREDITS");
+        adapter.addFragment(new DebitsFragment(), "DEBITS");
         viewPager.setAdapter(adapter);
     }
 

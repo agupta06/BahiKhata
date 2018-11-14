@@ -13,12 +13,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<TransactionsRecyclerViewAdapter.RecyclerViewHolder> {
+public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecyclerViewAdapter.RecyclerViewHolder> {
 
     private Context context;
     private List<CardItems> cardItemsList;
     private LinearLayout transactionCardlayout;
-    private TransactionsRecyclerViewAdapter.OnItemClickListener mListener;
+    private CreditsRecyclerViewAdapter.OnItemClickListener mListener;
 
     // Database
     SQLiteDatabase mDatabase;
@@ -27,11 +27,11 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(TransactionsRecyclerViewAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(CreditsRecyclerViewAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
 
-    public TransactionsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase) {
+    public CreditsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase) {
         this.context = context;
         this.cardItemsList = cardItemsList;
         this.mDatabase = mDatabase;
@@ -40,7 +40,7 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.transactions_cardview_layout, null);
+        View view = inflater.inflate(R.layout.credits_cardview_layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 
@@ -67,7 +67,7 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
         });
     }
 
-    private void setDefaultImportantTransaction(TransactionsRecyclerViewAdapter.RecyclerViewHolder holder, CardItems cardItems) {
+    private void setDefaultImportantTransaction(CreditsRecyclerViewAdapter.RecyclerViewHolder holder, CardItems cardItems) {
         if (cardItems.getImportant().equals("0")) {
             holder.important.setImageResource(R.drawable.ic_baseline_favorite_border_24px);
         } else {
@@ -84,7 +84,7 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
     }
 
     private void reloadTransactions() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit' OR TYPE='Debit'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
         if (allData.moveToFirst()) {
             cardItemsList.clear();
             do {
@@ -115,7 +115,7 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
         TextView item_date;
         ImageView important;
 
-        public RecyclerViewHolder(View itemView, final TransactionsRecyclerViewAdapter.OnItemClickListener listener) {
+        public RecyclerViewHolder(View itemView, final CreditsRecyclerViewAdapter.OnItemClickListener listener) {
             super(itemView);
             itemAmount = itemView.findViewById(R.id.item_amount);
             itemMessage = itemView.findViewById(R.id.item_message);

@@ -12,10 +12,9 @@
         card_view:cardCornerRadius="@dimen/dp10">
 
         <LinearLayout
-            android:id="@+id/notes_linear_layout"
+            android:id="@+id/transaction_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/cardview_filled_blue"
             android:paddingLeft="@dimen/dp0"
             android:paddingTop="@dimen/dp0"
             android:paddingRight="@dimen/dp0"
@@ -91,7 +90,6 @@
                         android:layout_toLeftOf="@id/important"
                         android:text="@string/MESSAGE"
                         android:textSize="@dimen/sp12" />
-
 
                     <ImageView
                         android:id="@+id/important"

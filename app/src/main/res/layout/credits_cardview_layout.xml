@@ -15,24 +15,23 @@
             android:id="@+id/transaction_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/dp0"
-            android:paddingBottom="@dimen/dp0"
             android:paddingLeft="@dimen/dp0"
+            android:paddingTop="@dimen/dp0"
             android:paddingRight="@dimen/dp0"
-            android:background="@drawable/cardview_filled_green">
+            android:paddingBottom="@dimen/dp0">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cardview_border_blue"
                 android:orientation="vertical"
-                android:background="@drawable/cardview_border_green"
                 android:weightSum="2">
 
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/dp8"
                     android:id="@+id/row1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp0"
+                    android:layout_marginTop="@dimen/dp8"
                     android:layout_weight="1"
                     android:padding="@dimen/dp2">
 
@@ -77,18 +76,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp0"
                     android:layout_below="@id/row1"
+                    android:layout_marginBottom="@dimen/dp8"
                     android:layout_weight="1"
-                    android:padding="@dimen/dp2"
-                    android:layout_marginBottom="@dimen/dp8">
+                    android:padding="@dimen/dp2">
 
                     <TextView
                         android:id="@+id/item_message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@id/important"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/dp10"
                         android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:layout_toLeftOf="@id/important"
                         android:text="@string/MESSAGE"
                         android:textSize="@dimen/sp12" />
 

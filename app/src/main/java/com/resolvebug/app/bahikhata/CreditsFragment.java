@@ -15,15 +15,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesFragment extends Fragment {
+public class CreditsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private NotesRecyclerViewAdapter notesRecyclerViewAdapter;
-    private List<CardItems> cardItemsList;
+    private CreditsRecyclerViewAdapter creditsRecyclerViewAdapter;
+    List<CardItems> cardItemsList;
     private SQLiteDatabase mDatabase;
 
-    public NotesFragment() {
+    public CreditsFragment() {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_credits, container, false);
     }
 
     @Override
@@ -33,32 +39,23 @@ public class NotesFragment extends Fragment {
         recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
-
         mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
-
-        notesRecyclerViewAdapter = new NotesRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
-        notesRecyclerViewAdapter.setOnItemClickListener(new NotesRecyclerViewAdapter.OnItemClickListener() {
+        creditsRecyclerViewAdapter = new CreditsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
+        creditsRecyclerViewAdapter.setOnItemClickListener(new CreditsRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 cardItemsList.get(position).changeText("Working???");
-                notesRecyclerViewAdapter.notifyItemChanged(position);
+                creditsRecyclerViewAdapter.notifyItemChanged(position);
             }
         });
-        recyclerView.setAdapter(notesRecyclerViewAdapter);
-
-
+        recyclerView.setAdapter(creditsRecyclerViewAdapter);
     }
 
     private void getAllDataFromDB() {
-        //we used rawQuery(sql, selectionargs) for fetching all the employees
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes'", null);
-
-        //if the cursor has some data
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
         if (allData.moveToFirst()) {
-            //looping through all the records
             do {
-                //pushing each record in the employee list
                 cardItemsList.add(new CardItems(
                         allData.getString(1),
                         allData.getString(2),
@@ -71,15 +68,7 @@ public class NotesFragment extends Fragment {
                 ));
             } while (allData.moveToNext());
         }
-        //closing the cursor
         allData.close();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
 }

@@ -15,25 +15,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TransactionFragment extends Fragment {
+public class DebitsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private TransactionsRecyclerViewAdapter transactionsRecyclerViewAdapter;
+    private DebitsRecyclerViewAdapter debitsRecyclerViewAdapter;
     List<CardItems> cardItemsList;
     private SQLiteDatabase mDatabase;
 
-    public TransactionFragment() {
+    public DebitsFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_transaction, container, false);
+        return inflater.inflate(R.layout.fragment_debits, container, false);
     }
 
     @Override
@@ -45,19 +41,19 @@ public class TransactionFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
         mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
-        transactionsRecyclerViewAdapter = new TransactionsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
-        transactionsRecyclerViewAdapter.setOnItemClickListener(new TransactionsRecyclerViewAdapter.OnItemClickListener() {
+        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
+        debitsRecyclerViewAdapter.setOnItemClickListener(new DebitsRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 cardItemsList.get(position).changeText("Working???");
-                transactionsRecyclerViewAdapter.notifyItemChanged(position);
+                debitsRecyclerViewAdapter.notifyItemChanged(position);
             }
         });
-        recyclerView.setAdapter(transactionsRecyclerViewAdapter);
+        recyclerView.setAdapter(debitsRecyclerViewAdapter);
     }
 
     private void getAllDataFromDB() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit' OR TYPE='Debit'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
         if (allData.moveToFirst()) {
             do {
                 cardItemsList.add(new CardItems(
