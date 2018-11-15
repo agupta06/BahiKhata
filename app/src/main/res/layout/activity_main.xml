@@ -241,51 +241,82 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:weightSum="2">
 
-                            <Button
-                                android:id="@+id/logoutButton"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="@dimen/dp36"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/high_emphasis_button"
-                                android:elevation="@dimen/dp2"
-                                android:text="@string/LOGOUT"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/dp14" />
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
 
-                            <Button
-                                android:id="@+id/saveButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/dp36"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/high_emphasis_button"
-                                android:elevation="@dimen/dp2"
-                                android:text="@string/SAVE"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/dp14" />
+                                <Button
+                                    android:id="@+id/logoutButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp36"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_margin="@dimen/dp5"
+                                    android:background="@drawable/high_emphasis_button"
+                                    android:elevation="@dimen/dp2"
+                                    android:text="@string/LOGOUT"
+                                    android:textColor="#ffffff"
+                                    android:textSize="@dimen/dp14" />
 
-                            <Button
-                                android:id="@+id/homeButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/dp36"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/high_emphasis_button"
-                                android:elevation="@dimen/dp2"
-                                android:text="Home"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/dp14" />
+                                <Button
+                                    android:id="@+id/saveButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp36"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_margin="@dimen/dp5"
+                                    android:background="@drawable/high_emphasis_button"
+                                    android:elevation="@dimen/dp2"
+                                    android:text="@string/SAVE"
+                                    android:textColor="#ffffff"
+                                    android:textSize="@dimen/dp14" />
 
-                            <Button
-                                android:id="@+id/exportCSV"
+                                <Button
+                                    android:id="@+id/homeButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp36"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_margin="@dimen/dp5"
+                                    android:background="@drawable/high_emphasis_button"
+                                    android:elevation="@dimen/dp2"
+                                    android:text="Home"
+                                    android:textColor="#ffffff"
+                                    android:textSize="@dimen/dp14" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="@dimen/dp36"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/high_emphasis_button"
-                                android:elevation="@dimen/dp2"
-                                android:text="Export"
-                                android:textColor="#ffffff"
-                                android:textSize="@dimen/dp14" />
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+
+                                <Button
+                                    android:id="@+id/exportCSV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp36"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_margin="@dimen/dp5"
+                                    android:background="@drawable/high_emphasis_button"
+                                    android:elevation="@dimen/dp2"
+                                    android:text="Export"
+                                    android:textColor="#ffffff"
+                                    android:textSize="@dimen/dp14" />
+
+                                <Button
+                                    android:id="@+id/changeLanguage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp36"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_margin="@dimen/dp5"
+                                    android:background="@drawable/high_emphasis_button"
+                                    android:elevation="@dimen/dp2"
+                                    android:text="Change Language"
+                                    android:textColor="#ffffff"
+                                    android:textSize="@dimen/dp14" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 

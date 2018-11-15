@@ -1,0 +1,49 @@
+<resources>
+    // properties
+    <string name="app_name">Bahi Khata</string>
+    <string name="font_app_name">fonts/Cookie-Regular.ttf</string>
+    <string name="facebook_app_id">325916787963647</string>
+    <string name="fb_login_protocol_scheme">fb325916787963647</string>
+
+    // validations, errors and exceptions
+    <string name="exception_facebook">फेसबुक अपवाद</string>
+    <string name="error_empty_field">कृपया अनिवार्य विवरण प्रदान करें</string>
+    <string name="error_signin">कृपया पुन: प्रयास करें</string>
+    <string name="unlock_app">Bahi Khata खोलें</string>
+    <string name="confirm_pattern_message">अपने स्क्रीन लॉक पैटर्न, पिन या पासवर्ड की पुष्टि करें</string>
+
+    // literals
+    <string name="OPEN">खोलें</string>
+    <string name="CLOSE">बंद करे</string>
+    <string name="MESSAGE">संदेश</string>
+    <string name="AMOUNT">रकम</string>
+    <string name="EMPTY_STRING"></string>
+    <string name="DATE">दिनांक</string>
+    <string name="LOGOUT">लोग आउट</string>
+    <string name="ERROR">त्रुटि</string>
+    <string name="CANCELLED">रद्द</string>
+    <string name="PHONE">फ़ोन</string>
+    <string name="EMAIL">ईमेल</string>
+    <string name="ADD_TRANSACTION">लेनदेन जोड़ें</string>
+    <string name="SAVE">सहेजें</string>
+
+    // symbols
+    <string name="currency_rupee">\u20B9</string>
+
+    // success messages
+    <string name="success_registration">पंजीकरण सफल</string>
+
+    // failure messages
+    <string name="fail_authentication">प्रमाणीकरण विफल</string>
+    <string name="fail_google_signin">Google साइन इन विफल</string>
+    <string name="fail_firebase_registration">फायरबेस पंजीकरण विफल</string>
+    <string name="fail_registration">पंजीकरण विफल</string>
+
+    // spinners
+    <array name="transactionTypes">
+        <item>जमा करना</item>
+        <item>निकालना</item>
+        <item>टिप्पणियाँ</item>
+    </array>
+
+</resources>

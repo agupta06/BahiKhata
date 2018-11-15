@@ -1,6 +1,7 @@
 package com.resolvebug.app.bahikhata;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.KeyguardManager;
@@ -8,7 +9,9 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
@@ -43,6 +46,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private Button saveButton;
     private Button logoutButton;
     private Button exportCSV;
+    private Button changeLanguage;
 
     // EditText
     private EditText transactionAmount;
@@ -89,11 +94,20 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_main);
         userAuthentication();
         initialize();
+
+        changeLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLanguageChangeDialog();
+            }
+        });
+
         setTitleFont();
         setAdView();
         performDBOperations();
@@ -150,6 +164,45 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 //                startActivity(intent);
 //            }
 //        });
+    }
+
+    private void showLanguageChangeDialog() {
+        final String[] listLanguages = {"English", "हिंदी"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Choose Language");
+        builder.setSingleChoiceItems(listLanguages, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    setLocale("en");
+                    recreate();
+                } else if (i == 1) {
+                    setLocale("hi");
+                    recreate();
+                }
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void setLocale(String selectedLangauge) {
+        Locale locale = new Locale(selectedLangauge);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("App_Language", selectedLangauge);
+        editor.apply();
+    }
+
+    public void loadLocale() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("App_Language", "");
+        setLocale(language);
     }
 
     private void performDBOperations() {
@@ -232,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         firebaseAuth = FirebaseAuth.getInstance();
         transactionTypes = findViewById(R.id.transactionType);
         exportCSV = findViewById(R.id.exportCSV);
-
+        changeLanguage = findViewById(R.id.changeLanguage);
     }
 
     private void setHomeButton() {
