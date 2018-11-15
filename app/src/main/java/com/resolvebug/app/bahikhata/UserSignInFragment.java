@@ -86,8 +86,8 @@ public class UserSignInFragment extends Fragment {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {    // existing user
-                    startActivity(new Intent(getActivity(), MainActivity.class));
-                    getActivity().finish();
+//                    startActivity(new Intent(getActivity(), MainActivity.class));
+//                    getActivity().finish();
                 }
             }
         };

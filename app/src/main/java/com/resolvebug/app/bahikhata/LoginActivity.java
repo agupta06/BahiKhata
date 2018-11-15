@@ -226,20 +226,11 @@ public class LoginActivity extends AppCompatActivity {
 
     // Facebook Login
     private void setFacebookLogin() {
-        checkFacebookUserRegistrationStatus();
         setFacebookButtonOnClickListener();
     }
 
-    private void checkFacebookUserRegistrationStatus() {
-        FirebaseUser firebaseUser;
-        firebaseUser = firebaseAuth.getCurrentUser();
-        mCallbackManager = CallbackManager.Factory.create();
-        if (firebaseUser != null) {     // existing user
-            startMainActivity();
-        }
-    }
-
     private void setFacebookButtonOnClickListener() {
+        mCallbackManager = CallbackManager.Factory.create();
         ImageButton facebookLoginButton;
         facebookLoginButton = findViewById(R.id.facebookLoginButton);
         facebookLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -275,9 +266,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    startMainActivity();
-                } else {
+                if (!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, R.string.fail_firebase_registration, Toast.LENGTH_LONG).show();
                 }
             }

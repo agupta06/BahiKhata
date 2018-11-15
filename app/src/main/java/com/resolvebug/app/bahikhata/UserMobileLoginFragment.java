@@ -111,17 +111,17 @@ public class UserMobileLoginFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = task.getResult().getUser();
-                            startActivity(new Intent(getActivity(), MainActivity.class));
-                            getActivity().finish();
-                            // ...
-                        } else {
+                        if (!task.isSuccessful()) {
                             // Sign in failed, display a message and update the UI
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
                             }
+                        } else {
+                            // Sign in success, update UI with the signed-in user's information
+//                            FirebaseUser user = task.getResult().getUser();
+//                            startActivity(new Intent(getActivity(), MainActivity.class));
+//                            getActivity().finish();
+                            // ...
                         }
                     }
                 });
