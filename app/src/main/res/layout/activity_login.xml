@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:gravity="center_horizontal"
-                    android:text="OR"
+                    android:text="@string/OR"
                     android:textSize="@dimen/dp14" />
 
                 <LinearLayout
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_marginLeft="@dimen/dp30"
-                        android:text="Other Log In"
+                        android:text="@string/OTHER_LOGIN_METHODS"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dp20" />
 
@@ -164,7 +164,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingTop="@dimen/dp3"
-                            android:text="Facebook"
+                            android:text="@string/LOGN_FACEBOOK"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dp14" />
 
@@ -194,7 +194,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingTop="@dimen/dp3"
-                            android:text="Gmail"
+                            android:text="@string/LOGIN_GMAIL"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dp14" />
 
@@ -223,7 +223,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingTop="@dimen/dp3"
-                            android:text="Phone"
+                            android:text="@string/LOGIN_PHONE"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dp14" />
 

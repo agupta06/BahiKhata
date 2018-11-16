@@ -48,4 +48,26 @@
         <item>Notes</item>
     </array>
 
+    // new
+    <string name="OTHER_LOGIN_METHODS">Other Log In</string>
+    <string name="LOGN_FACEBOOK">Facebook</string>
+    <string name="LOGIN_GMAIL">Gmail</string>
+    <string name="LOGIN_PHONE">Phone</string>
+    <string name="LOGIN_EMAIL">Email</string>
+    <string name="OR">OR</string>
+    <string name="HOME">Home</string>
+    <string name="REPORT">Report</string>
+    <string name="CHANGE_LANGUAGE">Change Language</string>
+    <string name="SIGN_IN_PHONE">Phone Sign In</string>
+    <string name="SIGN_IN_EMAIL">Email Sign In</string>
+    <string name="PHONE_NUMBER">Phone Number</string>
+    <string name="SEND_OTP">Send OTP</string>
+    <string name="REGISTER">Register</string>
+    <string name="PASSWORD">Password</string>
+    <string name="EXISTING_USER">Existing User?</string>
+    <string name="SIGN_IN">Sign In</string>
+    <string name="RESET_PASSWORD">Reset Password</string>
+    <string name="FORGOT_PASSWORD">Forgot Password?</string>
+    <string name="NEW_USER">New User?</string>
+
 </resources>

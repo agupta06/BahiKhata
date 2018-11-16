@@ -9,8 +9,8 @@
     <string name="exception_facebook">फेसबुक अपवाद</string>
     <string name="error_empty_field">कृपया अनिवार्य विवरण प्रदान करें</string>
     <string name="error_signin">कृपया पुन: प्रयास करें</string>
-    <string name="unlock_app">Unlock Bahi Khata</string>
-    <string name="confirm_pattern_message">Confirm your screen lock pattern, PIN or password</string>
+    <string name="unlock_app">Bahi Khata खोलें</string>
+    <string name="confirm_pattern_message">अपने स्क्रीन लॉक पैटर्न, पिन या पासवर्ड की पुष्टि करें</string>
 
     // literals
     <string name="OPEN">खोलें</string>
@@ -37,7 +37,7 @@
 
     // failure messages
     <string name="fail_authentication">प्रमाणीकरण विफल</string>
-    <string name="fail_google_signin">Google साइन इन विफल</string>
+    <string name="fail_google_signin">गूगल साइन इन विफल</string>
     <string name="fail_firebase_registration">फायरबेस पंजीकरण विफल</string>
     <string name="fail_registration">पंजीकरण विफल</string>
 
@@ -48,4 +48,25 @@
         <item>टिप्पणियाँ</item>
     </array>
 
+    // new
+    <string name="OTHER_LOGIN_METHODS">अन्य लॉग इन</string>
+    <string name="LOGN_FACEBOOK">फेसबुक</string>
+    <string name="LOGIN_GMAIL">जीमेल</string>
+    <string name="LOGIN_PHONE">फ़ोन</string>
+    <string name="LOGIN_EMAIL">ईमेल</string>
+    <string name="OR">या</string>
+    <string name="HOME">होम</string>
+    <string name="REPORT">रिपोर्ट</string>
+    <string name="CHANGE_LANGUAGE">भाषा बदलें</string>
+    <string name="SIGN_IN_PHONE">फोन साइन इन</string>
+    <string name="SIGN_IN_EMAIL">ईमेल साइन इन</string>
+    <string name="PHONE_NUMBER">फ़ोन नंबर</string>
+    <string name="SEND_OTP">ओटीपी भेजें</string>
+    <string name="REGISTER">रजिस्टर</string>
+    <string name="PASSWORD">पास वर्ड</string>
+    <string name="EXISTING_USER">मौजूदा उपयोगकर्ता?</string>
+    <string name="SIGN_IN">साइन इन</string>
+    <string name="RESET_PASSWORD">पासवर्ड रीसेट</string>
+    <string name="FORGOT_PASSWORD">पासवर्ड भूल गए?</string>
+    <string name="NEW_USER">नया उपयोगकर्ता?</string>
 </resources>

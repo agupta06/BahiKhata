@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@color/nightColorPrimary"
+                        android:background="@color/colorPrimary"
                         android:orientation="vertical"
                         android:weightSum="3">
 
@@ -135,7 +135,7 @@
                                     android:id="@+id/transactionAmount"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="Amount"
+                                    android:hint="@string/AMOUNT"
                                     android:inputType="number|numberDecimal"
                                     android:maxLines="1"
                                     android:textColor="@color/colorWhite"
@@ -158,7 +158,7 @@
                                     android:id="@+id/transactionMessage"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="Message"
+                                    android:hint="@string/MESSAGE"
                                     android:inputType="textAutoComplete"
                                     android:maxLines="1"
                                     android:textColor="@color/colorWhite"
@@ -282,7 +282,7 @@
                                     android:layout_margin="@dimen/dp5"
                                     android:background="@drawable/high_emphasis_button"
                                     android:elevation="@dimen/dp2"
-                                    android:text="Home"
+                                    android:text="@string/HOME"
                                     android:textColor="#ffffff"
                                     android:textSize="@dimen/dp14" />
 
@@ -301,7 +301,7 @@
                                     android:layout_margin="@dimen/dp5"
                                     android:background="@drawable/high_emphasis_button"
                                     android:elevation="@dimen/dp2"
-                                    android:text="Export"
+                                    android:text="@string/REPORT"
                                     android:textColor="#ffffff"
                                     android:textSize="@dimen/dp14" />
 
@@ -313,7 +313,7 @@
                                     android:layout_margin="@dimen/dp5"
                                     android:background="@drawable/high_emphasis_button"
                                     android:elevation="@dimen/dp2"
-                                    android:text="Change Language"
+                                    android:text="@string/CHANGE_LANGUAGE"
                                     android:textColor="#ffffff"
                                     android:textSize="@dimen/dp14" />
 

@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="@dimen/dp30"
-                    android:text="Register"
+                    android:text="@string/REGISTER"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp20" />
 
@@ -62,7 +62,7 @@
                     android:id="@+id/registerEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/EMAIL"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:textColorHint="@color/black"
@@ -83,7 +83,7 @@
                     android:id="@+id/registerPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/PASSWORD"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:textColorHint="@color/black"
@@ -114,7 +114,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/high_emphasis_button"
                     android:elevation="@dimen/dp2"
-                    android:text="Register"
+                    android:text="@string/REGISTER"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/dp14" />
 
@@ -129,14 +129,15 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp5">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:paddingTop="@dimen/dp5"
-                        android:text="Existing User?  "
+                        android:text="Existing User?"
                         android:textSize="@dimen/dp14" />
 
                 </LinearLayout>
@@ -152,7 +153,7 @@
                         android:clickable="true"
                         android:gravity="center_horizontal"
                         android:paddingTop="@dimen/dp5"
-                        android:text="Sign In"
+                        android:text="@string/SIGN_IN"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/dp14" />
 

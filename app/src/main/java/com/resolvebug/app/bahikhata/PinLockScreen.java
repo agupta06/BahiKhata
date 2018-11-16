@@ -17,12 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -99,7 +97,7 @@ public class PinLockScreen extends AppCompatActivity {
                 } else {
                     invalidPinText.setVisibility(View.VISIBLE);
                     invalidPinText.setText("Wrong PIN");
-                    invalidPinText.setTextColor(getResources().getColor(R.color.colorLogo));
+                    invalidPinText.setTextColor(getResources().getColor(R.color.red));
                 }
             }
         });

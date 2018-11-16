@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="@dimen/dp30"
-                    android:text="Phone Sign In"
+                    android:text="@string/SIGN_IN_PHONE"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dp20" />
 
@@ -60,7 +60,7 @@
                     android:id="@+id/userPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number"
+                    android:hint="@string/PHONE_NUMBER"
                     android:inputType="phone"
                     android:maxLines="1"
                     android:textColorHint="@color/black"
@@ -114,7 +114,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/high_emphasis_button"
                     android:elevation="@dimen/dp2"
-                    android:text="Request OTP"
+                    android:text="@string/SEND_OTP"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/dp14" />
 

@@ -184,7 +184,7 @@
                                 android:gravity="center"
                                 android:padding="@dimen/dp10"
                                 android:text="Wrong PIN"
-                                android:textColor="@color/colorLogo" />
+                                android:textColor="@color/red" />
 
                         </LinearLayout>
 
