@@ -9,8 +9,8 @@
     <string name="exception_facebook">फेसबुक अपवाद</string>
     <string name="error_empty_field">कृपया अनिवार्य विवरण प्रदान करें</string>
     <string name="error_signin">कृपया पुन: प्रयास करें</string>
-    <string name="unlock_app">Bahi Khata खोलें</string>
-    <string name="confirm_pattern_message">अपने स्क्रीन लॉक पैटर्न, पिन या पासवर्ड की पुष्टि करें</string>
+    <string name="unlock_app">Unlock Bahi Khata</string>
+    <string name="confirm_pattern_message">Confirm your screen lock pattern, PIN or password</string>
 
     // literals
     <string name="OPEN">खोलें</string>
@@ -24,8 +24,10 @@
     <string name="CANCELLED">रद्द</string>
     <string name="PHONE">फ़ोन</string>
     <string name="EMAIL">ईमेल</string>
-    <string name="ADD_TRANSACTION">लेनदेन जोड़ें</string>
-    <string name="SAVE">सहेजें</string>
+    <string name="ADD_TRANSACTION">नया लेनदेन</string>
+    <string name="SAVE">ठीक</string>
+    <string name="CANCEL">अभी नहीं</string>
+    <string name="EDIT_TRANSACTION">लेनदेन परिवर्तन</string>
 
     // symbols
     <string name="currency_rupee">\u20B9</string>

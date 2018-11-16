@@ -24,8 +24,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/colorPrimary"
-                    app:layout_scrollFlags="snap|enterAlways|scroll"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    <!--app:layout_scrollFlags="snap|enterAlways|scroll"-->
 
                     <TextView
                         android:id="@+id/home_toolbar_title"
@@ -41,9 +41,9 @@
                     android:id="@+id/home_tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:tabSelectedTextColor="@color/colorButton"
-                    app:tabTextColor="@color/colorWhite"
-                    app:tabTextAppearance="@style/TabLayoutStyle">
+                    app:tabSelectedTextColor="@color/colorAccent"
+                    app:tabTextAppearance="@style/TabLayoutStyle"
+                    app:tabTextColor="@color/colorWhite">
 
                 </android.support.design.widget.TabLayout>
 
@@ -53,18 +53,16 @@
                 android:id="@+id/home_viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            </android.support.v4.view.ViewPager>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/home_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
+                android:layout_gravity="center_horizontal|bottom"
                 android:layout_margin="@dimen/dp16"
-                android:src="@drawable/ic_add_black_24dp"
-                app:layout_behavior="com.resolvebug.app.bahikhata.ScrollFABBehaviour" />
+                android:src="@drawable/ic_add_black_24dp"/>
+                <!--app:layout_behavior="com.resolvebug.app.bahikhata.ScrollFABBehaviour"-->
 
         </android.support.design.widget.CoordinatorLayout>
 
@@ -77,6 +75,7 @@
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
 
         </com.google.android.gms.ads.AdView>
+
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

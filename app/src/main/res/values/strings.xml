@@ -26,6 +26,8 @@
     <string name="EMAIL">Email</string>
     <string name="ADD_TRANSACTION">Add Transaction</string>
     <string name="SAVE">Save</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="EDIT_TRANSACTION">Edit Transaction</string>
 
     // symbols
     <string name="currency_rupee">\u20B9</string>

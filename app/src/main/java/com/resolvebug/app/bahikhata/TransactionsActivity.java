@@ -43,7 +43,7 @@ public class TransactionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_transactions);
 
         adView = findViewById(R.id.home_adView);
         AdRequest adRequest = new AdRequest.Builder().build();
