@@ -93,33 +93,28 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // main
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        loadLocale();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
+        setContentView(R.layout.activity_main);
         userAuthentication();
-
-
-        // new and edit fragment
         initialize();
-        setTitleFont();
-        setAdView();
-        performDBOperations();
-        initializeDatePickerFragment();
-        setHomeButton();
 
-        // settings
-        loadLocale();
         changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showLanguageChangeDialog();
             }
         });
-        exportCSV();
-        setUserLogoutButton();
 
+        setTitleFont();
+        setAdView();
+        performDBOperations();
+        exportCSV();
+        initializeDatePickerFragment();
+        setHomeButton();
+        setUserLogoutButton();
 
 //        fab = findViewById(R.id.main_fab);
 //        fab1 = findViewById(R.id.main_fab1);
