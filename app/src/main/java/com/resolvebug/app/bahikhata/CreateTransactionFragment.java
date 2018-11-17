@@ -1,6 +1,7 @@
 package com.resolvebug.app.bahikhata;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class EditTransactionFragment extends Fragment {
+public class CreateTransactionFragment extends Fragment {
 
     // TextView
     private TextView pageTitle;
@@ -26,13 +27,14 @@ public class EditTransactionFragment extends Fragment {
     // AdView
     private AdView adView;
 
-    public EditTransactionFragment() {
+    public CreateTransactionFragment() {
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_edit_transaction, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_transaction, container, false);
 
         initializeId(view);
         setTitleFont();
@@ -80,8 +82,7 @@ public class EditTransactionFragment extends Fragment {
     }
 
     private void openAllTransactionFragment() {
-        AllTransactionFragment allTransactionFragment = new AllTransactionFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.transactionFrames, allTransactionFragment, "AllTransactionFragment").commit();
+        Intent myIntent = new Intent(getActivity(), TrialMainActivity.class);
+        getActivity().startActivity(myIntent);
     }
 }

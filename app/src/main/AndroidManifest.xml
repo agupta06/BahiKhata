@@ -19,11 +19,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TransactionsActivity" />
         <activity
-            android:name=".TrialActivity"
+            android:name=".TrialMainActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

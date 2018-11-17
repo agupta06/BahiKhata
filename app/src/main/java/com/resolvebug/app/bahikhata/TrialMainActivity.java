@@ -1,8 +1,15 @@
 package com.resolvebug.app.bahikhata;
 
+import android.app.KeyguardManager;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.provider.Settings;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,34 +19,97 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class TrialActivity extends AppCompatActivity {
+public class TrialMainActivity extends AppCompatActivity {
 
     // Literals
     private static final int LOCK_REQUEST_CODE = 221;
     private static final int SECURITY_SETTING_REQUEST_CODE = 233;
-    private FrameLayout changingFragment;
+    private FrameLayout transactionFrames;
+
+    // TextView
+    private TextView pageTitle;
+
+    // Floating Action Button
+    private FloatingActionButton addTransactionButton;
+
+    // ViewPager
+    private ViewPager viewPager;
+
+    // AdView
+    private AdView adView;
+
+    // TabLayout
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // main
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trial);
-        initialize();
+        setContentView(R.layout.activity_main_trial);
+        initializeId();
+        setTitleFont();
+        setAdView();
+        setupViewPager(viewPager);
+        openCreateTransactionFragment();
 
-        //authenticateApp();
+//        authenticateApp();
     }
 
-    private void initialize() {
-        changingFragment = findViewById(R.id.changingFragment);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.changingFragment, new NewTransactionFragment());
-        transaction.commit();
+    private void initializeId() {
+        pageTitle = findViewById(R.id.pageTitle);
+        addTransactionButton = findViewById(R.id.addTransactionButton);
+        viewPager = findViewById(R.id.viewPager);
+        adView = findViewById(R.id.adView);
+        tabLayout = findViewById(R.id.tabLayout);
     }
 
-}
+    private void setTitleFont() {
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
+        pageTitle.setTypeface(typeface);
+    }
 
+    private void setAdView() {
+        final AdView adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                adView.setVisibility(View.VISIBLE);
+            }
 
-//method to authenticate app
+            @Override
+            public void onAdFailedToLoad(int error) {
+                adView.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void openCreateTransactionFragment() {
+        addTransactionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createTransaction();
+            }
+        });
+    }
+
+    private void createTransaction() {
+        FragmentManager fm = getSupportFragmentManager();
+        CreateTransactionFragment fragment = new CreateTransactionFragment();
+        fm.beginTransaction().add(R.id.transactionFrames, fragment).commit();
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
+        adapter.addFragment(new NotesFragment(), "NOTES");
+        adapter.addFragment(new CreditsFragment(), "CREDITS");
+        adapter.addFragment(new DebitsFragment(), "DEBITS");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    //    method to authenticate app
 //    private void authenticateApp() {
 //        //Get the instance of KeyGuardManager
 //        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
@@ -106,3 +176,7 @@ public class TrialActivity extends AppCompatActivity {
 //        //You can also use keyguardManager.isDeviceSecure(); but it requires API Level 23
 //
 //    }
+}
+
+
+
