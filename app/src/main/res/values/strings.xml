@@ -70,4 +70,7 @@
     <string name="FORGOT_PASSWORD">Forgot Password?</string>
     <string name="NEW_USER">New User?</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

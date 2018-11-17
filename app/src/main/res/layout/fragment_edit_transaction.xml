@@ -6,296 +6,194 @@
     android:background="@color/colorWhite">
 
     <RelativeLayout
-        android:id="@+id/abcd"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/content"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/main_adView">
+            android:layout_above="@id/main_adView"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/titleBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/dp2">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/home_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_close_white_24px" />
+
+                        <TextView
+                            android:id="@+id/main_toolbar_title"
+                            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/EDIT_TRANSACTION"
+                            android:textColor="#FFFFFF"
+                            android:textSize="@dimen/sp30" />
+
+
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.AppBarLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/loginAdView"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="3">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@color/colorPrimary"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:paddingTop="10dp"
+                            android:textColorHint="@color/colorWhite">
+
+                            <EditText
+                                android:id="@+id/transactionAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/AMOUNT"
+                                android:inputType="number|numberDecimal"
+                                android:maxLines="1"
+                                android:textColor="@color/colorWhite"
+                                android:textColorHint="@color/colorAccent"
+                                android:textSize="30sp"
+                                app:backgroundTint="@color/colorAccent" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="5dp"
+                            android:textColorHint="@color/colorWhite">
+
+                            <EditText
+                                android:id="@+id/transactionMessage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/MESSAGE"
+                                android:inputType="textAutoComplete"
+                                android:maxLines="1"
+                                android:textColor="@color/colorWhite"
+                                app:backgroundTint="@color/colorAccent" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:weightSum="3">
+                        android:paddingBottom="@dimen/dp10">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/calendarDatePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="@dimen/dp30"
+                            android:text="@string/DATE"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_marginTop="@dimen/dp10"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/calendarTimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="@dimen/dp30"
+                            android:text="Time"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:weightSum="3">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="left"
-                                        android:layout_marginTop="@dimen/dp10"
-                                        android:layout_weight="2"
-                                        android:text="@string/EDIT_TRANSACTION"
-                                        android:textColor="@color/colorWhite"
-                                        android:textSize="@dimen/dp20" />
-
-                                    <LinearLayout
-                                        android:gravity="right|center_vertical"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1">
-
-                                        <ImageView
-                                            android:id="@+id/closeEditFragment"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="start"
-                                            android:layout_marginTop="@dimen/dp10"
-                                            android:src="@drawable/ic_baseline_close_white_24px" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="@dimen/dp30"
-                                    android:layout_height="@dimen/dp2"
-                                    android:layout_marginTop="@dimen/dp10"
-                                    android:background="@color/red" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:orientation="vertical">
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:layout_marginRight="40dp"
-                                android:paddingTop="10dp"
-                                android:textColorHint="@color/colorWhite">
-
-                                <EditText
-                                    android:id="@+id/transactionAmount"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="@string/AMOUNT"
-                                    android:inputType="number|numberDecimal"
-                                    android:maxLines="1"
-                                    android:textColor="@color/colorWhite"
-                                    android:textColorHint="@color/colorAccent"
-                                    android:textSize="30sp"
-                                    app:backgroundTint="@color/colorAccent" />
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:layout_marginTop="@dimen/dp10"
-                                android:layout_marginRight="40dp"
-                                android:layout_marginBottom="5dp"
-                                android:textColorHint="@color/colorWhite">
-
-                                <EditText
-                                    android:id="@+id/transactionMessage"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="@string/MESSAGE"
-                                    android:inputType="textAutoComplete"
-                                    android:maxLines="1"
-                                    android:textColor="@color/colorWhite"
-                                    app:backgroundTint="@color/colorAccent" />
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/calendarImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@android:drawable/ic_menu_my_calendar" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:weightSum="3">
+                        android:layout_height="wrap_content">
 
-                        <LinearLayout
+                        <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:paddingBottom="@dimen/dp10">
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:textColorHint="@color/colorWhite">
 
-                            <TextView
-                                android:id="@+id/calendarDatePicker"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="left"
-                                android:layout_marginLeft="@dimen/dp30"
-                                android:text="@string/DATE"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp14" />
-
-                            <TextView
-                                android:id="@+id/calendarTimePicker"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="left"
-                                android:layout_marginLeft="@dimen/dp30"
-                                android:text="Time"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/dp14" />
-
-                            <ImageView
-                                android:id="@+id/calendarImage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="5"
-                                android:src="@android:drawable/ic_menu_my_calendar" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-
-                            <android.support.design.widget.TextInputLayout
+                            <Spinner
+                                android:id="@+id/transactionType"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="40dp"
-                                android:layout_marginTop="@dimen/dp10"
-                                android:layout_marginRight="40dp"
-                                android:layout_marginBottom="5dp"
-                                android:textColorHint="@color/colorWhite">
+                                android:entries="@array/transactionTypes" />
 
-                                <Spinner
-                                    android:id="@+id/transactionType"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:entries="@array/transactionTypes" />
+                        </android.support.design.widget.TextInputLayout>
 
-                            </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
 
-                        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical"
-                            android:weightSum="2">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="1">
-
-                                <Button
-                                    android:id="@+id/logoutButton"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp36"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_margin="@dimen/dp5"
-                                    android:background="@drawable/high_emphasis_button"
-                                    android:elevation="@dimen/dp2"
-                                    android:text="@string/LOGOUT"
-                                    android:textColor="#ffffff"
-                                    android:textSize="@dimen/dp14" />
-
-                                <Button
-                                    android:id="@+id/saveButton"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp36"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_margin="@dimen/dp5"
-                                    android:background="@drawable/high_emphasis_button"
-                                    android:elevation="@dimen/dp2"
-                                    android:text="@string/SAVE"
-                                    android:textColor="#ffffff"
-                                    android:textSize="@dimen/dp14" />
-
-                                <Button
-                                    android:id="@+id/homeButton"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp36"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_margin="@dimen/dp5"
-                                    android:background="@drawable/high_emphasis_button"
-                                    android:elevation="@dimen/dp2"
-                                    android:text="@string/HOME"
-                                    android:textColor="#ffffff"
-                                    android:textSize="@dimen/dp14" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_weight="1">
-
-                                <Button
-                                    android:id="@+id/exportCSV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp36"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_margin="@dimen/dp5"
-                                    android:background="@drawable/high_emphasis_button"
-                                    android:elevation="@dimen/dp2"
-                                    android:text="@string/REPORT"
-                                    android:textColor="#ffffff"
-                                    android:textSize="@dimen/dp14" />
-
-                                <Button
-                                    android:id="@+id/changeLanguage"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp36"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_margin="@dimen/dp5"
-                                    android:background="@drawable/high_emphasis_button"
-                                    android:elevation="@dimen/dp2"
-                                    android:text="@string/CHANGE_LANGUAGE"
-                                    android:textColor="#ffffff"
-                                    android:textSize="@dimen/dp14" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
+                        <Button
+                            android:id="@+id/saveButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp36"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/dp5"
+                            android:background="@drawable/high_emphasis_button"
+                            android:elevation="@dimen/dp2"
+                            android:text="@string/SAVE"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/dp14" />
 
                     </LinearLayout>
 
@@ -303,15 +201,13 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
