@@ -82,7 +82,7 @@ public class CreateTransactionFragment extends Fragment {
     }
 
     private void openAllTransactionFragment() {
-        Intent myIntent = new Intent(getActivity(), TrialMainActivity.class);
-        getActivity().startActivity(myIntent);
+        Intent intent = new Intent(getActivity(), TrialMainActivity.class);
+        getActivity().startActivity(intent);
     }
 }

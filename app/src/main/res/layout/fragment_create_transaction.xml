@@ -159,16 +159,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_marginBottom="@dimen/dp10"
                         android:gravity="center">
 
-                        <android.support.design.widget.FloatingActionButton
-                            android:id="@+id/addTransactionButton"
+                        <Button
+                            android:id="@+id/addTransactionSaveButton"
+                            style="@style/Button.Outlined"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|bottom"
-                            android:layout_margin="@dimen/dp16"
-                            android:src="@drawable/ic_add_black_24dp" />
-                        <!--app:layout_behavior="com.resolvebug.app.bahikhata.ScrollFABBehaviour"-->
+                            android:enabled="true"
+                            android:text="@string/SAVE" />
 
                     </LinearLayout>
 

@@ -1,10 +1,10 @@
 package com.resolvebug.app.bahikhata;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +37,7 @@ public class EditTransactionFragment extends Fragment {
         initializeId(view);
         setTitleFont();
         setAdView(view);
-        closeCreateTransactionFragment();
+        closeEditTransactionFragment();
 
         return view;
     }
@@ -70,7 +70,7 @@ public class EditTransactionFragment extends Fragment {
         });
     }
 
-    private void closeCreateTransactionFragment() {
+    private void closeEditTransactionFragment() {
         closeFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,8 +80,7 @@ public class EditTransactionFragment extends Fragment {
     }
 
     private void openAllTransactionFragment() {
-        AllTransactionFragment allTransactionFragment = new AllTransactionFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.transactionFrames, allTransactionFragment, "AllTransactionFragment").commit();
+        Intent intent = new Intent(getActivity(), TrialMainActivity.class);
+        getActivity().startActivity(intent);
     }
 }

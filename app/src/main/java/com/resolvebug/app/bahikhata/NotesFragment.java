@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,8 +42,7 @@ public class NotesFragment extends Fragment {
         notesRecyclerViewAdapter.setOnItemClickListener(new NotesRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                cardItemsList.get(position).changeText("Working???");
-                notesRecyclerViewAdapter.notifyItemChanged(position);
+                openEditTransactionFragment(position,cardItemsList);
             }
         });
         recyclerView.setAdapter(notesRecyclerViewAdapter);
@@ -80,6 +80,15 @@ public class NotesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notes, container, false);
+    }
+
+    private void openEditTransactionFragment(int position,List<CardItems> cardItemsList) {
+        EditTransactionFragment editTransactionFragment = new EditTransactionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("notesTransactionId", cardItemsList.get(position).getTransactionId());
+        editTransactionFragment.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.transactionFrames, editTransactionFragment, "EditTransactionFragment").commit();
     }
 
 }

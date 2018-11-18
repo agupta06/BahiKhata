@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -29,8 +30,8 @@ public class TrialMainActivity extends AppCompatActivity {
     // TextView
     private TextView pageTitle;
 
-    // Floating Action Button
-    private FloatingActionButton addTransactionButton;
+    // Button
+    private Button addTransactionButton;
 
     // ViewPager
     private ViewPager viewPager;

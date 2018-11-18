@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,8 +46,7 @@ public class CreditsFragment extends Fragment {
         creditsRecyclerViewAdapter.setOnItemClickListener(new CreditsRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                cardItemsList.get(position).changeText("Working???");
-                creditsRecyclerViewAdapter.notifyItemChanged(position);
+                openEditTransactionFragment(position,cardItemsList);
             }
         });
         recyclerView.setAdapter(creditsRecyclerViewAdapter);
@@ -71,4 +71,12 @@ public class CreditsFragment extends Fragment {
         allData.close();
     }
 
+    private void openEditTransactionFragment(int position, List<CardItems> cardItemsList) {
+        EditTransactionFragment editTransactionFragment = new EditTransactionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("creditsTransactionId", cardItemsList.get(position).getTransactionId());
+        editTransactionFragment.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.transactionFrames, editTransactionFragment, "EditTransactionFragment").commit();
+    }
 }
