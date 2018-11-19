@@ -31,6 +31,7 @@
 
     // symbols
     <string name="currency_rupee">\u20B9</string>
+    <string name="ellipses">&#8942;</string>
 
     // success messages
     <string name="success_registration">Registration Successful</string>

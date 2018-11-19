@@ -7,8 +7,8 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginBottom="1dp">
+        android:layout_marginBottom="1dp"
+        android:clickable="true">
 
         <LinearLayout
             android:id="@+id/notes_linear_layout"
@@ -57,12 +57,23 @@
                         android:id="@+id/item_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/dp5"
                         android:layout_marginTop="@dimen/dp5"
+                        android:layout_toLeftOf="@id/cardMenu"
                         android:text="@string/DATE"
                         android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/cardMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:text="@string/ellipses"
+                        android:textAppearance="?android:textAppearanceLarge"/>
 
                 </RelativeLayout>
 

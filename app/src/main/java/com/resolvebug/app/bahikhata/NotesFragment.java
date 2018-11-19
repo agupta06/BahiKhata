@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +43,10 @@ public class NotesFragment extends Fragment {
         notesRecyclerViewAdapter.setOnItemClickListener(new NotesRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                openEditTransactionFragment(position,cardItemsList);
+                //openEditTransactionFragment(position,cardItemsList);
             }
         });
         recyclerView.setAdapter(notesRecyclerViewAdapter);
-
 
     }
 

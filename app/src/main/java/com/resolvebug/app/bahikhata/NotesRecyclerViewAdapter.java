@@ -1,15 +1,24 @@
 package com.resolvebug.app.bahikhata;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -65,6 +74,49 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                 }
             }
         });
+        holder.cardMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(context, holder.cardMenu);
+                popupMenu.inflate(R.menu.options_menu);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.editItem:
+                                Toast.makeText(context, "Edit Item Clicked", Toast.LENGTH_LONG).show();
+                                break;
+                            case R.id.deleteItem:
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("Are you sure?");
+                                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Notes' AND TRANSACTION_ID = ?";
+                                        mDatabase.execSQL(sql, new String[]{cardItemsList.get(position).getTransactionId()});
+                                        reloadNotesTransactions();
+                                    }
+                                });
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+
+                                break;
+                            default:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 
     private void setDefaultImportantTransaction(RecyclerViewHolder holder, CardItems cardItems) {
@@ -116,6 +168,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
         TextView itemMessage;
         TextView item_date;
         ImageView important;
+        TextView cardMenu;
 
         public RecyclerViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -123,6 +176,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
             itemMessage = itemView.findViewById(R.id.item_message);
             item_date = itemView.findViewById(R.id.item_date);
             important = itemView.findViewById(R.id.important);
+            cardMenu = itemView.findViewById(R.id.cardMenu);
             notesCardLayout = itemView.findViewById(R.id.notes_linear_layout);
             notesCardLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
