@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -84,7 +85,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.editItem:
-                                Toast.makeText(context, "Edit Item Clicked", Toast.LENGTH_LONG).show();
+                                openEditTransactionFragment(position);
                                 break;
                             case R.id.deleteItem:
 
@@ -190,6 +191,15 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                 }
             });
         }
+    }
+
+    public void openEditTransactionFragment(int position) {
+        AppCompatActivity activity = (AppCompatActivity) context;
+        EditTransactionFragment editTransactionFragment = new EditTransactionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("notesTransactionId", cardItemsList.get(position).getTransactionId());
+        editTransactionFragment.setArguments(bundle);
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.transactionFrames, editTransactionFragment).addToBackStack(null).commit();
     }
 
 }
