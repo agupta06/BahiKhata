@@ -197,7 +197,13 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
         AppCompatActivity activity = (AppCompatActivity) context;
         EditTransactionFragment editTransactionFragment = new EditTransactionFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("notesTransactionId", cardItemsList.get(position).getTransactionId());
+        bundle.putString("notesTxId", cardItemsList.get(position).getTransactionId());
+        bundle.putString("notesTxAmount", cardItemsList.get(position).getAmount());
+        bundle.putString("notesTxMessage", cardItemsList.get(position).getMessage());
+        bundle.putString("notesTxType", cardItemsList.get(position).getType());
+        bundle.putString("notesTxImportant", cardItemsList.get(position).getImportant());
+        bundle.putString("notesTxDate", cardItemsList.get(position).getDate());
+        bundle.putString("notesTxTime", cardItemsList.get(position).getTime());
         editTransactionFragment.setArguments(bundle);
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.transactionFrames, editTransactionFragment).addToBackStack(null).commit();
     }

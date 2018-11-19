@@ -37,6 +37,7 @@ public class EditTransactionFragment extends Fragment {
         initializeId(view);
         setTitleFont();
         setAdView(view);
+        updateTransaction();
         closeEditTransactionFragment();
 
         return view;
@@ -82,5 +83,16 @@ public class EditTransactionFragment extends Fragment {
     private void openAllTransactionFragment() {
         Intent intent = new Intent(getActivity(), TrialMainActivity.class);
         getActivity().startActivity(intent);
+    }
+
+    private void updateTransaction(){
+        Bundle bundle = new Bundle();
+        String notesTxId = bundle.getString("notesTxId");
+        String notesTxAmount = bundle.getString("notesTxAmount");
+        String notesTxMessage = bundle.getString("notesTxMessage");
+        String notesTxType = bundle.getString("notesTxType");
+        String notesTxImportant = bundle.getString("notesTxImportant");
+        String notesTxDate = bundle.getString("notesTxDate");
+        String notesTxTime = bundle.getString("notesTxTime");
     }
 }

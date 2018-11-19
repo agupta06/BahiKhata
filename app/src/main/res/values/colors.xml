@@ -13,4 +13,5 @@
     <color name="nightColorIconsInactive">#909090</color>
     <color name="dayColorPrimaryDark">#CCCCCC</color>
     <color name="dayColorIconsInactive">#606060</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#fff</color>
 </resources>
