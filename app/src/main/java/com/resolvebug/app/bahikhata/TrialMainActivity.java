@@ -1,14 +1,11 @@
 package com.resolvebug.app.bahikhata;
 
-import android.app.KeyguardManager;
-import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +22,6 @@ public class TrialMainActivity extends AppCompatActivity {
     // Literals
     private static final int LOCK_REQUEST_CODE = 221;
     private static final int SECURITY_SETTING_REQUEST_CODE = 233;
-    private FrameLayout transactionFrames;
 
     // TextView
     private TextView pageTitle;
@@ -42,6 +38,10 @@ public class TrialMainActivity extends AppCompatActivity {
     // TabLayout
     private TabLayout tabLayout;
 
+    // Database
+    private SQLiteDatabase mDatabase;
+    public static final String DATABASE_NAME = "bahikhatadatabase";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // main
@@ -52,6 +52,7 @@ public class TrialMainActivity extends AppCompatActivity {
         setAdView();
         setupViewPager(viewPager);
         openCreateTransactionFragment();
+        performDBOperations();
 
 //        authenticateApp();
     }
@@ -96,9 +97,10 @@ public class TrialMainActivity extends AppCompatActivity {
     }
 
     private void createTransaction() {
-        FragmentManager fm = getSupportFragmentManager();
-        CreateTransactionFragment fragment = new CreateTransactionFragment();
-        fm.beginTransaction().add(R.id.transactionFrames, fragment).commit();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.replace(R.id.transactionFrames, new CreateTransactionFragment());
+        transaction.commit();
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -108,6 +110,33 @@ public class TrialMainActivity extends AppCompatActivity {
         adapter.addFragment(new DebitsFragment(), "DEBITS");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void performDBOperations() {
+        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        createTable();
+    }
+
+    private void createTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS TRANSACTION_DETAILS (\n" +
+                "    ID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    TRANSACTION_ID LONG NOT NULL,\n" +
+                "    DATE VARCHAR(10) NOT NULL,\n" +
+                "    TIME VARCHAR(10) NOT NULL,\n" +
+                "    TIME_ZONE VARCHAR(10) NOT NULL,\n" +
+                "    TYPE VARCHAR(200) NOT NULL, \n" +
+                "    AMOUNT VARCHAR(30) NOT NULL,\n" +
+                "    MESSAGE VARCHAR(200) NOT NULL,\n" +
+                "    IMPORTANT VARCHAR(2) NOT NULL DEFAULT '0');";
+
+//      DROP A TABLE
+//        String sql = "DROP TABLE IF EXISTS TRANSACTION_DETAILS";
+
+//      ADD A NEW COLUMN
+//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TRANSACTION_ID VARCHAR(20) DEFAULT 'GMT+05:30'";
+//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TRANSACTION_ID VARCHAR(20)";
+
+        mDatabase.execSQL(sql);
     }
 
     //    method to authenticate app

@@ -24,7 +24,7 @@ public class DatePickerFragment extends DialogFragment {
                 year,
                 month,
                 day
-                );
+        );
     }
 
 }
