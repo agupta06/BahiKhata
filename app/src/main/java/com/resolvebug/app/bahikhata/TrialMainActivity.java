@@ -1,17 +1,21 @@
 package com.resolvebug.app.bahikhata;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -42,11 +46,19 @@ public class TrialMainActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     public static final String DATABASE_NAME = "bahikhatadatabase";
 
+    // Network Connection
+    private BroadcastReceiver mNetworkReceiver;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // main
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_trial);
+
+        mNetworkReceiver = new NetworkChangeReceiver();
+        registerNetworkBroadcastForNougat();
+
         initializeId();
         setTitleFont();
         setAdView();
@@ -139,6 +151,36 @@ public class TrialMainActivity extends AppCompatActivity {
         mDatabase.execSQL(sql);
     }
 
+    private void registerNetworkBroadcastForNougat() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterNetworkChanges();
+    }
+
+    protected void unregisterNetworkChanges() {
+        try {
+            unregisterReceiver(mNetworkReceiver);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void dialog(boolean value, Context context) {
+        if (value) {
+            Toast.makeText(context, "Internet Connection successful", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Internet Connection failed", Toast.LENGTH_SHORT).show();
+        }
+    }
     //    method to authenticate app
 //    private void authenticateApp() {
 //        //Get the instance of KeyGuardManager

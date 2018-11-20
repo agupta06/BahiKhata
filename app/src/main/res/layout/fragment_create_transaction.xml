@@ -118,11 +118,19 @@
                             android:layout_marginBottom="5dp"
                             android:textColorHint="@color/colorWhite">
 
-                            <Spinner
-                                android:id="@+id/transactionType"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:entries="@array/transactionTypes" />
+                                android:background="@drawable/spinner_border">
+
+                                <Spinner
+                                    android:id="@+id/transactionType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/transactionTypes"
+                                    android:padding="@dimen/dp10" />
+
+                            </RelativeLayout>
 
                         </android.support.design.widget.TextInputLayout>
 
