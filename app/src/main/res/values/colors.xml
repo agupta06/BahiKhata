@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#282828</color>
     <color name="colorPrimaryDark">#131313</color>
-    <color name="colorAccent">#0099FF</color>
+    <color name="colorAccent">#000000</color>
+    <color name="blue">#0099FF</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorCardViewBackground">#FAFAFA</color>
     <color name="colorGrey100">#F5F5F5</color>
@@ -13,5 +14,7 @@
     <color name="nightColorIconsInactive">#909090</color>
     <color name="dayColorPrimaryDark">#CCCCCC</color>
     <color name="dayColorIconsInactive">#606060</color>
-    <color name="mtrl_textinput_default_box_stroke_color">#fff</color>
+
+    <!--overrides textbox border color-->
+    <color name="mtrl_textinput_default_box_stroke_color">#000000</color>
 </resources>

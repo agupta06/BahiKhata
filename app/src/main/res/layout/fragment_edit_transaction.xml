@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,8 +83,8 @@
                                 android:hint="@string/AMOUNT"
                                 android:inputType="number|numberDecimal"
                                 android:maxLines="1"
-                                android:textColor="@color/colorWhite"
-                                android:textColorHint="@color/colorAccent"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
                                 android:textSize="30sp"
                                 app:backgroundTint="@color/colorAccent" />
 
@@ -93,13 +94,18 @@
                             android:id="@+id/name_text_input"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:hint="@string/AMOUNT"
+                            android:textColorHint="@color/black"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="200"
+                            app:hintEnabled="true">
 
                             <android.support.design.widget.TextInputEditText
                                 android:id="@+id/name_edit_text"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/AMOUNT" />
+                                android:layout_height="wrap_content" />
+
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
@@ -109,7 +115,7 @@
                             android:layout_marginTop="@dimen/dp10"
                             android:layout_marginRight="30dp"
                             android:layout_marginBottom="5dp"
-                            android:textColorHint="@color/colorWhite">
+                            android:textColorHint="@color/black">
 
                             <EditText
                                 android:id="@+id/transactionMessage"
@@ -118,7 +124,7 @@
                                 android:hint="@string/MESSAGE"
                                 android:inputType="textAutoComplete"
                                 android:maxLines="1"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/black"
                                 app:backgroundTint="@color/colorAccent" />
 
                         </android.support.design.widget.TextInputLayout>
