@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -51,41 +52,43 @@
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/phoneInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp30"
-                android:layout_marginRight="@dimen/dp30">
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp30"
+                android:hint="@string/PHONE_NUMBER"
+                android:textColorHint="@color/black"
+                app:hintEnabled="true">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/userPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/PHONE_NUMBER"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:textColorHint="@color/black"
-                    android:textSize="@dimen/dp14" />
+                    android:inputType="phone" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/oneTimePassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/phoneInput"
                 android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp30"
-                android:visibility="gone">
+                android:hint="One Time Password (OTP)"
+                android:textColorHint="@color/black"
+                android:visibility="gone"
+                app:hintEnabled="true">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/signInOtp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="One Time Password (OTP)"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:textColorHint="@color/black"
-                    android:textSize="@dimen/dp14" />
+                    android:inputType="numberDecimal" />
 
             </android.support.design.widget.TextInputLayout>
 

@@ -69,63 +69,44 @@
                         android:orientation="vertical">
 
                         <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:paddingTop="10dp"
-                            android:textColorHint="@color/colorWhite">
-
-                            <EditText
-                                android:id="@+id/transactionAmount"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/AMOUNT"
-                                android:inputType="number|numberDecimal"
-                                android:maxLines="1"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/black"
-                                android:textSize="30sp"
-                                app:backgroundTint="@color/colorAccent" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
                             android:id="@+id/name_text_input"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp30"
+                            android:layout_marginRight="@dimen/dp30"
                             android:hint="@string/AMOUNT"
+                            android:textColorHint="@color/black"
+                            app:hintEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/transactionAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number|numberDecimal"
+                                android:textSize="30sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp30"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:layout_marginRight="@dimen/dp30"
+                            android:hint="@string/MESSAGE"
                             android:textColorHint="@color/black"
                             app:counterEnabled="true"
                             app:counterMaxLength="200"
                             app:hintEnabled="true">
 
                             <android.support.design.widget.TextInputEditText
-                                android:id="@+id/name_edit_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="@dimen/dp10"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginBottom="5dp"
-                            android:textColorHint="@color/black">
-
-                            <EditText
                                 android:id="@+id/transactionMessage"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/MESSAGE"
                                 android:inputType="textAutoComplete"
-                                android:maxLines="1"
-                                android:textColor="@color/black"
-                                app:backgroundTint="@color/colorAccent" />
+                                android:textSize="30sp" />
 
                         </android.support.design.widget.TextInputLayout>
 

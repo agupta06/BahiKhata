@@ -53,41 +53,43 @@
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/emailInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp30"
-                android:layout_marginRight="@dimen/dp30">
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp30"
+                android:hint="@string/EMAIL"
+                android:textColorHint="@color/black"
+                app:hintEnabled="true">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/signInEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/EMAIL"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColorHint="@color/black"
-                    android:textSize="@dimen/dp14" />
+                    android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/passwordInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/emailInput"
                 android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp30"
+                android:hint="@string/PASSWORD"
+                android:textColorHint="@color/black"
+                app:hintEnabled="true"
                 app:passwordToggleEnabled="true">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/signInPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/PASSWORD"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:textColorHint="@color/black"
-                    android:textSize="@dimen/dp14" />
+                    android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 

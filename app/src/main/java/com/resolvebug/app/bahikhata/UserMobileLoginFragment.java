@@ -4,6 +4,7 @@ package com.resolvebug.app.bahikhata;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -32,8 +33,8 @@ public class UserMobileLoginFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
     private Button otpRequestButton;
-    private EditText userPhoneNumber;
-    private EditText signInOtp;
+    private TextInputEditText userPhoneNumber;
+    private TextInputEditText signInOtp;
     private TextInputLayout oneTimePassword;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callBacks;
     private String mVerificationId;
@@ -79,7 +80,7 @@ public class UserMobileLoginFragment extends Fragment {
                             callBacks
                     );
                 }
-                if(!otp.equals("")){
+                if (!otp.equals("")) {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
                     signInWithPhoneAuthCredential(credential);
                 }
