@@ -84,7 +84,7 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
     }
 
     private void reloadTransactions() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             cardItemsList.clear();
             do {

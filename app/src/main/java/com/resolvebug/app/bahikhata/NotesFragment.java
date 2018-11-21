@@ -52,7 +52,7 @@ public class NotesFragment extends Fragment {
 
     private void getAllDataFromDB() {
         //we used rawQuery(sql, selectionargs) for fetching all the employees
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes' ORDER BY TRANSACTION_ID DESC", null);
 
         //if the cursor has some data
         if (allData.moveToFirst()) {
@@ -82,7 +82,7 @@ public class NotesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 
-    private void openEditTransactionFragment(int position,List<CardItems> cardItemsList) {
+    private void openEditTransactionFragment(int position, List<CardItems> cardItemsList) {
         EditTransactionFragment editTransactionFragment = new EditTransactionFragment();
         Bundle bundle = new Bundle();
         bundle.putString("notesTransactionId", cardItemsList.get(position).getTransactionId());

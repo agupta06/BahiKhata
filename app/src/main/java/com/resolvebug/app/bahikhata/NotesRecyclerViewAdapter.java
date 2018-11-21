@@ -138,7 +138,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     }
 
     private void reloadNotesTransactions() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             cardItemsList.clear();
             do {

@@ -53,7 +53,7 @@ public class DebitsFragment extends Fragment {
     }
 
     private void getAllDataFromDB() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             do {
                 cardItemsList.add(new CardItems(

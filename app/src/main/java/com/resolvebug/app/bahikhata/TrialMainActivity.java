@@ -9,11 +9,13 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,9 @@ public class TrialMainActivity extends AppCompatActivity {
     // Network Connection
     private BroadcastReceiver mNetworkReceiver;
 
+    // ImageView
+    private ImageView txRangeCalender;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +69,8 @@ public class TrialMainActivity extends AppCompatActivity {
         setAdView();
         setupViewPager(viewPager);
         openCreateTransactionFragment();
+        setTransactionToAndFromDate();
         performDBOperations();
-
 //        authenticateApp();
     }
 
@@ -75,6 +80,7 @@ public class TrialMainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         adView = findViewById(R.id.adView);
         tabLayout = findViewById(R.id.tabLayout);
+        txRangeCalender = findViewById(R.id.txRangeCalender);
     }
 
     private void setTitleFont() {
@@ -181,6 +187,21 @@ public class TrialMainActivity extends AppCompatActivity {
             Toast.makeText(context, "Internet Connection failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void setTransactionToAndFromDate() {
+        txRangeCalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Dialog dialog=new Dialog(viewPager.getContext(),android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FullScreenDialogFragment newFragment = new FullScreenDialogFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.add(android.R.id.content, newFragment).addToBackStack(null).commit();
+            }
+        });
+    }
+
     //    method to authenticate app
 //    private void authenticateApp() {
 //        //Get the instance of KeyGuardManager

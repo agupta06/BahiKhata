@@ -84,7 +84,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     }
 
     private void reloadTransactions() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             cardItemsList.clear();
             do {
