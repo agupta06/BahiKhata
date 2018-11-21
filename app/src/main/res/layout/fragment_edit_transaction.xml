@@ -106,7 +106,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textAutoComplete"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"/>
 
                         </android.support.design.widget.TextInputLayout>
 

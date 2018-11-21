@@ -192,14 +192,20 @@ public class TrialMainActivity extends AppCompatActivity {
         txRangeCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Dialog dialog=new Dialog(viewPager.getContext(),android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FullScreenDialogFragment newFragment = new FullScreenDialogFragment();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.add(android.R.id.content, newFragment).addToBackStack(null).commit();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FullScreenDialogFragment newFragment = new FullScreenDialogFragment();
+//                FragmentTransaction transaction = fragmentManager.beginTransaction();
+////                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                transaction.add(android.R.id.content, newFragment).addToBackStack(null).commit();
+
+                openDialog();
             }
         });
+    }
+
+    private void openDialog() {
+        RecordDateSelectorDialog recordDateSelectorDialog = new RecordDateSelectorDialog();
+        recordDateSelectorDialog.show(getSupportFragmentManager(), "recordDateSelectorDialog");
     }
 
     //    method to authenticate app

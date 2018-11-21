@@ -24,8 +24,8 @@ public class FullScreenDialogFragment extends DialogFragment {
 
         View rootView = inflater.inflate(R.layout.fragment_full_screen_dialog, container, false);
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        toolbar.setTitle("Dialog title");
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
+        toolbar.setTitle("Edit Transaction");
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
