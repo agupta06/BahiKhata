@@ -1,6 +1,7 @@
 package com.resolvebug.app.bahikhata;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -20,6 +22,9 @@ public class Main2Activity extends AppCompatActivity {
     private TextView pageTitle;
     private SQLiteDatabase mDatabase;
     public static final String DATABASE_NAME = "bahikhatadatabase";
+    public AdView adView;
+    public TextView totalExpenditureAmount;
+    public TextView totalIncomeAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class Main2Activity extends AppCompatActivity {
         performDBOperations();
         openIncomeActivity();
         openExpenditureActivity();
+        setTotalIncomeAndExpenditure();
     }
 
     private void initialize() {
@@ -39,6 +45,9 @@ public class Main2Activity extends AppCompatActivity {
         expenditureCard = findViewById(R.id.expenditureCard);
         pageTitle = findViewById(R.id.pageTitle);
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        adView = findViewById(R.id.adView);
+        totalExpenditureAmount = findViewById(R.id.totalExpenditureAmount);
+        totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
     }
 
     private void setTitleFont() {
@@ -47,7 +56,6 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private void setAdView() {
-        final AdView adView = findViewById(R.id.main_adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         adView.setAdListener(new AdListener() {
@@ -108,4 +116,24 @@ public class Main2Activity extends AppCompatActivity {
 
         mDatabase.execSQL(sql);
     }
+
+    private void setTotalIncomeAndExpenditure() {
+        Cursor totalDebitAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
+        if (totalDebitAmount.moveToFirst()) {
+            totalIncomeAmount.setText(Long.toString(totalDebitAmount.getLong(0)));
+        } else {
+            Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
+        }
+        totalDebitAmount.close();
+
+        Cursor totalCreditAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
+        if (totalCreditAmount.moveToFirst()) {
+            totalExpenditureAmount.setText(Long.toString(totalCreditAmount.getLong(0)));
+        } else {
+            Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
+        }
+        totalCreditAmount.close();
+    }
+
+
 }

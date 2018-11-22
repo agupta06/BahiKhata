@@ -28,6 +28,8 @@
     <string name="SAVE">ठीक</string>
     <string name="CANCEL">अभी नहीं</string>
     <string name="EDIT_TRANSACTION">लेनदेन परिवर्तन</string>
+    <string name="INCOME">आय</string>
+    <string name="EXPENSE">व्यय</string>
 
     // symbols
     <string name="currency_rupee">\u20B9</string>

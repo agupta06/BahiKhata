@@ -84,12 +84,16 @@ public class CreateTransactionFragment extends Fragment {
         transactionMessage = view.findViewById(R.id.transactionMessage);
         transactionTypes = view.findViewById(R.id.transactionType);
         saveButton = view.findViewById(R.id.saveButton);
-        mDatabase = getActivity().openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        if (getActivity() != null) {
+            mDatabase = getActivity().openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        }
     }
 
     private void setTitleFont() {
-        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
-        pageTitle.setTypeface(typeface);
+        if (getActivity() != null) {
+            Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
+            pageTitle.setTypeface(typeface);
+        }
     }
 
     private void setAdView(View view) {
@@ -120,7 +124,9 @@ public class CreateTransactionFragment extends Fragment {
 
     private void openAllTransactionFragment() {
         Intent intent = new Intent(getActivity(), TrialMainActivity.class);
-        getActivity().startActivity(intent);
+        if (getActivity() != null) {
+            getActivity().startActivity(intent);
+        }
     }
 
     private void saveTransaction() {
@@ -147,7 +153,7 @@ public class CreateTransactionFragment extends Fragment {
         String txAmount = transactionAmount.getText().toString().trim();
         String txMessage = transactionMessage.getText().toString().trim();
         String txType = transactionTypes.getSelectedItem().toString();
-        if (inputsAreCorrect(txAmount, txMessage)) {
+        if (inputsAreCorrect(Double.valueOf(txAmount), txMessage)) {
             String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
                     "(TRANSACTION_ID,DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
                     "VALUES \n" +
@@ -169,8 +175,8 @@ public class CreateTransactionFragment extends Fragment {
         transactionMessage.setText(R.string.EMPTY_STRING);
     }
 
-    private boolean inputsAreCorrect(String txAmount, String txMessage) {
-        if (txAmount.isEmpty() || Integer.parseInt(txAmount) <= 0) {
+    private boolean inputsAreCorrect(Double txAmount, String txMessage) {
+        if (txAmount <= 0) {
             transactionAmount.requestFocus();
             Toast.makeText(getActivity(), "Fields are empty", Toast.LENGTH_SHORT).show();
             return false;

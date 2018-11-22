@@ -65,7 +65,6 @@ public class FullScreenDialogFragment extends DialogFragment {
             dismiss();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

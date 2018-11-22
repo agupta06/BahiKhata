@@ -21,7 +21,6 @@
         <activity
             android:name=".Main2Activity"
             android:configChanges="orientation"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -30,6 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--Close activity on back press-->
+        <!--android:noHistory="true"-->
 
         <!-- Main Activity to start -->
         <!-- <activity -->

@@ -12,39 +12,33 @@
         <LinearLayout
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
-            <LinearLayout
+            <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:elevation="@dimen/dp2">
 
-                <android.support.design.widget.AppBarLayout
+                <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:elevation="@dimen/dp2">
+                    android:background="@color/colorPrimary">
 
-                    <android.support.v7.widget.Toolbar
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/pageTitle"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary">
-
-                        <TextView
-                            android:id="@+id/pageTitle"
-                            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/app_name"
-                            android:textColor="#FFFFFF"
-                            android:textSize="@dimen/dp30" />
+                        android:layout_gravity="center"
+                        android:text="@string/app_name"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/sp30" />
 
 
-                    </android.support.v7.widget.Toolbar>
+                </android.support.v7.widget.Toolbar>
 
-                </android.support.design.widget.AppBarLayout>
-
-            </LinearLayout>
+            </android.support.design.widget.AppBarLayout>
 
         </LinearLayout>
 
@@ -52,7 +46,7 @@
             android:id="@+id/transactionLabels"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/main_adView"
+            android:layout_above="@id/adView"
             android:layout_below="@id/titlebar"
             android:orientation="vertical">
 
@@ -66,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Income" />
+                    android:text="@string/INCOME" />
 
                 <LinearLayout
                     android:layout_width="@dimen/dp30"
@@ -79,41 +73,35 @@
                     android:id="@+id/incomeCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true">
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <LinearLayout
                         android:id="@+id/incomeCardLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dp20">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:padding="@dimen/dp20">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:text="@string/currency_rupee"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp14" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/dp5"
-                                android:gravity="center_vertical"
-                                android:text="@string/currency_rupee"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp14" />
+                        <TextView
+                            android:id="@+id/totalIncomeAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp30" />
 
-                            <TextView
-                                android:id="@+id/incomeAmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/dp5"
-                                android:layout_toRightOf="@id/item_currency_symbol"
-                                android:gravity="center_vertical"
-                                android:text="2000"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp30" />
-
-                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -131,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Expenditure" />
+                    android:text="@string/EXPENSE" />
 
                 <LinearLayout
                     android:layout_width="@dimen/dp30"
@@ -144,41 +132,34 @@
                     android:id="@+id/expenditureCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true">
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <LinearLayout
                         android:id="@+id/expenditureCardLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dp20">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:padding="@dimen/dp20">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:text="@string/currency_rupee"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp14" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/dp5"
-                                android:gravity="center_vertical"
-                                android:text="@string/currency_rupee"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp14" />
-
-                            <TextView
-                                android:id="@+id/expenditureAmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/dp5"
-                                android:layout_toRightOf="@id/item_currency_symbol"
-                                android:gravity="center_vertical"
-                                android:text="2000"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp30" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/totalExpenditureAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/dp5"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp30" />
 
                     </LinearLayout>
 
@@ -189,7 +170,7 @@
         </LinearLayout>
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/main_adView"
+            android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
