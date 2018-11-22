@@ -19,12 +19,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TransactionsActivity" />
         <activity
-            android:name=".TrialMainActivity"
+            android:name=".Main2Activity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -84,7 +83,10 @@
         <activity
             android:name=".PinLockScreen"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TrialMainActivity" />
+        <activity android:name=".IncomeActivity" />
+        <activity android:name=".ExpenditureActivity"></activity>
     </application>
 
 </manifest>

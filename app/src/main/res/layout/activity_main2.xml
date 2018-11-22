@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/dp2">
+
+                    <android.support.v7.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary">
+
+                        <TextView
+                            android:id="@+id/pageTitle"
+                            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/app_name"
+                            android:textColor="#FFFFFF"
+                            android:textSize="@dimen/dp30" />
+
+
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.AppBarLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/transactionLabels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/main_adView"
+            android:layout_below="@id/titlebar"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Income" />
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp2"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorAccent"
+                    android:gravity="center_horizontal" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/incomeCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+
+                    <LinearLayout
+                        android:id="@+id/incomeCardLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:padding="@dimen/dp20">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/dp5"
+                                android:gravity="center_vertical"
+                                android:text="@string/currency_rupee"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp14" />
+
+                            <TextView
+                                android:id="@+id/incomeAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/dp5"
+                                android:layout_toRightOf="@id/item_currency_symbol"
+                                android:gravity="center_vertical"
+                                android:text="2000"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp30" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Expenditure" />
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp2"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorAccent"
+                    android:gravity="center_horizontal" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/expenditureCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+
+                    <LinearLayout
+                        android:id="@+id/expenditureCardLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:padding="@dimen/dp20">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/dp5"
+                                android:gravity="center_vertical"
+                                android:text="@string/currency_rupee"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp14" />
+
+                            <TextView
+                                android:id="@+id/expenditureAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/dp5"
+                                android:layout_toRightOf="@id/item_currency_symbol"
+                                android:gravity="center_vertical"
+                                android:text="2000"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp30" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
