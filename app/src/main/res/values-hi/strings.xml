@@ -72,4 +72,14 @@
     <string name="RESET_PASSWORD">पासवर्ड रीसेट</string>
     <string name="FORGOT_PASSWORD">पासवर्ड भूल गए?</string>
     <string name="NEW_USER">नया उपयोगकर्ता?</string>
+    <string name="contentDescriptionMobileImage">मोबाइल की तस्वीर</string>
+    <string name="contentDescriptionGmailImage">जीमेल की तस्वीर</string>
+    <string name="contentDescriptionFacebookImage">फेसबुक की तस्वीर</string>
+    <string name="contentDescriptionImportantTxImage">महत्वपूर्ण लेनदेन की तस्वीर</string>
+    <string name="contentDescriptionCloseLayoutImage">लेआउट की तस्वीर बंद करें</string>
+    <string name="contentDescriptionCalendarImage">कैलेंडर की तस्वीर</string>
+    <string name="TIME">समय</string>
+    <string name="OTP">वन टाइम पासवर्ड (ओटीपी)</string>
+    <string name="resolvebugEmailId">resolvebug@gmail.com</string>
+
 </resources>

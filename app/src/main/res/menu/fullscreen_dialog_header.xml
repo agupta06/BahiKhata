@@ -3,6 +3,6 @@
     <item
         android:id="@+id/action_save"
         android:orderInCategory="100"
-        android:title="Save"
+        android:title="@string/SAVE"
         app:showAsAction="always" />
 </menu>

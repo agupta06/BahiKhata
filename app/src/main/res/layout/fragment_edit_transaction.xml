@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,6 +37,7 @@
                             android:id="@+id/closeFragment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/contentDescriptionCloseLayoutImage"
                             android:src="@drawable/ic_baseline_close_white_24px" />
 
                         <TextView
@@ -106,7 +108,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textAutoComplete"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -114,8 +116,8 @@
                             android:id="@+id/calendarDatePicker"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_marginLeft="@dimen/dp30"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="@dimen/dp30"
                             android:text="@string/DATE"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -124,9 +126,9 @@
                             android:id="@+id/calendarTimePicker"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_marginLeft="@dimen/dp30"
-                            android:text="Time"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="@dimen/dp30"
+                            android:text="@string/TIME"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -134,6 +136,7 @@
                             android:id="@+id/calendarImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/contentDescriptionCalendarImage"
                             android:src="@android:drawable/ic_menu_my_calendar" />
 
                         <android.support.design.widget.TextInputLayout
@@ -154,8 +157,8 @@
                                     android:id="@+id/transactionType"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/dp10"
-                                    android:entries="@array/transactionTypes" />
+                                    android:entries="@array/transactionTypes"
+                                    android:padding="@dimen/dp10" />
 
                             </RelativeLayout>
 

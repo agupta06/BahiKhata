@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registration"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_below="@id/forFrame"
+    android:orientation="vertical"
     tools:context="UserRegistrationFragment">
 
     <LinearLayout
-        android:id="@+id/registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/forFrame"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,166 +19,155 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/dp30"
+                android:text="@string/REGISTER"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp20" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp2"
+            android:layout_marginStart="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@color/red" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/registrationInputForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailTextInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp30"
+            android:hint="@string/EMAIL"
+            android:textColorHint="@color/black"
+            app:hintEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/registerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:inputType="textEmailAddress" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailInput2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp30"
+            android:hint="@string/PASSWORD"
+            android:textColorHint="@color/black"
+            app:hintEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/registerPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/emailTextInput"-->
+        <!--android:layout_marginLeft="@dimen/dp30"-->
+        <!--android:layout_marginRight="@dimen/dp30"-->
+        <!--app:passwordToggleEnabled="true">-->
+
+        <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="@string/PASSWORD"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:maxLines="1"-->
+        <!--android:textColorHint="@color/black"-->
+        <!--android:textSize="@dimen/dp14" />-->
+
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/registerActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp24"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/registerButton"
+                style="@style/Button.Filled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:text="@string/REGISTER"
+                android:textColor="@color/colorWhite" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp5">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="@dimen/dp30"
-                    android:text="@string/REGISTER"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp20" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp2"
-                android:layout_marginLeft="@dimen/dp30"
-                android:layout_marginTop="@dimen/dp10"
-                android:background="@color/red" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/registrationInputForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp15"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/emailTextInput"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp30"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp30"
-                android:hint="@string/EMAIL"
-                android:textColorHint="@color/black"
-                app:hintEnabled="true">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/registerEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/emailInput2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/emailTextInput"
-                android:layout_marginLeft="@dimen/dp30"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp30"
-                android:hint="@string/PASSWORD"
-                android:textColorHint="@color/black"
-                app:hintEnabled="true"
-                app:passwordToggleEnabled="true">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/registerPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/emailTextInput"-->
-            <!--android:layout_marginLeft="@dimen/dp30"-->
-            <!--android:layout_marginRight="@dimen/dp30"-->
-            <!--app:passwordToggleEnabled="true">-->
-
-            <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/PASSWORD"-->
-            <!--android:inputType="textPassword"-->
-            <!--android:maxLines="1"-->
-            <!--android:textColorHint="@color/black"-->
-            <!--android:textSize="@dimen/dp14" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/registerActionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/form"
-                android:layout_marginTop="@dimen/dp24"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/registerButton"
-                    style="@style/Button.Filled"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:enabled="true"
-                    android:text="@string/REGISTER"
-                    android:textColor="@color/colorWhite" />
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="@string/EXISTING_USER" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/signinButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp5">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:paddingTop="@dimen/dp5"
-                        android:text="Existing User?"
-                        android:textSize="@dimen/dp14" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/signinButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:gravity="center_horizontal"
-                        android:paddingTop="@dimen/dp5"
-                        android:text="@string/SIGN_IN"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dp14" />
-
-                </LinearLayout>
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="@string/SIGN_IN"
+                    android:textColor="@color/colorAccent" />
 
             </LinearLayout>
 
@@ -185,4 +175,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

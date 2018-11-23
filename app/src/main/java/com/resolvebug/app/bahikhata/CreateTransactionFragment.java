@@ -22,7 +22,6 @@ import com.google.android.gms.ads.AdView;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.TimeZone;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -141,26 +140,30 @@ public class CreateTransactionFragment extends Fragment {
 
     private void setCurrentDateTime() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Date date1 = timestamp;
-        txDate = new SimpleDateFormat("dd-MM-yyyy").format(date1);
-        txTime = new SimpleDateFormat("HH:mm:ss.SSS").format(date1);
+        txDate = new SimpleDateFormat("dd-MM-yyyy").format(timestamp);
+        txTime = new SimpleDateFormat("HH:mm:ss.SSS").format(timestamp);
         TimeZone timeZone = TimeZone.getDefault();
         txTimeZone = timeZone.getDisplayName(false, TimeZone.SHORT);
         txId = getTransactionId();
     }
 
     private void addTransaction() {
-        String txAmount = transactionAmount.getText().toString().trim();
-        String txMessage = transactionMessage.getText().toString().trim();
-        String txType = transactionTypes.getSelectedItem().toString();
-        if (inputsAreCorrect(Double.valueOf(txAmount), txMessage)) {
-            String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
-                    "(TRANSACTION_ID,DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
-                    "VALUES \n" +
-                    "(?, ?, ?, ?, ?, ?, ?);";
-            mDatabase.execSQL(insertSQL, new String[]{txId, txDate, txTime, txTimeZone, txType, txAmount, txMessage});
-            Toast.makeText(getActivity(), "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
-            resetInputs();
+        if (transactionAmount.getText() != null && transactionMessage.getText() != null) {
+            String txAmount = transactionAmount.getText().toString().trim();
+            String txMessage = transactionMessage.getText().toString().trim();
+            String txType = transactionTypes.getSelectedItem().toString();
+            if (inputsAreCorrect(Double.valueOf(txAmount), txMessage)) {
+                String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
+                        "(TRANSACTION_ID,DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
+                        "VALUES \n" +
+                        "(?, ?, ?, ?, ?, ?, ?);";
+                mDatabase.execSQL(insertSQL, new String[]{txId, txDate, txTime, txTimeZone, txType, txAmount, txMessage});
+                Toast.makeText(getActivity(), "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
+                resetInputs();
+            }
+        } else {
+            Toast.makeText(getActivity(), "Field(s) are empty", Toast.LENGTH_SHORT).show();
+
         }
     }
 

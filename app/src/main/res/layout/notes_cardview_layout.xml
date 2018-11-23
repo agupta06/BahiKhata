@@ -8,108 +8,102 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        android:clickable="true">
+        android:clickable="true"
+        android:focusable="true">
 
         <LinearLayout
             android:id="@+id/notes_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp">
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:weightSum="2">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/row1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:layout_height="@dimen/dp0"
+                android:layout_marginTop="@dimen/dp8"
+                android:layout_weight="1"
+                android:padding="@dimen/dp2">
 
-                <RelativeLayout
-                    android:id="@+id/row1"
+                <TextView
+                    android:id="@+id/item_currency_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="@string/currency_rupee"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/item_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:layout_toStartOf="@id/item_date"
+                    android:layout_toEndOf="@id/item_currency_symbol"
+                    android:text="@string/AMOUNT"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_toStartOf="@id/cardMenu"
+                    android:text="@string/DATE"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/cardMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:text="@string/ellipses"
+                    android:textAppearance="?android:textAppearanceLarge" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/row2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp0"
+                android:layout_marginBottom="@dimen/dp8"
+                android:layout_weight="1"
+                android:padding="@dimen/dp2">
+
+                <TextView
+                    android:id="@+id/item_message"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp0"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp2">
-
-                    <TextView
-                        android:id="@+id/item_currency_symbol"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:text="@string/currency_rupee"
-                        android:textSize="@dimen/sp14" />
-
-                    <TextView
-                        android:id="@+id/item_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_marginRight="@dimen/dp10"
-                        android:layout_toLeftOf="@id/item_date"
-                        android:layout_toRightOf="@id/item_currency_symbol"
-                        android:text="@string/AMOUNT"
-                        android:textSize="@dimen/sp14" />
-
-                    <TextView
-                        android:id="@+id/item_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_toLeftOf="@id/cardMenu"
-                        android:text="@string/DATE"
-                        android:textSize="@dimen/sp12" />
-
-                    <TextView
-                        android:id="@+id/cardMenu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/dp10"
-                        android:layout_marginRight="@dimen/dp10"
-                        android:text="@string/ellipses"
-                        android:textAppearance="?android:textAppearanceLarge" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/row2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp0"
-                    android:layout_below="@id/row1"
-                    android:layout_marginBottom="@dimen/dp8"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp2">
-
-                    <TextView
-                        android:id="@+id/item_message"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginRight="@dimen/dp10"
-                        android:layout_toLeftOf="@id/important"
-                        android:text="@string/MESSAGE"
-                        android:textSize="@dimen/sp12" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:layout_toStartOf="@id/important"
+                    android:text="@string/MESSAGE"
+                    android:textSize="@dimen/sp12" />
 
 
-                    <ImageView
-                        android:id="@+id/important"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:onClick="clickImportant"
-                        android:src="@drawable/ic_baseline_favorite_border_24px" />
+                <ImageView
+                    android:id="@+id/important"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/contentDescriptionImportantTxImage"
+                    android:src="@drawable/ic_baseline_favorite_border_24px" />
 
-                </RelativeLayout>
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -5,7 +5,6 @@ public class CardItems {
     private String transactionId;
     private String date;
     private String time;
-    private String timeZone;
     private String type;
     private String amount;
     private String message;
@@ -15,7 +14,6 @@ public class CardItems {
         this.transactionId = transactionId;
         this.date = date;
         this.time = time;
-        this.timeZone = timeZone;
         this.type = type;
         this.amount = amount;
         this.message = message;
@@ -24,18 +22,6 @@ public class CardItems {
 
     public String getTransactionId() {
         return transactionId;
-    }
-
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
-    }
-
-    public String getTimeZone() {
-        return timeZone;
-    }
-
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
     }
 
     public String getType() {
@@ -86,7 +72,4 @@ public class CardItems {
         this.date = date;
     }
 
-    public void changeText(String text) {
-        message = text;
-    }
 }

@@ -72,8 +72,14 @@
     <string name="RESET_PASSWORD">Reset Password</string>
     <string name="FORGOT_PASSWORD">Forgot Password?</string>
     <string name="NEW_USER">New User?</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contentDescriptionMobileImage">Mobile\'s Picture</string>
+    <string name="contentDescriptionGmailImage">Gmail\'s Picture</string>
+    <string name="contentDescriptionFacebookImage">Facebook\'s Picture</string>
+    <string name="contentDescriptionImportantTxImage">Important Transaction\'s Picture</string>
+    <string name="contentDescriptionCloseLayoutImage">Close Layout\'s Picture</string>
+    <string name="contentDescriptionCalendarImage">Calendar\'s Picture</string>
+    <string name="TIME">Time</string>
+    <string name="OTP">One Time Password (OTP)</string>
+    <string name="resolvebugEmailId">resolvebug@gmail.com</string>
 
 </resources>

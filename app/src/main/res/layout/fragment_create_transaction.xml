@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                             android:id="@+id/closeFragment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="@string/contentDescriptionCloseLayoutImage"
                             android:src="@drawable/ic_baseline_close_white_24px" />
 
                         <TextView

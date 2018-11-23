@@ -36,7 +36,7 @@
                         android:layout_gravity="center"
                         android:text="@string/app_name"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/dp30" />
+                        android:textSize="@dimen/sp30" />
 
                 </android.support.v7.widget.Toolbar>
 
@@ -66,36 +66,29 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/forFrame"
             android:layout_marginTop="@dimen/dp10"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp1"
+                android:layout_weight="48"
+                android:background="#E0E0E0" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="100">
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                android:text="@string/OR"
+                android:textSize="@dimen/sp14" />
 
-                <LinearLayout
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp1"
-                    android:layout_weight="48"
-                    android:background="#E0E0E0" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_horizontal"
-                    android:text="@string/OR"
-                    android:textSize="@dimen/dp14" />
-
-                <LinearLayout
-                    android:layout_width="@dimen/dp50"
-                    android:layout_height="@dimen/dp1"
-                    android:layout_weight="48"
-                    android:background="#E0E0E0" />
-
-            </LinearLayout>
+            <LinearLayout
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp1"
+                android:layout_weight="48"
+                android:background="#E0E0E0" />
 
         </LinearLayout>
 
@@ -105,129 +98,119 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/loginAdView"
             android:layout_below="@id/separator"
+            android:layout_marginTop="@dimen/dp10"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/dp30"
+                    android:text="@string/OTHER_LOGIN_METHODS"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp20" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp2"
+                android:layout_marginStart="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/red" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp30"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp15"
                     android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/facebookLoginButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circularbackground"
+                        android:contentDescription="@string/contentDescriptionFacebookImage"
+                        android:elevation="@dimen/dp2"
+                        android:src="@drawable/ic_facebook" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_marginLeft="@dimen/dp30"
-                        android:text="@string/OTHER_LOGIN_METHODS"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dp20" />
+                        android:layout_gravity="center"
+                        android:paddingTop="@dimen/dp3"
+                        android:text="@string/LOGN_FACEBOOK"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/googleLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circularbackground"
+                        android:contentDescription="@string/contentDescriptionGmailImage"
+                        android:elevation="@dimen/dp2"
+                        android:src="@drawable/ic_gmail" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingTop="@dimen/dp3"
+                        android:text="@string/LOGIN_GMAIL"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp2"
-                    android:layout_marginLeft="@dimen/dp30"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:background="@color/red" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp30"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/dp15"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <ImageButton
+                        android:id="@+id/loginMethodImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/dp15"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/facebookLoginButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/circularbackground"
-                            android:elevation="@dimen/dp2"
-                            android:src="@drawable/ic_facebook" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="@dimen/dp3"
-                            android:text="@string/LOGN_FACEBOOK"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/dp14" />
-
-                    </LinearLayout>
+                        android:layout_gravity="center"
+                        android:background="@drawable/circularbackground"
+                        android:contentDescription="@string/contentDescriptionMobileImage"
+                        android:elevation="@dimen/dp2"
+                        android:src="@drawable/ic_smartphone" />
 
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/loginMethodText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp15"
-                        android:layout_marginRight="@dimen/dp15"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/googleLogin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/circularbackground"
-                            android:elevation="@dimen/dp2"
-                            android:src="@drawable/ic_gmail" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="@dimen/dp3"
-                            android:text="@string/LOGIN_GMAIL"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/dp14" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp15"
-                        android:orientation="vertical">
-
-                        <ImageButton
-                            android:id="@+id/loginMethodImage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_gravity="center"
-                            android:background="@drawable/circularbackground"
-                            android:elevation="@dimen/dp2"
-                            android:src="@drawable/ic_smartphone" />
-
-
-                        <TextView
-                            android:id="@+id/loginMethodText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="@dimen/dp3"
-                            android:text="@string/LOGIN_PHONE"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/dp14" />
-
-                    </LinearLayout>
+                        android:layout_gravity="center"
+                        android:paddingTop="@dimen/dp3"
+                        android:text="@string/LOGIN_PHONE"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
