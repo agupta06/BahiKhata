@@ -81,5 +81,12 @@
     <string name="TIME">समय</string>
     <string name="OTP">वन टाइम पासवर्ड (ओटीपी)</string>
     <string name="resolvebugEmailId">resolvebug@gmail.com</string>
+    <string name="IMPORTANT">जरूरी</string>
+    <string name="SETTINGS">सेटिंग्स</string>
+    <string name="RATE_US">हमें रेटिंग दें</string>
+    <string name="SHARE">शेयर</string>
+    <string name="ABOUT_US">हमारे बारे में</string>
+    <string name="SWIPE_GESTURE_FOR_TRANSACTIONS">अधिक विकल्पों के लिए बाएं या दाएं स्वाइप करें</string>
+
 
 </resources>

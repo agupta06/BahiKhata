@@ -19,6 +19,8 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     private List<CardItems> cardItemsList;
     private LinearLayout transactionCardlayout;
     private CreditsRecyclerViewAdapter.OnItemClickListener mListener;
+    private static final int TYPE_INACTIVE = 0;
+    private static final int TYPE_ACTIVE = 1;
 
     // Database
     SQLiteDatabase mDatabase;
@@ -40,7 +42,8 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.credits_cardview_layout, null);
+        final int layout = viewType == TYPE_INACTIVE ? R.layout.credits_cardview_layout : R.layout.important_cardview_layout;
+        View view = inflater.inflate(layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 
@@ -65,6 +68,13 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                 }
             }
         });
+//        holder.transactionCardlayout.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                transactionCardlayout.setBackground(v.getResources().getDrawable(R.drawable.cardview_border_red));
+//                return true;
+//            }
+//        });
     }
 
     private void setDefaultImportantTransaction(CreditsRecyclerViewAdapter.RecyclerViewHolder holder, CardItems cardItems) {
@@ -134,6 +144,12 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                 }
             });
         }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        String important = cardItemsList.get(position).getImportant();
+        return important.equals("0") ? TYPE_INACTIVE : TYPE_ACTIVE;
     }
 
 }

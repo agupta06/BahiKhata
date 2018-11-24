@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,8 @@ public class IncomeActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "bahikhatadatabase";
     private RecyclerView recyclerView;
     private Button addTransactionButton;
-    public TextView totalIncomeAmount;
+    private TextView totalIncomeAmount;
+    private LinearLayout cardGestureMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class IncomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         addTransactionButton = findViewById(R.id.addTransactionButton);
         totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
+        cardGestureMessage = findViewById(R.id.cardGestureMessage);
     }
 
     private void setTitleFont() {
@@ -88,10 +92,13 @@ public class IncomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(notesRecyclerViewAdapter);
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         getAllDataFromDB();
+        if (cardItemsList != null) {
+            cardGestureMessage.setEnabled(false);
+        }
     }
 
     private void getAllDataFromDB() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes' ORDER BY TRANSACTION_ID DESC", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             do {
                 cardItemsList.add(new CardItems(
@@ -120,7 +127,9 @@ public class IncomeActivity extends AppCompatActivity {
     private void setTotalIncomeAndExpenditure() {
         Cursor totalDebitAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
         if (totalDebitAmount.moveToFirst()) {
-            totalIncomeAmount.setText(Long.toString(totalDebitAmount.getLong(0)));
+            long total = totalDebitAmount.getLong(0);
+            String amount = new DecimalFormat("##,##,##0.00").format(total);
+            totalIncomeAmount.setText(amount);
         } else {
             Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
         }

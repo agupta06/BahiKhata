@@ -5,8 +5,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +23,9 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.text.DecimalFormat;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -25,6 +37,11 @@ public class Main2Activity extends AppCompatActivity {
     public AdView adView;
     public TextView totalExpenditureAmount;
     public TextView totalIncomeAmount;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +51,14 @@ public class Main2Activity extends AppCompatActivity {
         initialize();
         setTitleFont();
         setAdView();
+        setSupportActionBar(toolbar);
+        setActionBar();
+        navigationDrawerListener();
         performDBOperations();
         openIncomeActivity();
         openExpenditureActivity();
         setTotalIncomeAndExpenditure();
+        setNavigationLayout();
     }
 
     private void initialize() {
@@ -48,6 +69,11 @@ public class Main2Activity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         totalExpenditureAmount = findViewById(R.id.totalExpenditureAmount);
         totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        firebaseAuth = FirebaseAuth.getInstance();
+
     }
 
     private void setTitleFont() {
@@ -120,7 +146,9 @@ public class Main2Activity extends AppCompatActivity {
     private void setTotalIncomeAndExpenditure() {
         Cursor totalDebitAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
         if (totalDebitAmount.moveToFirst()) {
-            totalIncomeAmount.setText(Long.toString(totalDebitAmount.getLong(0)));
+            long total = totalDebitAmount.getLong(0);
+            String amount = new DecimalFormat("##,##,##0.00").format(total);
+            totalIncomeAmount.setText(amount);
         } else {
             Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
         }
@@ -128,12 +156,136 @@ public class Main2Activity extends AppCompatActivity {
 
         Cursor totalCreditAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
         if (totalCreditAmount.moveToFirst()) {
-            totalExpenditureAmount.setText(Long.toString(totalCreditAmount.getLong(0)));
+            long total = totalCreditAmount.getLong(0);
+            String amount = new DecimalFormat("##,##,##0.00").format(total);
+            totalExpenditureAmount.setText(amount);
         } else {
             Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
         }
         totalCreditAmount.close();
     }
 
+    private void setNavigationLayout() {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        displayView(menuItem.getTitle().toString());
+                        // close drawer when item is tapped
+                        mDrawerLayout.closeDrawers();
 
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+
+                        return true;
+                    }
+                });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void navigationDrawerListener() {
+        mDrawerLayout.addDrawerListener(
+                new DrawerLayout.DrawerListener() {
+                    @Override
+                    public void onDrawerSlide(View drawerView, float slideOffset) {
+                        // Respond when the drawer's position changes
+                    }
+
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        // Respond when the drawer is opened
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+                        // Respond when the drawer is closed
+                    }
+
+                    @Override
+                    public void onDrawerStateChanged(int newState) {
+                        // Respond when the drawer motion state changes
+                    }
+                }
+        );
+    }
+
+    private void setActionBar() {
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayShowTitleEnabled(false);
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+    }
+
+    public void displayView(String viewId) {
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+        switch (viewId) {
+            case "Important":
+                fragment = new EditTransactionFragment();
+                title = "Events";
+                break;
+            case "Settings":
+                fragment = new EditTransactionFragment();
+                title = "Events";
+                break;
+            case "Rate Us":
+                fragment = new EditTransactionFragment();
+                title = "Events";
+                break;
+            case "Share":
+                fragment = new EditTransactionFragment();
+                title = "Events";
+                break;
+            case "About Us":
+                fragment = new EditTransactionFragment();
+                title = "Events";
+                break;
+            case "Logout":
+                appLogout();
+                break;
+            default:
+                break;
+
+        }
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.replaceMainActivityFrame, fragment);
+            ft.commit();
+        }
+        // set the toolbar title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    private void appLogout() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {    // user logged out
+                    startActivity(new Intent(Main2Activity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
+        firebaseAuth.signOut();
+    }
 }

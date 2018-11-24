@@ -81,5 +81,11 @@
     <string name="TIME">Time</string>
     <string name="OTP">One Time Password (OTP)</string>
     <string name="resolvebugEmailId">resolvebug@gmail.com</string>
+    <string name="IMPORTANT">Important</string>
+    <string name="SETTINGS">Settings</string>
+    <string name="RATE_US">Rate Us</string>
+    <string name="SHARE">Share</string>
+    <string name="ABOUT_US">About Us</string>
+    <string name="SWIPE_GESTURE_FOR_TRANSACTIONS">Swipe left or right for more options</string>
 
 </resources>

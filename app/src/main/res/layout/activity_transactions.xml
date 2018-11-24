@@ -33,7 +33,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/dp30" />
+                        android:textSize="@dimen/sp30" />
 
                 </android.support.v7.widget.Toolbar>
 
