@@ -30,8 +30,9 @@
             </intent-filter>
         </activity>
 
-        <!--Close activity on back press-->
-        <!--android:noHistory="true"-->
+        <!-- Close activity on back press -->
+        <!-- android:noHistory="true" -->
+
 
         <!-- Main Activity to start -->
         <!-- <activity -->
@@ -88,7 +89,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".TrialMainActivity" />
         <activity android:name=".IncomeActivity" />
-        <activity android:name=".ExpenditureActivity"></activity>
+        <activity android:name=".ExpenditureActivity" />
+        <activity android:name=".AddTransactionActivity"></activity>
     </application>
 
 </manifest>

@@ -304,4 +304,11 @@ public class Main2Activity extends AppCompatActivity {
         share.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id=" + getPackageName());
         startActivity(Intent.createChooser(share, "Share Bahi Khata with friends"));
     }
+
+    @Override
+    public void onResume() {  // After a pause OR at startup
+        super.onResume();
+        setTotalIncomeAndExpenditure();
+        //Refresh your stuff here
+    }
 }

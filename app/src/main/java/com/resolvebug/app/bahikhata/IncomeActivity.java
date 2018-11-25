@@ -1,16 +1,15 @@
 package com.resolvebug.app.bahikhata;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -126,10 +125,8 @@ public class IncomeActivity extends AppCompatActivity {
         addTransactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
-                transaction.replace(R.id.incomeLayoutFrame, new CreateTransactionFragment());
-                transaction.commit();
+                Intent intent = new Intent(IncomeActivity.this, AddTransactionActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -146,12 +143,20 @@ public class IncomeActivity extends AppCompatActivity {
         totalDebitAmount.close();
     }
 
-    private void pressBackButton(){
+    private void pressBackButton() {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onResume() {  // After a pause OR at startup
+        super.onResume();
+        showIncomeTransactions();
+        setTotalIncomeAndExpenditure();
+        //Refresh your stuff here
     }
 }

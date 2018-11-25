@@ -28,8 +28,8 @@
     <string name="SAVE">Save</string>
     <string name="CANCEL">Cancel</string>
     <string name="EDIT_TRANSACTION">Edit Transaction</string>
-    <string name="INCOME">INCOME</string>
-    <string name="EXPENSE">EXPENSE</string>
+    <string name="INCOME">Income</string>
+    <string name="EXPENSE">Expense</string>
 
     // symbols
     <string name="currency_rupee">\u20B9</string>
