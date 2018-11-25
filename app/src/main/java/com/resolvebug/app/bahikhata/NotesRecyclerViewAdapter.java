@@ -25,7 +25,9 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     private List<CardItems> cardItemsList;
     private OnItemClickListener mListener;
     private LinearLayout notesCardLayout;
-
+    private static final String TX_DATE = "";
+    private static final int CARD_WITH_DATE = 0;
+    private static final int CARD_WITHOUT_DATE = 1;
     // Database
     SQLiteDatabase mDatabase;
 
@@ -46,7 +48,8 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.notes_cardview_layout, null);
+        final int layout = viewType == CARD_WITH_DATE ? R.layout.notes_cardview_layout : R.layout.notes_cardview_layout_without_date;
+        View view = inflater.inflate(layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 
@@ -80,9 +83,9 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
-                            case R.id.editItem:
-                                openEditTransactionFragment(position);
-                                break;
+//                            case R.id.editItem:
+//                                openEditTransactionFragment(position);
+//                                break;
                             case R.id.deleteItem:
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -202,6 +205,12 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
         bundle.putString("notesTxTime", cardItemsList.get(position).getTime());
         editTransactionFragment.setArguments(bundle);
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.transactionFrames, editTransactionFragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        String txDate = cardItemsList.get(position).getDate();
+        return txDate.equals(TX_DATE) ? CARD_WITH_DATE : CARD_WITHOUT_DATE;
     }
 
 }

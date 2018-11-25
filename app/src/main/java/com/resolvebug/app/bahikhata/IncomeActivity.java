@@ -4,11 +4,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +35,7 @@ public class IncomeActivity extends AppCompatActivity {
     private Button addTransactionButton;
     private TextView totalIncomeAmount;
     private LinearLayout cardGestureMessage;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class IncomeActivity extends AppCompatActivity {
         showIncomeTransactions();
         addNewTransaction();
         setTotalIncomeAndExpenditure();
+        pressBackButton();
     }
 
     private void initialize() {
@@ -53,6 +58,7 @@ public class IncomeActivity extends AppCompatActivity {
         addTransactionButton = findViewById(R.id.addTransactionButton);
         totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
         cardGestureMessage = findViewById(R.id.cardGestureMessage);
+        backButton = findViewById(R.id.backButton);
     }
 
     private void setTitleFont() {
@@ -120,6 +126,10 @@ public class IncomeActivity extends AppCompatActivity {
         addTransactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+                transaction.replace(R.id.incomeLayoutFrame, new CreateTransactionFragment());
+                transaction.commit();
             }
         });
     }
@@ -136,4 +146,12 @@ public class IncomeActivity extends AppCompatActivity {
         totalDebitAmount.close();
     }
 
+    private void pressBackButton(){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 }

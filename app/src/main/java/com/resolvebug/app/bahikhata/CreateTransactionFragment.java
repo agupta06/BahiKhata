@@ -32,7 +32,7 @@ public class CreateTransactionFragment extends Fragment {
     private TextView pageTitle;
 
     // ImageView
-    private ImageView closeFragment;
+    private ImageView backButton;
 
     // AdView
     private AdView adView;
@@ -45,7 +45,7 @@ public class CreateTransactionFragment extends Fragment {
     private Spinner transactionTypes;
 
     // Button
-    private Button saveButton;
+    private Button saveTransactionButton;
 
     // Database
     private SQLiteDatabase mDatabase;
@@ -77,12 +77,12 @@ public class CreateTransactionFragment extends Fragment {
 
     private void initializeId(View view) {
         pageTitle = view.findViewById(R.id.pageTitle);
-        closeFragment = view.findViewById(R.id.closeFragment);
+        backButton = view.findViewById(R.id.backButton);
         adView = view.findViewById(R.id.adView);
         transactionAmount = view.findViewById(R.id.transactionAmount);
         transactionMessage = view.findViewById(R.id.transactionMessage);
         transactionTypes = view.findViewById(R.id.transactionType);
-        saveButton = view.findViewById(R.id.saveButton);
+        saveTransactionButton = view.findViewById(R.id.saveTransactionButton);
         if (getActivity() != null) {
             mDatabase = getActivity().openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         }
@@ -113,7 +113,7 @@ public class CreateTransactionFragment extends Fragment {
     }
 
     private void closeCreateTransactionFragment() {
-        closeFragment.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openAllTransactionFragment();
@@ -122,14 +122,14 @@ public class CreateTransactionFragment extends Fragment {
     }
 
     private void openAllTransactionFragment() {
-        Intent intent = new Intent(getActivity(), TrialMainActivity.class);
+        Intent intent = new Intent(getActivity(), IncomeActivity.class);
         if (getActivity() != null) {
             getActivity().startActivity(intent);
         }
     }
 
     private void saveTransaction() {
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        saveTransactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setCurrentDateTime();
@@ -151,7 +151,7 @@ public class CreateTransactionFragment extends Fragment {
         if (transactionAmount.getText() != null && transactionMessage.getText() != null) {
             String txAmount = transactionAmount.getText().toString().trim();
             String txMessage = transactionMessage.getText().toString().trim();
-            String txType = transactionTypes.getSelectedItem().toString();
+            String txType = "Debit";
             if (inputsAreCorrect(Double.valueOf(txAmount), txMessage)) {
                 String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
                         "(TRANSACTION_ID,DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +

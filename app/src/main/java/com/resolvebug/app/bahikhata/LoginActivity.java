@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, Main2Activity.class));
         finish();
     }
 

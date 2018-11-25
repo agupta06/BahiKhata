@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TransactionsActivity" />
         <activity
-            android:name=".Main2Activity"
+            android:name=".LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -80,7 +80,7 @@
         <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Main2Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".PinLockScreen"

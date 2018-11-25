@@ -87,5 +87,7 @@
     <string name="SHARE">Share</string>
     <string name="ABOUT_US">About Us</string>
     <string name="SWIPE_GESTURE_FOR_TRANSACTIONS">Swipe left or right for more options</string>
+    <string name="contentDescriptionBackButtonImage">Back Button</string>
+    <string name="DISPLAY_HISTORY_MESSAGE">Click on Amount to view transaction history</string>
 
 </resources>

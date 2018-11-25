@@ -1,9 +1,11 @@
 package com.resolvebug.app.bahikhata;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -59,6 +61,7 @@ public class Main2Activity extends AppCompatActivity {
         openExpenditureActivity();
         setTotalIncomeAndExpenditure();
         setNavigationLayout();
+        appLogout();
     }
 
     private void initialize() {
@@ -72,8 +75,6 @@ public class Main2Activity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-        firebaseAuth = FirebaseAuth.getInstance();
-
     }
 
     private void setTitleFont() {
@@ -240,19 +241,17 @@ public class Main2Activity extends AppCompatActivity {
                 title = "Events";
                 break;
             case "Rate Us":
-                fragment = new EditTransactionFragment();
-                title = "Events";
+                rateAppOnPlayStore();
                 break;
             case "Share":
-                fragment = new EditTransactionFragment();
-                title = "Events";
+                shareAppWithFriends();
                 break;
             case "About Us":
                 fragment = new EditTransactionFragment();
                 title = "Events";
                 break;
             case "Logout":
-                appLogout();
+                firebaseAuth.signOut();
                 break;
             default:
                 break;
@@ -277,6 +276,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private void appLogout() {
+        firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -286,6 +286,22 @@ public class Main2Activity extends AppCompatActivity {
                 }
             }
         };
-        firebaseAuth.signOut();
+    }
+
+    private void rateAppOnPlayStore() {
+        try {   // open play store app
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+        } catch (ActivityNotFoundException ex) {    // open play store in browser
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+        }
+    }
+
+    private void shareAppWithFriends() {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        share.putExtra(Intent.EXTRA_SUBJECT, "Bahi Khata - Money Tracking App");
+        share.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id=" + getPackageName());
+        startActivity(Intent.createChooser(share, "Share Bahi Khata with friends"));
     }
 }
