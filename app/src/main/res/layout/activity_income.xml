@@ -202,7 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:enabled="true"
-                    android:text="@string/ADD_TRANSACTION"
+                    android:text="@string/ADD_INCOME"
                     android:textColor="@color/colorWhite" />
 
             </LinearLayout>

@@ -89,5 +89,7 @@
     <string name="SWIPE_GESTURE_FOR_TRANSACTIONS">Swipe left or right for more options</string>
     <string name="contentDescriptionBackButtonImage">Back Button</string>
     <string name="DISPLAY_HISTORY_MESSAGE">Click on Amount to view transaction history</string>
+    <string name="ADD_INCOME">ADD INCOME</string>
+    <string name="ADD_EXPENSE">ADD EXPENSE</string>
 
 </resources>

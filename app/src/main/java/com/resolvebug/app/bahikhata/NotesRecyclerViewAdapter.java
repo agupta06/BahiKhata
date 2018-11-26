@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecyclerViewAdapter.RecyclerViewHolder> {
@@ -25,11 +29,10 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     private List<CardItems> cardItemsList;
     private OnItemClickListener mListener;
     private LinearLayout notesCardLayout;
-//    private String TX_DATE = "";
-//    private static final int CARD_WITH_DATE = 0;
-//    private static final int CARD_WITHOUT_DATE = 1;
-    // Database
     SQLiteDatabase mDatabase;
+    private ArrayList<Integer> selectedItems = new ArrayList<>();
+    private boolean multiSelect = false;
+
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -48,8 +51,8 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-//        final int layout = viewType == CARD_WITH_DATE ? R.layout.notes_cardview_layout : R.layout.notes_cardview_layout_without_date;
-        View view = inflater.inflate(R.layout.notes_cardview_layout_without_date, null);
+        int layout = R.layout.notes_cardview_layout_without_date;
+        View view = inflater.inflate(layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 
@@ -83,9 +86,6 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
-//                            case R.id.editItem:
-//                                openEditTransactionFragment(position);
-//                                break;
                             case R.id.deleteItem:
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -93,7 +93,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Notes' AND TRANSACTION_ID = ?";
+                                        String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Debit' AND TRANSACTION_ID = ?";
                                         mDatabase.execSQL(sql, new String[]{cardItemsList.get(position).getTransactionId()});
                                         reloadNotesTransactions();
                                     }
@@ -117,6 +117,9 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                 popupMenu.show();
             }
         });
+
+        holder.update(position);
+
     }
 
     private void setDefaultImportantTransaction(RecyclerViewHolder holder, CardItems cardItems) {
@@ -137,7 +140,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     }
 
     private void reloadNotesTransactions() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Notes' ORDER BY TRANSACTION_ID DESC", null);
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             cardItemsList.clear();
             do {
@@ -178,19 +181,73 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
             important = itemView.findViewById(R.id.important);
             cardMenu = itemView.findViewById(R.id.cardMenu);
             notesCardLayout = itemView.findViewById(R.id.notes_linear_layout);
+        }
+
+        void update(final Integer value) {
+            if (selectedItems.contains(value)) {
+                notesCardLayout.setBackgroundColor(Color.LTGRAY);
+            } else {
+                notesCardLayout.setBackgroundColor(Color.WHITE);
+            }
+            notesCardLayout.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    ((AppCompatActivity) view.getContext()).startSupportActionMode(actionModeCallbacks);
+                    selectItem(value);
+                    return true;
+                }
+            });
             notesCardLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
+                    selectItem(value);
                 }
             });
         }
+
+        void selectItem(Integer item) {
+            if (multiSelect) {
+                if (selectedItems.contains(item)) {
+                    selectedItems.remove(item);
+                    notesCardLayout.setBackgroundColor(Color.WHITE);
+                } else {
+                    selectedItems.add(item);
+                    notesCardLayout.setBackgroundColor(Color.LTGRAY);
+                }
+            }
+        }
     }
+
+    private ActionMode.Callback actionModeCallbacks = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            multiSelect = true;
+            menu.add("Delete");
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            for (Integer intItem : selectedItems) {
+                String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Debit' AND TRANSACTION_ID = ?";
+                mDatabase.execSQL(sql, new String[]{cardItemsList.get(intItem).getTransactionId()});
+            }
+            mode.finish();
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            multiSelect = false;
+            selectedItems.clear();
+            notifyDataSetChanged();
+        }
+    };
 
     public void openEditTransactionFragment(int position) {
         AppCompatActivity activity = (AppCompatActivity) context;
@@ -206,16 +263,5 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
         editTransactionFragment.setArguments(bundle);
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.transactionFrames, editTransactionFragment).addToBackStack(null).commit();
     }
-
-////    @Override
-////    public int getItemViewType(int position) {
-////        String txDate = cardItemsList.get(position).getDate();
-////        if (txDate.equals(TX_DATE)) {
-////            return CARD_WITHOUT_DATE;
-////        } else {
-////            TX_DATE = txDate;
-////            return CARD_WITH_DATE;
-//        }
-//    }
 
 }
