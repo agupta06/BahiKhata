@@ -29,10 +29,10 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     private List<CardItems> cardItemsList;
     private OnItemClickListener mListener;
     private LinearLayout notesCardLayout;
-    SQLiteDatabase mDatabase;
+    private SQLiteDatabase mDatabase;
     private ArrayList<Integer> selectedItems = new ArrayList<>();
     private boolean multiSelect = false;
-
+    private ActionMode mMode;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -117,9 +117,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                 popupMenu.show();
             }
         });
-
         holder.update(position);
-
     }
 
     private void setDefaultImportantTransaction(RecyclerViewHolder holder, CardItems cardItems) {
@@ -141,8 +139,8 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
 
     private void reloadNotesTransactions() {
         Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
+        cardItemsList.clear();
         if (allData.moveToFirst()) {
-            cardItemsList.clear();
             do {
                 cardItemsList.add(new CardItems(
                         allData.getString(1),
@@ -215,14 +213,25 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                     notesCardLayout.setBackgroundColor(Color.LTGRAY);
                 }
             }
+            if (selectedItems.size() == 0) {
+                if (mMode != null) {
+                    mMode.finish();
+                }
+            }
+            if (selectedItems != null && selectedItems.size() > 0) {
+                mMode.setTitle(selectedItems.size() + " items selected");
+            }
         }
+
     }
 
     private ActionMode.Callback actionModeCallbacks = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mMode = mode;
+            mode.getMenuInflater().inflate(R.menu.contextual_action_bar_menu, menu);
             multiSelect = true;
-            menu.add("Delete");
+//            menu.add("Delete");
             return true;
         }
 
@@ -233,12 +242,18 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
 
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            for (Integer intItem : selectedItems) {
-                String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Debit' AND TRANSACTION_ID = ?";
-                mDatabase.execSQL(sql, new String[]{cardItemsList.get(intItem).getTransactionId()});
+            switch (item.getItemId()) {
+                case R.id.deleteItems:
+                    for (Integer intItem : selectedItems) {
+                        String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Debit' AND TRANSACTION_ID = ?";
+                        mDatabase.execSQL(sql, new String[]{cardItemsList.get(intItem).getTransactionId()});
+                    }
+                    reloadNotesTransactions();
+                    mode.finish();
+                    return true;
+                default:
+                    return false;
             }
-            mode.finish();
-            return true;
         }
 
         @Override
@@ -247,6 +262,8 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
             selectedItems.clear();
             notifyDataSetChanged();
         }
+
+
     };
 
     public void openEditTransactionFragment(int position) {
