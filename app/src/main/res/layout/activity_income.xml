@@ -152,8 +152,7 @@
                     android:id="@+id/cardGestureMessage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp80"
-                    android:layout_below="@id/allIncomeTransactions"
-                    android:visibility="gone">
+                    android:layout_below="@id/allIncomeTransactions">
 
                     <TextView
                         android:layout_width="match_parent"

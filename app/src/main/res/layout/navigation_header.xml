@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp140"
+    android:layout_height="@dimen/dp100"
     android:background="@color/colorPrimary">
 
     <TextView
@@ -11,7 +11,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:text="@string/resolvebugEmailId"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/sp20" />
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

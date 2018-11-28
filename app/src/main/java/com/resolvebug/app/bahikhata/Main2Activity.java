@@ -173,7 +173,7 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        menuItem.setChecked(true);
+//                        menuItem.setChecked(true);
                         displayView(menuItem.getTitle().toString());
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();

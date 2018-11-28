@@ -16,12 +16,7 @@
             android:id="@+id/transaction_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/cardview_border_blue"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/dp0"
-            android:paddingTop="@dimen/dp0"
-            android:paddingRight="@dimen/dp0"
-            android:paddingBottom="@dimen/dp0"
             android:weightSum="2">
 
             <RelativeLayout
@@ -53,7 +48,7 @@
                     android:layout_toStartOf="@id/item_date"
                     android:layout_toEndOf="@id/item_currency_symbol"
                     android:text="@string/AMOUNT"
-                    android:textSize="@dimen/sp14" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/item_date"

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <!--<item-->
-            <!--android:id="@+id/item_home_fragment"-->
-            <!--android:icon="@drawable/ic_home_black_24dp"-->
-            <!--android:title="@string/HOME" />-->
+        <!--android:id="@+id/item_home_fragment"-->
+        <!--android:icon="@drawable/ic_home_black_24dp"-->
+        <!--android:title="@string/HOME" />-->
         <!--<item-->
-            <!--android:id="@+id/item_important"-->
-            <!--android:icon="@drawable/ic_star_black_24dp"-->
-            <!--android:title="@string/IMPORTANT" />-->
+        <!--android:id="@+id/item_important"-->
+        <!--android:icon="@drawable/ic_star_black_24dp"-->
+        <!--android:title="@string/IMPORTANT" />-->
 
         <!--&lt;!&ndash;Communication&ndash;&gt;-->
         <!--<item-->
-            <!--android:id="@+id/item_settings"-->
-            <!--android:icon="@drawable/ic_settings_black_24dp"-->
-            <!--android:title="@string/SETTINGS" />-->
+        <!--android:id="@+id/item_settings"-->
+        <!--android:icon="@drawable/ic_settings_black_24dp"-->
+        <!--android:title="@string/SETTINGS" />-->
         <item
             android:id="@+id/item_rate"
             android:icon="@drawable/ic_shop_black_24dp"
@@ -26,11 +26,12 @@
 
         <!--Other-->
         <!--<item-->
-            <!--android:id="@+id/item_about"-->
-            <!--android:title="@string/ABOUT_US" />-->
+        <!--android:id="@+id/item_about"-->
+        <!--android:title="@string/ABOUT_US" />-->
 
         <item
             android:id="@+id/logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="@string/LOGOUT" />
     </group>
 </menu>
