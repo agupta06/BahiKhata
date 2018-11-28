@@ -103,13 +103,13 @@
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/name_text_input"
+                        android:id="@+id/inputTxAmount"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp30"
                         android:layout_marginRight="@dimen/dp30"
-                        android:hint="@string/AMOUNT"
+                        android:hint="@string/AMOUNT_IN_RUPEE"
                         android:textColorHint="@color/black"
                         app:hintEnabled="true">
 
@@ -117,12 +117,14 @@
                             android:id="@+id/transactionAmount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="number|numberDecimal"
+                            android:inputType="numberDecimal"
+                            android:maxLength="12"
                             android:textSize="20sp" />
 
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputTxMessage"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

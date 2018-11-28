@@ -6,11 +6,11 @@ public class CardItems {
     private String date;
     private String time;
     private String type;
-    private String amount;
+    private double amount;
     private String message;
     private String important;
 
-    public CardItems(String transactionId, String date, String time, String timeZone, String type, String amount, String message, String important) {
+    public CardItems(String transactionId, String date, String time, String timeZone, String type, double amount, String message, String important) {
         this.transactionId = transactionId;
         this.date = date;
         this.time = time;
@@ -48,11 +48,11 @@ public class CardItems {
         this.time = time;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

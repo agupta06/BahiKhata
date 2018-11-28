@@ -91,5 +91,6 @@
     <string name="DISPLAY_HISTORY_MESSAGE">लेनदेन इतिहास देखने के लिए राशि पर क्लिक करें</string>
     <string name="ADD_INCOME">आय जोड़ें</string>
     <string name="ADD_EXPENSE">खर्च जोड़ें</string>
+    <string name="AMOUNT_IN_RUPEE">रकम (\u20B9)</string>
 
 </resources>

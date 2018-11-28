@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -147,7 +148,7 @@ public class Main2Activity extends AppCompatActivity {
     private void setTotalIncomeAndExpenditure() {
         Cursor totalDebitAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
         if (totalDebitAmount.moveToFirst()) {
-            long total = totalDebitAmount.getLong(0);
+            double total = totalDebitAmount.getDouble(0);
             String amount = new DecimalFormat("##,##,##0.00").format(total);
             totalIncomeAmount.setText(amount);
         } else {
@@ -157,7 +158,7 @@ public class Main2Activity extends AppCompatActivity {
 
         Cursor totalCreditAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
         if (totalCreditAmount.moveToFirst()) {
-            long total = totalCreditAmount.getLong(0);
+            double total = totalCreditAmount.getDouble(0);
             String amount = new DecimalFormat("##,##,##0.00").format(total);
             totalExpenditureAmount.setText(amount);
         } else {
@@ -258,9 +259,10 @@ public class Main2Activity extends AppCompatActivity {
 
         }
         if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.replaceMainActivityFrame, fragment);
-            ft.commit();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.replaceMainActivityFrame, fragment);
+            fragmentTransaction.commit();
         }
         // set the toolbar title
         if (getSupportActionBar() != null) {

@@ -3,14 +3,21 @@ package com.resolvebug.app.bahikhata;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecyclerViewAdapter.RecyclerViewHolder> {
@@ -19,9 +26,10 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
     private List<CardItems> cardItemsList;
     private LinearLayout transactionCardlayout;
     private DebitsRecyclerViewAdapter.OnItemClickListener mListener;
-
-    // Database
-    SQLiteDatabase mDatabase;
+    private ArrayList<Integer> selectedItems = new ArrayList<>();
+    private boolean multiSelect = false;
+    private ActionMode mMode;
+    private SQLiteDatabase mDatabase;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -48,7 +56,9 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
         final CardItems cardItems = cardItemsList.get(position);
-        holder.itemAmount.setText(String.valueOf(cardItems.getAmount()));
+        double amount = cardItems.getAmount();
+        String totalAmount = new DecimalFormat("##,##,##0.00").format(amount);
+        holder.itemAmount.setText(totalAmount);
         holder.itemMessage.setText(cardItems.getMessage());
         holder.item_date.setText(cardItems.getDate());
         setDefaultImportantTransaction(holder, cardItems);
@@ -65,6 +75,7 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
                 }
             }
         });
+        holder.update(position);
     }
 
     private void setDefaultImportantTransaction(DebitsRecyclerViewAdapter.RecyclerViewHolder holder, CardItems cardItems) {
@@ -80,28 +91,7 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
                 "SET IMPORTANT = ? \n" +
                 "WHERE TRANSACTION_ID = ?;\n";
         mDatabase.execSQL(sql, new String[]{importantTransaction, importantTxId});
-        reloadTransactions();
-    }
-
-    private void reloadTransactions() {
-        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
-        if (allData.moveToFirst()) {
-            cardItemsList.clear();
-            do {
-                cardItemsList.add(new CardItems(
-                        allData.getString(1),
-                        allData.getString(2),
-                        allData.getString(3),
-                        allData.getString(4),
-                        allData.getString(5),
-                        allData.getString(6),
-                        allData.getString(7),
-                        allData.getString(8)
-                ));
-            } while (allData.moveToNext());
-        }
-        allData.close();
-        notifyDataSetChanged();
+        reloadDebitsTransactions();
     }
 
     @Override
@@ -134,6 +124,107 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
                 }
             });
         }
+
+        void update(final Integer value) {
+            if (selectedItems.contains(value)) {
+                transactionCardlayout.setBackgroundColor(Color.LTGRAY);
+            } else {
+                transactionCardlayout.setBackgroundColor(Color.WHITE);
+            }
+            transactionCardlayout.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    ((AppCompatActivity) view.getContext()).startSupportActionMode(actionModeCallbacks);
+                    selectItem(value);
+                    return true;
+                }
+            });
+            transactionCardlayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectItem(value);
+                }
+            });
+        }
+
+        void selectItem(Integer item) {
+            if (multiSelect) {
+                if (selectedItems.contains(item)) {
+                    selectedItems.remove(item);
+                    transactionCardlayout.setBackgroundColor(Color.WHITE);
+                } else {
+                    selectedItems.add(item);
+                    transactionCardlayout.setBackgroundColor(Color.LTGRAY);
+                }
+            }
+            if (selectedItems.size() == 0) {
+                if (mMode != null) {
+                    mMode.finish();
+                }
+            }
+            if (selectedItems != null && selectedItems.size() > 0) {
+                mMode.setTitle(selectedItems.size() + " items selected");
+            }
+        }
     }
 
+    private ActionMode.Callback actionModeCallbacks = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mMode = mode;
+            mode.getMenuInflater().inflate(R.menu.contextual_action_bar_menu, menu);
+            multiSelect = true;
+//            menu.add("Delete");
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.deleteItems:
+                    for (Integer intItem : selectedItems) {
+                        String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Debit' AND TRANSACTION_ID = ?";
+                        mDatabase.execSQL(sql, new String[]{cardItemsList.get(intItem).getTransactionId()});
+                    }
+                    reloadDebitsTransactions();
+                    mode.finish();
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            multiSelect = false;
+            selectedItems.clear();
+            notifyDataSetChanged();
+        }
+    };
+
+    private void reloadDebitsTransactions() {
+        Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Debit' ORDER BY TRANSACTION_ID DESC", null);
+        cardItemsList.clear();
+        if (allData.moveToFirst()) {
+            do {
+                cardItemsList.add(new CardItems(
+                        allData.getString(1),
+                        allData.getString(2),
+                        allData.getString(3),
+                        allData.getString(4),
+                        allData.getString(5),
+                        allData.getDouble(6),
+                        allData.getString(7),
+                        allData.getString(8)
+                ));
+            } while (allData.moveToNext());
+        }
+        allData.close();
+        notifyDataSetChanged();
+    }
 }

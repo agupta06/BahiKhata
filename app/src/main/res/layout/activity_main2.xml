@@ -54,7 +54,6 @@
                 android:id="@+id/replaceMainActivityFrame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@id/adView"
                 android:layout_below="@id/titlebar">
 
                 <android.support.v4.widget.NestedScrollView

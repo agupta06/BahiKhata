@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +30,8 @@ public class IncomeActivity extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     public static final String DATABASE_NAME = "bahikhatadatabase";
     private RecyclerView recyclerView;
-    private Button addTransactionButton;
+    private Button addCreditsButton;
     private TextView totalIncomeAmount;
-    private LinearLayout cardGestureMessage;
     private ImageView backButton;
 
     @Override
@@ -54,9 +52,8 @@ public class IncomeActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         pageTitle = findViewById(R.id.pageTitle);
         recyclerView = findViewById(R.id.recyclerView);
-        addTransactionButton = findViewById(R.id.addTransactionButton);
+        addCreditsButton = findViewById(R.id.addCreditsButton);
         totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
-        cardGestureMessage = findViewById(R.id.cardGestureMessage);
         backButton = findViewById(R.id.backButton);
     }
 
@@ -82,24 +79,21 @@ public class IncomeActivity extends AppCompatActivity {
     }
 
     private void showIncomeTransactions() {
-        NotesRecyclerViewAdapter notesRecyclerViewAdapter;
+        DebitsRecyclerViewAdapter debitsRecyclerViewAdapter;
         cardItemsList = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        notesRecyclerViewAdapter = new NotesRecyclerViewAdapter(this, cardItemsList, mDatabase);
-        notesRecyclerViewAdapter.setOnItemClickListener(new NotesRecyclerViewAdapter.OnItemClickListener() {
+        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(this, cardItemsList, mDatabase);
+        debitsRecyclerViewAdapter.setOnItemClickListener(new DebitsRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 //openEditTransactionFragment(position,cardItemsList);
             }
         });
         recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setAdapter(notesRecyclerViewAdapter);
+        recyclerView.setAdapter(debitsRecyclerViewAdapter);
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         getAllDataFromDB();
-        if (cardItemsList != null) {
-            cardGestureMessage.setEnabled(false);
-        }
     }
 
     private void getAllDataFromDB() {
@@ -112,7 +106,7 @@ public class IncomeActivity extends AppCompatActivity {
                         allData.getString(3),
                         allData.getString(4),
                         allData.getString(5),
-                        allData.getString(6),
+                        allData.getDouble(6),
                         allData.getString(7),
                         allData.getString(8)
                 ));
@@ -122,10 +116,11 @@ public class IncomeActivity extends AppCompatActivity {
     }
 
     private void addNewTransaction() {
-        addTransactionButton.setOnClickListener(new View.OnClickListener() {
+        addCreditsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(IncomeActivity.this, AddTransactionActivity.class);
+                intent.putExtra("addTransactionButton","Debit");
                 startActivity(intent);
             }
         });
@@ -134,7 +129,7 @@ public class IncomeActivity extends AppCompatActivity {
     private void setTotalIncomeAndExpenditure() {
         Cursor totalDebitAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
         if (totalDebitAmount.moveToFirst()) {
-            long total = totalDebitAmount.getLong(0);
+            double total = totalDebitAmount.getDouble(0);
             String amount = new DecimalFormat("##,##,##0.00").format(total);
             totalIncomeAmount.setText(amount);
         } else {

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,9 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
         final CardItems cardItems = cardItemsList.get(position);
-        holder.itemAmount.setText(String.valueOf(cardItems.getAmount()));
+        double amount =  cardItems.getAmount();
+        String totalAmount = new DecimalFormat("##,##,##0.00").format(amount);
+        holder.itemAmount.setText(totalAmount);
         holder.itemMessage.setText(cardItems.getMessage());
         holder.item_date.setText(cardItems.getDate());
         setDefaultImportantTransaction(holder, cardItems);
@@ -148,7 +151,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
                         allData.getString(3),
                         allData.getString(4),
                         allData.getString(5),
-                        allData.getString(6),
+                        allData.getDouble(6),
                         allData.getString(7),
                         allData.getString(8)
                 ));
@@ -271,7 +274,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
         EditTransactionFragment editTransactionFragment = new EditTransactionFragment();
         Bundle bundle = new Bundle();
         bundle.putString("notesTxId", cardItemsList.get(position).getTransactionId());
-        bundle.putString("notesTxAmount", cardItemsList.get(position).getAmount());
+        bundle.putDouble("notesTxAmount", cardItemsList.get(position).getAmount());
         bundle.putString("notesTxMessage", cardItemsList.get(position).getMessage());
         bundle.putString("notesTxType", cardItemsList.get(position).getType());
         bundle.putString("notesTxImportant", cardItemsList.get(position).getImportant());

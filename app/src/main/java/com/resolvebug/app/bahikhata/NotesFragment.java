@@ -65,7 +65,7 @@ public class NotesFragment extends Fragment {
                         allData.getString(3),
                         allData.getString(4),
                         allData.getString(5),
-                        allData.getString(6),
+                        allData.getDouble(6),
                         allData.getString(7),
                         allData.getString(8)
                 ));

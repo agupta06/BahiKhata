@@ -91,5 +91,9 @@
     <string name="DISPLAY_HISTORY_MESSAGE">Click on Amount to view transaction history</string>
     <string name="ADD_INCOME">ADD INCOME</string>
     <string name="ADD_EXPENSE">ADD EXPENSE</string>
+    <string name="AMOUNT_IN_RUPEE">Amount (\u20B9)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -3,14 +3,20 @@ package com.resolvebug.app.bahikhata;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecyclerViewAdapter.RecyclerViewHolder> {
@@ -19,11 +25,10 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     private List<CardItems> cardItemsList;
     private LinearLayout transactionCardlayout;
     private CreditsRecyclerViewAdapter.OnItemClickListener mListener;
-    private static final int TYPE_INACTIVE = 0;
-    private static final int TYPE_ACTIVE = 1;
-
-    // Database
-    SQLiteDatabase mDatabase;
+    private ArrayList<Integer> selectedItems = new ArrayList<>();
+    private boolean multiSelect = false;
+    private ActionMode mMode;
+    private SQLiteDatabase mDatabase;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -42,8 +47,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        final int layout = viewType == TYPE_INACTIVE ? R.layout.credits_cardview_layout : R.layout.important_cardview_layout;
-        View view = inflater.inflate(layout, null);
+        View view = inflater.inflate(R.layout.credits_cardview_layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 
@@ -68,13 +72,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                 }
             }
         });
-//        holder.transactionCardlayout.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                transactionCardlayout.setBackground(v.getResources().getDrawable(R.drawable.cardview_border_red));
-//                return true;
-//            }
-//        });
+        holder.update(position);
     }
 
     private void setDefaultImportantTransaction(CreditsRecyclerViewAdapter.RecyclerViewHolder holder, CardItems cardItems) {
@@ -90,10 +88,10 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                 "SET IMPORTANT = ? \n" +
                 "WHERE TRANSACTION_ID = ?;\n";
         mDatabase.execSQL(sql, new String[]{importantTransaction, importantTxId});
-        reloadTransactions();
+        reloadCreditsTransactions();
     }
 
-    private void reloadTransactions() {
+    private void reloadCreditsTransactions() {
         Cursor allData = mDatabase.rawQuery("SELECT * FROM TRANSACTION_DETAILS WHERE TYPE='Credit' ORDER BY TRANSACTION_ID DESC", null);
         if (allData.moveToFirst()) {
             cardItemsList.clear();
@@ -104,7 +102,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                         allData.getString(3),
                         allData.getString(4),
                         allData.getString(5),
-                        allData.getString(6),
+                        allData.getDouble(6),
                         allData.getString(7),
                         allData.getString(8)
                 ));
@@ -144,12 +142,86 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                 }
             });
         }
+
+        void update(final Integer value) {
+            if (selectedItems.contains(value)) {
+                transactionCardlayout.setBackgroundColor(Color.LTGRAY);
+            } else {
+                transactionCardlayout.setBackgroundColor(Color.WHITE);
+            }
+            transactionCardlayout.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    ((AppCompatActivity) view.getContext()).startSupportActionMode(actionModeCallbacks);
+                    selectItem(value);
+                    return true;
+                }
+            });
+            transactionCardlayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectItem(value);
+                }
+            });
+        }
+
+        void selectItem(Integer item) {
+            if (multiSelect) {
+                if (selectedItems.contains(item)) {
+                    selectedItems.remove(item);
+                    transactionCardlayout.setBackgroundColor(Color.WHITE);
+                } else {
+                    selectedItems.add(item);
+                    transactionCardlayout.setBackgroundColor(Color.LTGRAY);
+                }
+            }
+            if (selectedItems.size() == 0) {
+                if (mMode != null) {
+                    mMode.finish();
+                }
+            }
+            if (selectedItems != null && selectedItems.size() > 0) {
+                mMode.setTitle(selectedItems.size() + " items selected");
+            }
+        }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        String important = cardItemsList.get(position).getImportant();
-        return important.equals("0") ? TYPE_INACTIVE : TYPE_ACTIVE;
-    }
+    private ActionMode.Callback actionModeCallbacks = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mMode = mode;
+            mode.getMenuInflater().inflate(R.menu.contextual_action_bar_menu, menu);
+            multiSelect = true;
+//            menu.add("Delete");
+            return true;
+        }
 
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.deleteItems:
+                    for (Integer intItem : selectedItems) {
+                        String sql = "DELETE FROM TRANSACTION_DETAILS WHERE TYPE='Credit' AND TRANSACTION_ID = ?";
+                        mDatabase.execSQL(sql, new String[]{cardItemsList.get(intItem).getTransactionId()});
+                    }
+                    reloadCreditsTransactions();
+                    mode.finish();
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            multiSelect = false;
+            selectedItems.clear();
+            notifyDataSetChanged();
+        }
+    };
 }

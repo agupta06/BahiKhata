@@ -1,10 +1,14 @@
 package com.resolvebug.app.bahikhata;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +22,8 @@ import com.google.android.gms.ads.AdView;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddTransactionActivity extends AppCompatActivity {
 
@@ -33,6 +39,8 @@ public class AddTransactionActivity extends AppCompatActivity {
     private String txTime;
     private String txTimeZone;
     private String txId;
+    private TextInputLayout inputTxMessage;
+    private TextInputLayout inputTxAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +58,12 @@ public class AddTransactionActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         pageTitle = findViewById(R.id.pageTitle);
         transactionAmount = findViewById(R.id.transactionAmount);
+        transactionAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(10, 2)});
         transactionMessage = findViewById(R.id.transactionMessage);
         saveTransactionButton = findViewById(R.id.saveTransactionButton);
         backButton = findViewById(R.id.backButton);
+        inputTxMessage = findViewById(R.id.inputTxMessage);
+        inputTxAmount = findViewById(R.id.inputTxAmount);
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
     }
 
@@ -102,10 +113,18 @@ public class AddTransactionActivity extends AppCompatActivity {
     }
 
     private void addTransaction() {
-        if (transactionAmount.getText() != null && transactionMessage.getText() != null) {
+        Intent intent = getIntent();
+        String txType = intent.getStringExtra("addTransactionButton");
+        if (transactionAmount.getText().toString().equals("") && transactionMessage.getText().toString().equals("")) {
+            inputTxAmount.setError("Please enter some amount");
+            inputTxMessage.setError("Please enter some message");
+        } else if (transactionAmount.getText().toString().equals("")) {
+            inputTxAmount.setError("Please enter some amount");
+        } else if (transactionMessage.getText().toString().equals("")) {
+            inputTxMessage.setError("Please enter some message");
+        } else {
             String txAmount = transactionAmount.getText().toString().trim();
             String txMessage = transactionMessage.getText().toString().trim();
-            String txType = "Debit";
             if (inputsAreCorrect(Double.valueOf(txAmount), txMessage)) {
                 String insertSQL = "INSERT INTO TRANSACTION_DETAILS \n" +
                         "(TRANSACTION_ID,DATE, TIME, TIME_ZONE, TYPE, AMOUNT, MESSAGE)\n" +
@@ -115,9 +134,6 @@ public class AddTransactionActivity extends AppCompatActivity {
                 Toast.makeText(this, "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
                 resetInputs();
             }
-        } else {
-            Toast.makeText(this, "Field(s) are empty", Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -147,5 +163,24 @@ public class AddTransactionActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public class DecimalDigitsInputFilter implements InputFilter {
+
+        Pattern mPattern;
+
+        public DecimalDigitsInputFilter(int digitsBeforeZero, int digitsAfterZero) {
+            mPattern = Pattern.compile("[0-9]{0," + (digitsBeforeZero - 1) + "}+((\\.[0-9]{0," + (digitsAfterZero - 1) + "})?)||(\\.)?");
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+            Matcher matcher = mPattern.matcher(dest);
+            if (!matcher.matches())
+                return "";
+            return null;
+        }
+
     }
 }

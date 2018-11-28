@@ -15,7 +15,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
         <item name="actionMenuTextColor">@color/colorWhite</item>
-        <item name="actionModeCloseButtonStyle">@color/colorWhite</item>
+        <item name="actionModeCloseButtonStyle">@style/contextual_action_bar_close_button</item>
     </style>
 
     <!-- Dark / Night Mode theme -->
@@ -31,10 +31,12 @@
         <item name="tintColor">#ffffff</item>
         <item name="buttonColor">#2196F3</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
-        <item name="actionMenuTextColor">@color/colorWhite</item>
+        <item name="actionMenuTextColor">@style/contextual_action_bar_close_button</item>
+        <item name="actionModeCloseButtonStyle">@style/contextual_action_bar_close_button</item>
     </style>
 
-    <style name="myclosebutton" parent="Widget.AppCompat.Light.ActionButton.CloseMode">
+    <!-- Contextual ActionBar back arrow -->
+    <style name="contextual_action_bar_close_button" parent="Widget.AppCompat.Light.ActionButton.CloseMode">
         <item name="android:tint">@color/colorWhite</item> <!-- whatever color -->
     </style>
 
