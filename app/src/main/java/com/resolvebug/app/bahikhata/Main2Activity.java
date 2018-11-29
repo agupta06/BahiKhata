@@ -238,8 +238,9 @@ public class Main2Activity extends AppCompatActivity {
                 title = "Events";
                 break;
             case "Settings":
-                fragment = new EditTransactionFragment();
-                title = "Events";
+                Intent intent = new Intent(Main2Activity.this, SettingsActivity.class);
+                startActivity(intent);
+                title = "Settings";
                 break;
             case "Rate Us":
                 rateAppOnPlayStore();

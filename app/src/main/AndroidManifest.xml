@@ -90,7 +90,8 @@
         <activity android:name=".TrialMainActivity" />
         <activity android:name=".IncomeActivity" />
         <activity android:name=".ExpenditureActivity" />
-        <activity android:name=".AddTransactionActivity"></activity>
+        <activity android:name=".AddTransactionActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

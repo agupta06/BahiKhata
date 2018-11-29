@@ -93,5 +93,10 @@
     <string name="ADD_EXPENSE">खर्च जोड़ें</string>
     <string name="AMOUNT_IN_RUPEE">रकम (\u20B9)</string>
     <string name="TAP_AND_HOLD_CARD_MESSAGE">अधिक विकल्पों के लिए टैप करें और दबाएं</string>
+    <string name="THEME">थीम</string>
+    <string name="NIGHT_MODE">रात्री स्वरुप</string>
+    <string name="NIGHT_MODE_DESCRIPTIVE_MESSAGE">अंधेरे पृष्ठभूमि पर हल्का पाठ</string>
+    <string name="ENGLISH">अंग्रेज़ी</string>
+    <string name="CURRENT_LANGUAGE">वर्तमान भाषा</string>
 
 </resources>

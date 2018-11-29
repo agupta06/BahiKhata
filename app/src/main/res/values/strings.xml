@@ -17,7 +17,7 @@
     <string name="CLOSE">Close</string>
     <string name="MESSAGE">message</string>
     <string name="AMOUNT">amount</string>
-    <string name="EMPTY_STRING"></string>
+    <string name="EMPTY_STRING"> </string>
     <string name="DATE">Date</string>
     <string name="LOGOUT">Logout</string>
     <string name="ERROR">Error</string>
@@ -93,5 +93,10 @@
     <string name="ADD_EXPENSE">ADD EXPENSE</string>
     <string name="AMOUNT_IN_RUPEE">Amount (\u20B9)</string>
     <string name="TAP_AND_HOLD_CARD_MESSAGE">Tap and hold for more options</string>
+    <string name="THEME">Theme</string>
+    <string name="NIGHT_MODE">Night Mode</string>
+    <string name="NIGHT_MODE_DESCRIPTIVE_MESSAGE">Light text on dark background</string>
+    <string name="ENGLISH">English</string>
+    <string name="CURRENT_LANGUAGE">Current Language</string>
 
 </resources>
