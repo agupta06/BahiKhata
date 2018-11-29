@@ -48,7 +48,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.credits_cardview_layout, null);
+        View view = inflater.inflate(R.layout.transaction_card_layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 

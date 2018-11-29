@@ -48,7 +48,7 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.debits_cardview_layout, null);
+        View view = inflater.inflate(R.layout.transaction_card_layout, null);
         return new RecyclerViewHolder(view, mListener);
     }
 

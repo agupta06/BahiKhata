@@ -92,5 +92,6 @@
     <string name="ADD_INCOME">आय जोड़ें</string>
     <string name="ADD_EXPENSE">खर्च जोड़ें</string>
     <string name="AMOUNT_IN_RUPEE">रकम (\u20B9)</string>
+    <string name="TAP_AND_HOLD_CARD_MESSAGE">अधिक विकल्पों के लिए टैप करें और दबाएं</string>
 
 </resources>

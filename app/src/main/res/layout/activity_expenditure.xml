@@ -158,7 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/SWIPE_GESTURE_FOR_TRANSACTIONS"
+                        android:text="@string/TAP_AND_HOLD_CARD_MESSAGE"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
