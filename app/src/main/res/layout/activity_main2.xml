@@ -220,7 +220,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/cardGestureMessage"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp80">
 

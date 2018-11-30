@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -20,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView pageTitle;
     private Switch darkThemeSwitch;
     private ImageView backButton;
+    private CardView languageChangeCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
         setTitleFont();
         pressBackButton();
         setTheme();
+        openLanguageSupportFragment();
     }
 
     private void initialize() {
@@ -38,6 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         pageTitle = findViewById(R.id.pageTitle);
         darkThemeSwitch = findViewById(R.id.darkThemeSwitch);
         backButton = findViewById(R.id.backButton);
+        languageChangeCard = findViewById(R.id.languageChangeCard);
         initializeSharedPreferences();
         initializeDarkThemeSwitch();
     }
@@ -104,6 +111,20 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.putString("darkTheme", "false");
                 }
                 editor.apply();
+            }
+        });
+    }
+
+    private void openLanguageSupportFragment() {
+        languageChangeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new LanguageSupportFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.settings_frame, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
     }
