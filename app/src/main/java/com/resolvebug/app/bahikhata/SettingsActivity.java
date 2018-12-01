@@ -1,6 +1,7 @@
 package com.resolvebug.app.bahikhata;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -25,9 +28,12 @@ public class SettingsActivity extends AppCompatActivity {
     private Switch darkThemeSwitch;
     private ImageView backButton;
     private CardView languageChangeCard;
+    private TextView currentLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setDefaultAppTheme();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -37,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         pressBackButton();
         setTheme();
         openLanguageSupportFragment();
+        setNightMode();
     }
 
     private void initialize() {
@@ -45,8 +52,30 @@ public class SettingsActivity extends AppCompatActivity {
         darkThemeSwitch = findViewById(R.id.darkThemeSwitch);
         backButton = findViewById(R.id.backButton);
         languageChangeCard = findViewById(R.id.languageChangeCard);
+        currentLanguage = findViewById(R.id.current_language);
         initializeSharedPreferences();
-        initializeDarkThemeSwitch();
+//        initializeDarkThemeSwitch();
+        setCurrentLanguage();
+    }
+
+    private void setCurrentLanguage() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("App_Language", "");
+        switch (language) {
+            case "en":
+                currentLanguage.setText(getString(R.string.ENGLISH));
+                break;
+            case "hi":
+                currentLanguage.setText(getString(R.string.HINDI));
+                break;
+            case "mr":
+                currentLanguage.setText(getString(R.string.MARATHI));
+                break;
+            default:
+                currentLanguage.setText(getString(R.string.ENGLISH));
+                break;
+
+        }
     }
 
     private void initializeSharedPreferences() {
@@ -127,6 +156,38 @@ public class SettingsActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
             }
         });
+    }
+
+    private void setDefaultAppTheme() {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.DarkAppTheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+    }
+
+    private void setNightMode() {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            darkThemeSwitch.setChecked(true);
+        }
+        darkThemeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    restartApp();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    restartApp();
+                }
+            }
+        });
+    }
+
+    private void restartApp() {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

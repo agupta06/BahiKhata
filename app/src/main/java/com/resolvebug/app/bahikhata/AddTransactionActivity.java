@@ -21,6 +21,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -100,8 +101,8 @@ public class AddTransactionActivity extends AppCompatActivity {
 
     private void setCurrentDateTime() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        txDate = new SimpleDateFormat("dd-MM-yyyy").format(timestamp);
-        txTime = new SimpleDateFormat("HH:mm:ss.SSS").format(timestamp);
+        txDate = new SimpleDateFormat("dd-MM-yyyy", Locale.US).format(timestamp);
+        txTime = new SimpleDateFormat("HH:mm:ss.SSS", Locale.US).format(timestamp);
         TimeZone timeZone = TimeZone.getDefault();
         txTimeZone = timeZone.getDisplayName(false, TimeZone.SHORT);
         txId = getTransactionId();

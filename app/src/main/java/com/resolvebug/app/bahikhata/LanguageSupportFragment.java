@@ -19,8 +19,6 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.Locale;
 
-import static android.content.Context.MODE_PRIVATE;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +51,28 @@ public class LanguageSupportFragment extends Fragment {
         adView = view.findViewById(R.id.adView);
         pageTitle = view.findViewById(R.id.pageTitle);
         radioGroup = view.findViewById(R.id.languages);
+        initializeRadioGroup();
         initializeSharedPreferences();
+    }
+
+    private void initializeRadioGroup() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("App_Language", "");
+        switch (language) {
+            case "en":
+                radioGroup.check(R.id.englishLanguage);
+                break;
+            case "hi":
+                radioGroup.check(R.id.hindiLanguage);
+                break;
+            case "mr":
+                radioGroup.check(R.id.marathiLanguage);
+                break;
+            default:
+                radioGroup.check(R.id.englishLanguage);
+                break;
+
+        }
     }
 
     private void initializeSharedPreferences() {
@@ -129,7 +148,8 @@ public class LanguageSupportFragment extends Fragment {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getActivity().getBaseContext().getResources().updateConfiguration(configuration, getActivity().getBaseContext().getResources().getDisplayMetrics());
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("App_Language", selectedLangauge);
         editor.apply();
     }

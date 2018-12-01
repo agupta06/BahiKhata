@@ -4,13 +4,13 @@
     <!-- Light / Day Mode theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--color-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/layout_background_color</item>
-        <item name="textColor">@color/text_color</item>
-        <item name="actionModeBackground">@color/colorPrimary</item>
-        <item name="actionMenuTextColor">@color/text_color_contrast</item>
+        <item name="backgroundColor">@color/colorAccent</item>
+        <item name="textColor">@color/colorAccent</item>
+        <item name="actionModeBackground">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorAccent</item>
 
         <!--others-->
         <item name="windowActionModeOverlay">true</item>
@@ -21,13 +21,13 @@
     <!-- Dark / Night Mode theme -->
     <style name="DarkAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--color-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/layout_background_color</item>
-        <item name="textColor">@color/text_color</item>
-        <item name="actionModeBackground">@color/colorPrimary</item>
-        <item name="actionMenuTextColor">@color/text_color_contrast</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="backgroundColor">@color/red</item>
+        <item name="textColor">@color/red</item>
+        <item name="actionModeBackground">@color/red</item>
+        <item name="actionMenuTextColor">@color/red</item>
 
         <!--others-->
         <item name="windowActionModeOverlay">true</item>

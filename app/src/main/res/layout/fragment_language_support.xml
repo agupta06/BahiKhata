@@ -39,7 +39,7 @@
                         android:id="@+id/pageTitle"
                         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:text="@string/CHANGE_LANGUAGE"
                         android:textColor="#FFFFFF"

@@ -232,33 +232,51 @@ public class Main2Activity extends AppCompatActivity {
     public void displayView(String viewId) {
         Fragment fragment = null;
         String title = getString(R.string.app_name);
-        switch (viewId) {
-            case "Important":
-                fragment = new EditTransactionFragment();
-                title = "Events";
-                break;
-            case "Settings":
-                Intent intent = new Intent(Main2Activity.this, SettingsActivity.class);
-                startActivity(intent);
-                title = "Settings";
-                break;
-            case "Rate Us":
-                rateAppOnPlayStore();
-                break;
-            case "Share":
-                shareAppWithFriends();
-                break;
-            case "About Us":
-                fragment = new EditTransactionFragment();
-                title = "Events";
-                break;
-            case "Logout":
-                firebaseAuth.signOut();
-                break;
-            default:
-                break;
+
+        if (viewId.equals(getString(R.string.IMPORTANT))) {
+
+        } else if (viewId.equals(getString(R.string.SETTINGS))) {
+            Intent intent = new Intent(Main2Activity.this, SettingsActivity.class);
+            startActivity(intent);
+            title = "Settings";
+        } else if (viewId.equals(getString(R.string.RATE_US))) {
+
+        } else if (viewId.equals(getString(R.string.ABOUT_US))) {
+
+        } else if (viewId.equals(getString(R.string.LOGOUT))) {
+            firebaseAuth.signOut();
+
+        } else {
 
         }
+
+//        switch (viewId) {
+//            case "Important":
+//                fragment = new EditTransactionFragment();
+//                title = "Events";
+//                break;
+//            case "Settings":
+//                Intent intent = new Intent(Main2Activity.this, SettingsActivity.class);
+//                startActivity(intent);
+//                title = "Settings";
+//                break;
+//            case "Rate Us":
+//                rateAppOnPlayStore();
+//                break;
+//            case "Share":
+//                shareAppWithFriends();
+//                break;
+//            case "About Us":
+//                fragment = new EditTransactionFragment();
+//                title = "Events";
+//                break;
+//            case "Logout":
+//                firebaseAuth.signOut();
+//                break;
+//            default:
+//                break;
+//
+//        }
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
