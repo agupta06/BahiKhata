@@ -17,7 +17,7 @@
     <string name="CLOSE">बंद करे</string>
     <string name="MESSAGE">संदेश</string>
     <string name="AMOUNT">रकम</string>
-    <string name="EMPTY_STRING"></string>
+    <string name="EMPTY_STRING"> </string>
     <string name="DATE">दिनांक</string>
     <string name="LOGOUT">लोग आउट</string>
     <string name="ERROR">त्रुटि</string>
@@ -100,5 +100,7 @@
     <string name="LANGUAGE_SELECTION_MESSAGE">ऐप भाषा का चयन करने के लिए टैप करें</string>
     <string name="ALL_LANGUAGES">सारी भाषाएँ</string>
     <string name="APP_LANGUAGE">ऐप भाषा</string>
+    <string name="HINDI">हिंदी</string>
+    <string name="MARATHI">मराठी</string>
 
 </resources>

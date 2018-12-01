@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorCardViewBackground"
+    android:background="@color/layout_background_color"
     android:clickable="true"
     android:focusable="true"
     tools:context=".LanguageSupportFragment">
@@ -82,15 +82,43 @@
                         android:layout_width="@dimen/dp20"
                         android:layout_height="@dimen/dp2"
                         android:layout_marginTop="@dimen/dp5"
-                        android:background="@color/red" />
+                        android:background="@color/heading_underline_color" />
 
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                <RadioGroup
+                    android:id="@+id/languages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp30" />
+                    android:padding="@dimen/dp16">
+
+                    <RadioButton
+                        android:id="@+id/englishLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/dp30"
+                        android:paddingEnd="@dimen/dp30"
+                        android:text="@string/ENGLISH" />
+
+                    <RadioButton
+                        android:id="@+id/hindiLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:paddingStart="@dimen/dp30"
+                        android:paddingEnd="@dimen/dp30"
+                        android:text="@string/HINDI" />
+
+                    <RadioButton
+                        android:id="@+id/marathiLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:paddingStart="@dimen/dp30"
+                        android:paddingEnd="@dimen/dp30"
+                        android:text="@string/MARATHI" />
+
+                </RadioGroup>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ds">
+    <declare-styleable name="CustomAppTheme">
         <attr name="backgroundColor" format="color" />
         <attr name="cardBackgroundColor" format="color" />
         <attr name="textColor" format="color" />

@@ -1,0 +1,105 @@
+<resources>
+    // properties
+    <string name="app_name">Bahi Khata</string>
+    <string name="font_app_name">fonts/Cookie-Regular.ttf</string>
+    <string name="facebook_app_id">325916787963647</string>
+    <string name="fb_login_protocol_scheme">fb325916787963647</string>
+
+    // validations, errors and exceptions
+    <string name="exception_facebook">Facebook Exception</string>
+    <string name="error_empty_field">फील्ड रिक्त आहेत</string>
+    <string name="error_signin">साइन इन सह समस्या</string>
+    <string name="unlock_app">Bahi Khata अनलॉक करा</string>
+    <string name="confirm_pattern_message">आपल्या स्क्रीन लॉक नमुना, पिन किंवा संकेतशब्दची पुष्टी करा</string>
+
+    // literals
+    <string name="OPEN">उघडा</string>
+    <string name="CLOSE">बंद</string>
+    <string name="MESSAGE">संदेश</string>
+    <string name="AMOUNT">रक्कम</string>
+    <string name="EMPTY_STRING"> </string>
+    <string name="DATE">तारीख</string>
+    <string name="LOGOUT">बाहेर पडणे</string>
+    <string name="ERROR">त्रुटी</string>
+    <string name="CANCELLED">रद्द केले</string>
+    <string name="PHONE">फोन</string>
+    <string name="EMAIL">ईमेल</string>
+    <string name="ADD_TRANSACTION">व्यवहार जोडा</string>
+    <string name="SAVE">जतन करा</string>
+    <string name="CANCEL">रद्द करा</string>
+    <string name="EDIT_TRANSACTION">व्यवहार संपादित करा</string>
+    <string name="INCOME">उत्पन्न</string>
+    <string name="EXPENSE">खर्च</string>
+
+    // symbols
+    <string name="currency_rupee">\u20B9</string>
+    <string name="ellipses">&#8942;</string>
+
+    // success messages
+    <string name="success_registration">नोंदणी यशस्वी</string>
+
+    // failure messages
+    <string name="fail_authentication">प्रमाणीकरण अयशस्वी</string>
+    <string name="fail_google_signin">गुगल साइन इन अयशस्वी</string>
+    <string name="fail_firebase_registration">फायरबेस नोंदणी अयशस्वी</string>
+    <string name="fail_registration">नोंदणी अयशस्वी</string>
+
+    // spinners
+    <array name="transactionTypes">
+        <item>काढण्यासाठी</item>
+        <item>जमा करण्यासाठी</item>
+        <item>नोट्स</item>
+    </array>
+
+    <string name="OTHER_LOGIN_METHODS">इतर लॉग इन</string>
+    <string name="LOGN_FACEBOOK">फेसबुक</string>
+    <string name="LOGIN_GMAIL">जीमेल</string>
+    <string name="LOGIN_PHONE">फोन</string>
+    <string name="LOGIN_EMAIL">ईमेल</string>
+    <string name="OR">किंवा</string>
+    <string name="HOME">घर</string>
+    <string name="REPORT">अहवाल द्या</string>
+    <string name="CHANGE_LANGUAGE">भाषा बदला</string>
+    <string name="SIGN_IN_PHONE">फोन साइन इन</string>
+    <string name="SIGN_IN_EMAIL">ईमेल साइन इन करा</string>
+    <string name="PHONE_NUMBER">फोन नंबर</string>
+    <string name="SEND_OTP">ओटीपी पाठवा</string>
+    <string name="REGISTER">नोंदणी करा</string>
+    <string name="PASSWORD">पासवर्ड</string>
+    <string name="EXISTING_USER">विद्यमान वापरकर्ता?</string>
+    <string name="SIGN_IN">साइन इन</string>
+    <string name="RESET_PASSWORD">पासवर्ड रीसेट करा</string>
+    <string name="FORGOT_PASSWORD">पासवर्ड विसरलात?</string>
+    <string name="NEW_USER">नवीन वापरकर्ता?</string>
+    <string name="contentDescriptionMobileImage">मोबाइलचा फोटो</string>
+    <string name="contentDescriptionGmailImage">जीमेलचे चित्र</string>
+    <string name="contentDescriptionFacebookImage">फेसबुक चे चित्र</string>
+    <string name="contentDescriptionImportantTxImage">महत्त्वपूर्ण व्यवहाराचे चित्र</string>
+    <string name="contentDescriptionCloseLayoutImage">लेआउट च्या चित्र बंद करा</string>
+    <string name="contentDescriptionCalendarImage">कॅलेंडरचे चित्र</string>
+    <string name="TIME">वेळ</string>
+    <string name="OTP">वन टाइम पासवर्ड (ओटीपी)</string>
+    <string name="resolvebugEmailId">resolvebug@gmail.com</string>
+    <string name="IMPORTANT">महत्वाचे</string>
+    <string name="SETTINGS">सेटिंग्ज</string>
+    <string name="RATE_US">आम्हाला रेट करा</string>
+    <string name="SHARE">सामायिक करा</string>
+    <string name="ABOUT_US">आमच्याबद्दल</string>
+    <string name="contentDescriptionBackButtonImage">परत बटण</string>
+    <string name="DISPLAY_HISTORY_MESSAGE">व्यवहार इतिहास पाहण्यासाठी रक्कम वर क्लिक करा</string>
+    <string name="ADD_INCOME">उत्पन्न जोडा</string>
+    <string name="ADD_EXPENSE">खर्च जोडा</string>
+    <string name="AMOUNT_IN_RUPEE">रक्कम (\u20B9)</string>
+    <string name="TAP_AND_HOLD_CARD_MESSAGE">अधिक पर्यायांसाठी टॅप करा आणि धरून ठेवा</string>
+    <string name="THEME">थीम</string>
+    <string name="NIGHT_MODE">रात्रीचा मोड</string>
+    <string name="NIGHT_MODE_DESCRIPTIVE_MESSAGE">काळा पार्श्वभूमीवर प्रकाश शब्द</string>
+    <string name="ENGLISH">English</string>
+    <string name="CURRENT_LANGUAGE">वर्तमान भाषा</string>
+    <string name="LANGUAGE_SELECTION_MESSAGE">अॅप भाषा निवडण्यासाठी टॅप करा</string>
+    <string name="ALL_LANGUAGES">सर्व भाषा</string>
+    <string name="APP_LANGUAGE">अॅप भाषा</string>
+    <string name="HINDI">हिंदी</string>
+    <string name="MARATHI">मराठी</string>
+
+</resources>

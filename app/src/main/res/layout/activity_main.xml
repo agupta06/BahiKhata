@@ -111,7 +111,7 @@
                                     android:layout_width="@dimen/dp30"
                                     android:layout_height="@dimen/dp2"
                                     android:layout_marginTop="@dimen/dp10"
-                                    android:background="@color/red" />
+                                    android:background="@color/heading_underline_color" />
 
                             </LinearLayout>
 

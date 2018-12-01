@@ -100,5 +100,7 @@
     <string name="LANGUAGE_SELECTION_MESSAGE">Tap to select app language</string>
     <string name="ALL_LANGUAGES">All languages</string>
     <string name="APP_LANGUAGE">App language</string>
+    <string name="HINDI">हिंदी</string>
+    <string name="MARATHI">मराठी</string>
 
 </resources>

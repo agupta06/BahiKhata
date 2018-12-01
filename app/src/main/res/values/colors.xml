@@ -3,18 +3,32 @@
     <color name="colorPrimary">#282828</color>
     <color name="colorPrimaryDark">#131313</color>
     <color name="colorAccent">#000000</color>
-    <color name="blue">#0099FF</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorCardViewBackground">#FAFAFA</color>
-    <color name="colorGrey100">#F5F5F5</color>
-    <color name="black">#000000</color>
-    <color name="red">#FF0000</color>
-    <color name="colorLayoutSeparator">#E0E0E0</color>
-    <color name="nightColorPrimaryDark">#131313</color>
-    <color name="nightColorIconsInactive">#909090</color>
-    <color name="dayColorPrimaryDark">#CCCCCC</color>
-    <color name="dayColorIconsInactive">#606060</color>
 
-    <!--overrides textbox border color-->
+    <!--overridden colors-->
     <color name="mtrl_textinput_default_box_stroke_color">#000000</color>
+
+    <!--day mode-->
+    <color name="layout_background_color">#FFFFFF</color>
+
+    <!--night mode-->
+
+    <!--common-->
+    <color name="heading_underline_color">#FF0000</color>
+    <color name="button_color">#0099FF</color>
+    <color name="layout_separator_color">#E0E0E0</color>
+
+    <!--text-->
+    <color name="text_color">#000000</color>
+    <color name="text_color_contrast">#FFFFFF</color>
+
+    <!--general-->
+    <color name="red">#FF0000</color>
+    <color name="black">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+
+    <!--Day / Light Theme-->
+
+    <!--Night / Dark Theme-->
+
 </resources>

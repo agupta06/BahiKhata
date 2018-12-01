@@ -3,35 +3,35 @@
     <!-- Base application theme -->
     <!-- Light / Day Mode theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--color-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">#fcfcfc</item>
-        <item name="cardBackgroundColor">#ffffff</item>
-        <item name="textColor">#808080</item>
-        <item name="tintColor">#000000</item>
-        <item name="buttonColor">#2196F3</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
-        <item name="windowActionModeOverlay">true</item>
+        <item name="backgroundColor">@color/layout_background_color</item>
+        <item name="textColor">@color/text_color</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
-        <item name="actionMenuTextColor">@color/colorWhite</item>
+        <item name="actionMenuTextColor">@color/text_color_contrast</item>
+
+        <!--others-->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="actionModeCloseButtonStyle">@style/contextual_action_bar_close_button</item>
     </style>
 
     <!-- Dark / Night Mode theme -->
-    <style name="AppDarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="actionModeBackground">@color/colorPrimary</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="colorPrimary">#212121</item>
-        <item name="colorPrimaryDark">#000000</item>
+    <style name="DarkAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--color-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">#303030</item>
-        <item name="cardBackgroundColor">#424242</item>
-        <item name="textColor">#ffffff</item>
-        <item name="tintColor">#ffffff</item>
-        <item name="buttonColor">#2196F3</item>
+        <item name="backgroundColor">@color/layout_background_color</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="actionModeBackground">@color/colorPrimary</item>
+        <item name="actionMenuTextColor">@color/text_color_contrast</item>
+
+        <!--others-->
+        <item name="windowActionModeOverlay">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
-        <item name="actionMenuTextColor">@style/contextual_action_bar_close_button</item>
         <item name="actionModeCloseButtonStyle">@style/contextual_action_bar_close_button</item>
     </style>
 
