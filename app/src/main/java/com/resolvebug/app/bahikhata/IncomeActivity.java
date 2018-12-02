@@ -1,10 +1,12 @@
 package com.resolvebug.app.bahikhata;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +32,7 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
     private SQLiteDatabase mDatabase;
     public static final String DATABASE_NAME = "bahikhatadatabase";
     private RecyclerView recyclerView;
-    private Button addCreditsButton;
+    private Button addIncomeButton;
     private TextView totalIncomeAmount;
     private ImageView backButton;
 
@@ -52,7 +54,7 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
         adView = findViewById(R.id.adView);
         pageTitle = findViewById(R.id.pageTitle);
         recyclerView = findViewById(R.id.recyclerView);
-        addCreditsButton = findViewById(R.id.addCreditsButton);
+        addIncomeButton = findViewById(R.id.addIncomeButton);
         totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
         backButton = findViewById(R.id.backButton);
     }
@@ -110,12 +112,23 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
     }
 
     private void addNewTransaction() {
-        addCreditsButton.setOnClickListener(new View.OnClickListener() {
+        addIncomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IncomeActivity.this, AddTransactionActivity.class);
-                intent.putExtra("addTransactionButton", "Debit");
-                startActivity(intent);
+//                Intent intent = new Intent(IncomeActivity.this, AddTransactionActivity.class);
+//                intent.putExtra("addTransactionButton", "Debit");
+//                startActivity(intent);
+
+                Fragment fragment = new AddTransactionFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("txType", "Debit");
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.incomeFrame, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             }
         });
     }

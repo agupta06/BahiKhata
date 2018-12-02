@@ -52,7 +52,7 @@ public class NotesRecyclerViewAdapter extends RecyclerView.Adapter<NotesRecycler
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        int layout = R.layout.notes_cardview_layout_without_date;
+        int layout = R.layout.layout_cardview_notes_without_date;
         View view = inflater.inflate(layout, null);
         return new RecyclerViewHolder(view, mListener);
     }

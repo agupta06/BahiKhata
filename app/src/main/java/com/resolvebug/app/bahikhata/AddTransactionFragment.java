@@ -1,15 +1,17 @@
 package com.resolvebug.app.bahikhata;
 
-import android.content.Intent;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +27,13 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddTransactionActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class AddTransactionFragment extends Fragment {
 
     public AdView adView;
     private TextView pageTitle;
@@ -42,33 +50,43 @@ public class AddTransactionActivity extends AppCompatActivity {
     private TextInputLayout inputTxMessage;
     private TextInputLayout inputTxAmount;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_transaction);
-
-        initialize();
-        setAdView();
-        setTitleFont();
-        saveTransaction();
-        pressBackButton();
+    public AddTransactionFragment() {
+        // Required empty public constructor
     }
 
-    private void initialize() {
-        adView = findViewById(R.id.adView);
-        pageTitle = findViewById(R.id.pageTitle);
-        transactionAmount = findViewById(R.id.transactionAmount);
-        transactionAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(10, 2)});
-        transactionMessage = findViewById(R.id.transactionMessage);
-        saveTransactionButton = findViewById(R.id.saveTransactionButton);
-        backButton = findViewById(R.id.backButton);
-        inputTxMessage = findViewById(R.id.inputTxMessage);
-        inputTxAmount = findViewById(R.id.inputTxAmount);
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_add_transaction, container, false);
+
+        Bundle bundle = this.getArguments();
+        String txType = bundle.getString("txType");
+
+        initialize(view);
+        setAdView();
+        setTitleFont();
+        saveTransaction(txType);
+        pressBackButton();
+        return view;
+    }
+
+    private void initialize(View view) {
+        adView = view.findViewById(R.id.adView);
+        pageTitle = view.findViewById(R.id.pageTitle);
+        transactionAmount = view.findViewById(R.id.transactionAmount);
+        transactionAmount.setFilters(new InputFilter[]{new AddTransactionFragment.DecimalDigitsInputFilter(10, 2)});
+        transactionMessage = view.findViewById(R.id.transactionMessage);
+        saveTransactionButton = view.findViewById(R.id.saveTransactionButton);
+        backButton = view.findViewById(R.id.backButton);
+        inputTxMessage = view.findViewById(R.id.inputTxMessage);
+        inputTxAmount = view.findViewById(R.id.inputTxAmount);
+        mDatabase = getActivity().openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
     }
 
     private void setTitleFont() {
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
         pageTitle.setTypeface(typeface);
     }
 
@@ -88,12 +106,12 @@ public class AddTransactionActivity extends AppCompatActivity {
         });
     }
 
-    private void saveTransaction() {
+    private void saveTransaction(final String txType) {
         saveTransactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setCurrentDateTime();
-                addTransaction();
+                addTransaction(txType);
             }
         });
     }
@@ -112,9 +130,9 @@ public class AddTransactionActivity extends AppCompatActivity {
         return formatDateTime.getTimeStamp();
     }
 
-    private void addTransaction() {
-        Intent intent = getIntent();
-        String txType = intent.getStringExtra("addTransactionButton");
+    private void addTransaction(String txType) {
+//        Intent intent = getActivity().getIntent();
+//        String txType = intent.getStringExtra("addTransactionButton");
         if (transactionAmount.getText().toString().equals("") && transactionMessage.getText().toString().equals("")) {
             inputTxAmount.setError("Please enter some amount");
             inputTxMessage.setError("Please enter some message");
@@ -131,7 +149,7 @@ public class AddTransactionActivity extends AppCompatActivity {
                         "VALUES \n" +
                         "(?, ?, ?, ?, ?, ?, ?);";
                 mDatabase.execSQL(insertSQL, new String[]{txId, txDate, txTime, txTimeZone, txType, txAmount, txMessage});
-                Toast.makeText(this, "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Transaction Added Successfully", Toast.LENGTH_SHORT).show();
                 resetInputs();
             }
         }
@@ -146,23 +164,14 @@ public class AddTransactionActivity extends AppCompatActivity {
     private boolean inputsAreCorrect(Double txAmount, String txMessage) {
         if (txAmount <= 0) {
             transactionAmount.requestFocus();
-            Toast.makeText(this, "Fields are empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Fields are empty", Toast.LENGTH_SHORT).show();
             return false;
         } else if (txMessage.isEmpty()) {
             transactionMessage.requestFocus();
-            Toast.makeText(this, "Fields are empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Fields are empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
-    }
-
-    private void pressBackButton() {
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     public class DecimalDigitsInputFilter implements InputFilter {
@@ -182,4 +191,14 @@ public class AddTransactionActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    private void pressBackButton() {
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
+            }
+        });
+    }
+
 }

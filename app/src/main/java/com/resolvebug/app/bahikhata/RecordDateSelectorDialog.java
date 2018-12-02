@@ -22,7 +22,7 @@ public class RecordDateSelectorDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.record_date_selector_dialog, null);
+        View view = inflater.inflate(R.layout.layout_dialog_record_date_selector, null);
         initialize(view);
         initializeDatePickerFragment();
         return createDatePickerDialog(view);
