@@ -103,10 +103,7 @@ public class Main2Activity extends AppCompatActivity {
         incomeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(Main2Activity.this, IncomeActivity.class);
-//                startActivity(intent);
-
-                openIncomeFragment();
+                openFragment(new IncomeFragment());
             }
         });
     }
@@ -115,8 +112,7 @@ public class Main2Activity extends AppCompatActivity {
         expenditureCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this, ExpenditureActivity.class);
-                startActivity(intent);
+                openFragment(new ExpenseFragment());
             }
         });
     }
@@ -317,8 +313,7 @@ public class Main2Activity extends AppCompatActivity {
         //Refresh your stuff here
     }
 
-    private void openIncomeFragment() {
-        Fragment fragment = new IncomeFragment();
+    private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.mainFrame, fragment);
