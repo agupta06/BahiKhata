@@ -40,7 +40,7 @@ public class DebitsFragment extends Fragment implements DebitsRecyclerViewAdapte
         recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
-        mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
+        mDatabase = getActivity().openOrCreateDatabase(MainActivityOld.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
         debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase, this);
         debitsRecyclerViewAdapter.setOnItemClickListener(new DebitsRecyclerViewAdapter.OnItemClickListener() {

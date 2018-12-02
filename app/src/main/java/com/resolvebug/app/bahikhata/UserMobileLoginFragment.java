@@ -120,7 +120,7 @@ public class UserMobileLoginFragment extends Fragment {
                         } else {
                             // Sign in success, update UI with the signed-in user's information
 //                            FirebaseUser user = task.getResult().getUser();
-//                            startActivity(new Intent(getActivity(), MainActivity.class));
+//                            startActivity(new Intent(getActivity(), MainActivityOld.class));
 //                            getActivity().finish();
                             // ...
                         }

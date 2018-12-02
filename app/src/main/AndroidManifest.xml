@@ -81,12 +81,12 @@
         <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
 
         <activity
-            android:name=".Main2Activity"
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".PinLockScreen"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivityOld" />
         <activity android:name=".TrialMainActivity" />
         <activity android:name=".AddTransactionActivity" />
         <activity android:name=".SettingsActivity"></activity>

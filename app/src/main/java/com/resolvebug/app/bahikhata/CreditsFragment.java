@@ -40,7 +40,7 @@ public class CreditsFragment extends Fragment implements CreditsRecyclerViewAdap
         recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
-        mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
+        mDatabase = getActivity().openOrCreateDatabase(MainActivityOld.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
         creditsRecyclerViewAdapter = new CreditsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase, this);
         creditsRecyclerViewAdapter.setOnItemClickListener(new CreditsRecyclerViewAdapter.OnItemClickListener() {

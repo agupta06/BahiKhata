@@ -141,7 +141,7 @@ public class PinLockScreen extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        startActivity(new Intent(PinLockScreen.this, MainActivity.class));
+        startActivity(new Intent(PinLockScreen.this, MainActivityOld.class));
         finish();
     }
 

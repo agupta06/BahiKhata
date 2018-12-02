@@ -77,7 +77,7 @@ public class TransactionsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TransactionsActivity.this, MainActivity.class);
+                Intent intent = new Intent(TransactionsActivity.this, MainActivityOld.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
