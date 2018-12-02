@@ -24,7 +24,6 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
 
     private Context context;
     private List<CardItems> cardItemsList;
-    private LinearLayout transactionCardlayout;
     private DebitsRecyclerViewAdapter.OnItemClickListener mListener;
     private ArrayList<Integer> selectedItems = new ArrayList<>();
     private boolean multiSelect = false;
