@@ -1,5 +1,6 @@
 package com.resolvebug.app.bahikhata;
 
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
@@ -7,10 +8,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +26,13 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerViewAdapter.OnItemClickListener {
+import static android.content.Context.MODE_PRIVATE;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class IncomeFragment extends Fragment implements DebitsRecyclerViewAdapter.OnItemClickListener {
 
     public AdView adView;
     private TextView pageTitle;
@@ -36,31 +44,37 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
     private TextView totalIncomeAmount;
     private ImageView backButton;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+    public IncomeFragment() {
+        // Required empty public constructor
+    }
 
-        initialize();
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_income, container, false);
+        initialize(view);
         setAdView();
         setTitleFont();
         showIncomeTransactions();
         addNewTransaction();
         setTotalIncomeAndExpenditure();
         pressBackButton();
+        return view;
     }
 
-    private void initialize() {
-        adView = findViewById(R.id.adView);
-        pageTitle = findViewById(R.id.pageTitle);
-        recyclerView = findViewById(R.id.recyclerView);
-        addIncomeButton = findViewById(R.id.addIncomeButton);
-        totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
-        backButton = findViewById(R.id.backButton);
+    private void initialize(View view) {
+        adView = view.findViewById(R.id.adView);
+        pageTitle = view.findViewById(R.id.pageTitle);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        addIncomeButton = view.findViewById(R.id.addIncomeButton);
+        totalIncomeAmount = view.findViewById(R.id.totalIncomeAmount);
+        backButton = view.findViewById(R.id.backButton);
     }
 
     private void setTitleFont() {
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
         pageTitle.setTypeface(typeface);
     }
 
@@ -84,11 +98,11 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
         DebitsRecyclerViewAdapter debitsRecyclerViewAdapter;
         cardItemsList = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(this, cardItemsList, mDatabase, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(getContext(), cardItemsList, mDatabase, this);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(debitsRecyclerViewAdapter);
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        mDatabase = getActivity().openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         getAllDataFromDB();
     }
 
@@ -125,9 +139,9 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
         Bundle bundle = new Bundle();
         bundle.putString("txType", "Debit");
         fragment.setArguments(bundle);
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.incomeFrame, fragment);
+        fragmentTransaction.replace(R.id.mainFrame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -139,7 +153,7 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
             String amount = new DecimalFormat("##,##,##0.00").format(total);
             totalIncomeAmount.setText(amount);
         } else {
-            Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Some error occurred.", Toast.LENGTH_SHORT).show();
         }
         totalDebitAmount.close();
     }
@@ -148,7 +162,7 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
             }
         });
     }
@@ -165,4 +179,5 @@ public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerV
     public void onItemClick(int position) {
 
     }
+
 }

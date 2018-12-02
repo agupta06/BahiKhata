@@ -103,8 +103,10 @@ public class Main2Activity extends AppCompatActivity {
         incomeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this, IncomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(Main2Activity.this, IncomeActivity.class);
+//                startActivity(intent);
+
+                openIncomeFragment();
             }
         });
     }
@@ -313,5 +315,14 @@ public class Main2Activity extends AppCompatActivity {
         super.onResume();
         setTotalIncomeAndExpenditure();
         //Refresh your stuff here
+    }
+
+    private void openIncomeFragment() {
+        Fragment fragment = new IncomeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrame, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
