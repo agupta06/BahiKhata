@@ -3,7 +3,6 @@
     <string name="app_name">Bahi Khata</string>
     <string name="font_app_name">fonts/Cookie-Regular.ttf</string>
     <string name="facebook_app_id">325916787963647</string>
-    <string name="fb_login_protocol_scheme">fb325916787963647</string>
 
     // validations, errors and exceptions
     <string name="exception_facebook">फेसबुक अपवाद</string>

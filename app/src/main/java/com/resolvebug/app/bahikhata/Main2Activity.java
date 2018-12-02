@@ -1,12 +1,15 @@
 package com.resolvebug.app.bahikhata;
 
+import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -45,12 +48,15 @@ public class Main2Activity extends AppCompatActivity {
     private Toolbar toolbar;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth firebaseAuth;
+    private static final int LOCK_REQUEST_CODE = 221;
+    private static final int SECURITY_SETTING_REQUEST_CODE = 233;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        userAuthentication();
         initialize();
         setTitleFont();
         setAdView();
@@ -319,5 +325,51 @@ public class Main2Activity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.mainFrame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    private void userAuthentication() {
+        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Intent i = keyguardManager.createConfirmDeviceCredentialIntent(getResources().getString(R.string.unlock_app), getResources().getString(R.string.confirm_pattern_message));
+            try {
+                startActivityForResult(i, LOCK_REQUEST_CODE);
+            } catch (Exception e) {
+                Intent intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);
+                try {
+                    startActivityForResult(intent, SECURITY_SETTING_REQUEST_CODE);
+                } catch (Exception ex) {
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case LOCK_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    //If screen lock authentication is success update text
+                } else {
+                    //If screen lock authentication is failed update text
+                }
+                break;
+            case SECURITY_SETTING_REQUEST_CODE:
+                //When user is enabled Security settings then we don't get any kind of RESULT_OK
+                //So we need to check whether device has enabled screen lock or not
+                if (isDeviceSecure()) {
+                    //If screen lock enabled show toast and start intent to authenticate user
+                    //authenticateApp();
+                } else {
+                    //If screen lock is not enabled just update text
+                }
+
+                break;
+        }
+    }
+
+    private boolean isDeviceSecure() {
+        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && keyguardManager.isKeyguardSecure();
     }
 }

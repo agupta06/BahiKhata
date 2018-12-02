@@ -122,10 +122,10 @@ public class CreateTransactionFragment extends Fragment {
     }
 
     private void openAllTransactionFragment() {
-        Intent intent = new Intent(getActivity(), IncomeActivity.class);
-        if (getActivity() != null) {
-            getActivity().startActivity(intent);
-        }
+//        Intent intent = new Intent(getActivity(), IncomeActivity.class);
+//        if (getActivity() != null) {
+//            getActivity().startActivity(intent);
+//        }
     }
 
     private void saveTransaction() {

@@ -74,7 +74,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="@string/fb_login_protocol_scheme" />
+                <data android:scheme="fb325916787963647" />
             </intent-filter>
         </activity>
 
@@ -88,8 +88,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainActivity" />
         <activity android:name=".TrialMainActivity" />
-        <activity android:name=".IncomeActivity" />
-        <activity android:name=".ExpenditureActivity" />
         <activity android:name=".AddTransactionActivity" />
         <activity android:name=".SettingsActivity"></activity>
     </application>
