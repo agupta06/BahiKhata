@@ -4,19 +4,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp1"
         android:clickable="true"
-        android:focusable="true"
-        card_view:cardCornerRadius="@dimen/dp2">
+        android:focusable="true">
 
         <LinearLayout
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="@dimen/dp16"
             android:id="@+id/transaction_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp2"
             android:orientation="vertical">
 
             <LinearLayout
@@ -30,7 +30,8 @@
                     android:layout_margin="@dimen/dp5"
                     android:gravity="center_vertical"
                     android:text="@string/currency_rupee"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/item_amount"
@@ -39,7 +40,8 @@
                     android:layout_margin="@dimen/dp5"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/item_date"
@@ -87,6 +89,12 @@
                     android:src="@drawable/ic_baseline_favorite_border_24px" />
 
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

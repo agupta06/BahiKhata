@@ -141,7 +141,7 @@ public class IncomeFragment extends Fragment implements DebitsRecyclerViewAdapte
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.mainFrame, fragment);
+        fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

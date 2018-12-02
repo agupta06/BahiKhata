@@ -141,7 +141,7 @@ public class ExpenseFragment extends Fragment implements CreditsRecyclerViewAdap
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.mainFrame, fragment);
+        fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

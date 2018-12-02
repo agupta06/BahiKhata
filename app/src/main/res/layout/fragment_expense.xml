@@ -104,6 +104,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
                         <LinearLayout
                             android:id="@+id/expenseCardLayout"
                             android:layout_width="match_parent"
@@ -120,7 +125,8 @@
                                 android:gravity="center_vertical"
                                 android:text="@string/currency_rupee"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/sp14" />
+                                android:textSize="@dimen/sp14"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/totalExpenseAmount"
@@ -129,11 +135,17 @@
                                 android:layout_margin="@dimen/dp5"
                                 android:gravity="center_vertical"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/sp30" />
+                                android:textSize="@dimen/sp30"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
                     </android.support.v7.widget.CardView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray" />
 
                 </LinearLayout>
 

@@ -6,68 +6,28 @@
     android:background="@color/colorCardViewBackground"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".IncomeFragment">
+    tools:context=".MainFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/titlebar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="@dimen/dp2">
-
-                <android.support.v7.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary">
-
-                    <ImageView
-                        android:id="@+id/backButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/contentDescriptionBackButtonImage"
-                        android:src="@drawable/ic_baseline_arrow_back_white_24px" />
-
-                    <TextView
-                        android:id="@+id/pageTitle"
-                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/app_name"
-                        android:textColor="#FFFFFF"
-                        android:textSize="@dimen/sp30" />
-
-
-                </android.support.v7.widget.Toolbar>
-
-            </android.support.design.widget.AppBarLayout>
-
-        </LinearLayout>
-
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/adView"
-            android:layout_below="@id/titlebar">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/transactionLabels"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_above="@id/adView"
+                android:layout_below="@id/titlebar"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/totalIncomeCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp20"
-                    android:focusableInTouchMode="true"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -103,9 +63,9 @@
                         android:id="@+id/incomeCard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/cardview_border_blue"
-                        android:paddingTop="@dimen/dp10"
-                        android:paddingBottom="@dimen/dp10">
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
 
                         <View
                             android:layout_width="match_parent"
@@ -115,11 +75,10 @@
                         <LinearLayout
                             android:id="@+id/incomeCardLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:gravity="center_horizontal"
                             android:orientation="horizontal"
-                            android:paddingTop="@dimen/dp20"
-                            android:paddingBottom="@dimen/dp20">
+                            android:padding="@dimen/dp20">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -154,65 +113,109 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/allIncomeTransactions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/totalIncomeCard"
-                    android:layout_marginTop="@dimen/dp20">
+                    android:layout_marginTop="@dimen/dp20"
+                    android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerView"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:text="@string/EXPENSE"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="@dimen/dp30"
+                            android:layout_height="@dimen/dp2"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:background="@color/red" />
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/expenditureCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <LinearLayout
+                            android:id="@+id/expenditureCardLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/dp20">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/dp5"
+                                android:gravity="center_vertical"
+                                android:text="@string/currency_rupee"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp14"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/totalExpenditureAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/dp5"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp30"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/cardGestureMessage"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp80"
-                    android:layout_below="@id/allIncomeTransactions">
+                    android:layout_height="@dimen/dp80">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/TAP_AND_HOLD_CARD_MESSAGE"
+                        android:text="@string/DISPLAY_HISTORY_MESSAGE"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
-
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/addTransactionLayout"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
-
-        <LinearLayout
-            android:id="@+id/addTransactionLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/black"
-            android:gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/addIncomeButton"
-                style="@style/Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:enabled="true"
-                android:text="@string/ADD_INCOME"
-                android:textColor="@color/colorWhite" />
-
-        </LinearLayout>
 
     </RelativeLayout>
 

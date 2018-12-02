@@ -3,8 +3,6 @@ package com.resolvebug.app.bahikhata;
 import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -19,30 +17,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.text.DecimalFormat;
-
 public class Main2Activity extends AppCompatActivity {
 
-    private CardView incomeCard;
-    private CardView expenditureCard;
     private TextView pageTitle;
-    private SQLiteDatabase mDatabase;
-    public static final String DATABASE_NAME = "bahikhatadatabase";
     public AdView adView;
-    public TextView totalExpenditureAmount;
-    public TextView totalIncomeAmount;
     private DrawerLayout mDrawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
@@ -63,22 +51,14 @@ public class Main2Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setActionBar();
         navigationDrawerListener();
-        performDBOperations();
-        openIncomeActivity();
-        openExpenditureActivity();
-        setTotalIncomeAndExpenditure();
         setNavigationLayout();
+        openDefaultFragment(new MainFragment());
         appLogout();
     }
 
     private void initialize() {
-        incomeCard = findViewById(R.id.incomeCard);
-        expenditureCard = findViewById(R.id.expenditureCard);
         pageTitle = findViewById(R.id.pageTitle);
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         adView = findViewById(R.id.adView);
-        totalExpenditureAmount = findViewById(R.id.totalExpenditureAmount);
-        totalIncomeAmount = findViewById(R.id.totalIncomeAmount);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
@@ -103,72 +83,6 @@ public class Main2Activity extends AppCompatActivity {
                 adView.setVisibility(View.GONE);
             }
         });
-    }
-
-    private void openIncomeActivity() {
-        incomeCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFragment(new IncomeFragment());
-            }
-        });
-    }
-
-    private void openExpenditureActivity() {
-        expenditureCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFragment(new ExpenseFragment());
-            }
-        });
-    }
-
-    private void performDBOperations() {
-        createTable();
-    }
-
-    private void createTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS TRANSACTION_DETAILS (\n" +
-                "    ID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "    TRANSACTION_ID LONG NOT NULL,\n" +
-                "    DATE VARCHAR(10) NOT NULL,\n" +
-                "    TIME VARCHAR(10) NOT NULL,\n" +
-                "    TIME_ZONE VARCHAR(10) NOT NULL,\n" +
-                "    TYPE VARCHAR(200) NOT NULL, \n" +
-                "    AMOUNT NUMERIC NOT NULL,\n" +
-                "    MESSAGE VARCHAR(200) NOT NULL,\n" +
-                "    IMPORTANT INTEGER NOT NULL DEFAULT 0);";
-
-//      DROP A TABLE
-//        String sql = "DROP TABLE IF EXISTS TRANSACTION_DETAILS";
-
-//      ADD A NEW COLUMN
-//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TRANSACTION_ID VARCHAR(20) DEFAULT 'GMT+05:30'";
-//        String sql = "ALTER TABLE TRANSACTION_DETAILS ADD COLUMN TRANSACTION_ID VARCHAR(20)";
-
-        mDatabase.execSQL(sql);
-    }
-
-    private void setTotalIncomeAndExpenditure() {
-        Cursor totalDebitAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Debit'", null);
-        if (totalDebitAmount.moveToFirst()) {
-            double total = totalDebitAmount.getDouble(0);
-            String amount = new DecimalFormat("##,##,##0.00").format(total);
-            totalIncomeAmount.setText(amount);
-        } else {
-            Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
-        }
-        totalDebitAmount.close();
-
-        Cursor totalCreditAmount = mDatabase.rawQuery("SELECT SUM(AMOUNT) FROM TRANSACTION_DETAILS WHERE TYPE='Credit'", null);
-        if (totalCreditAmount.moveToFirst()) {
-            double total = totalCreditAmount.getDouble(0);
-            String amount = new DecimalFormat("##,##,##0.00").format(total);
-            totalExpenditureAmount.setText(amount);
-        } else {
-            Toast.makeText(this, "Some error occurred.", Toast.LENGTH_SHORT).show();
-        }
-        totalCreditAmount.close();
     }
 
     private void setNavigationLayout() {
@@ -266,7 +180,7 @@ public class Main2Activity extends AppCompatActivity {
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.replaceMainActivityFrame, fragment);
+            fragmentTransaction.replace(R.id.main_frame_content, fragment);
             fragmentTransaction.commit();
         }
         // set the toolbar title
@@ -312,17 +226,10 @@ public class Main2Activity extends AppCompatActivity {
         startActivity(Intent.createChooser(share, "Share Bahi Khata with friends"));
     }
 
-    @Override
-    public void onResume() {  // After a pause OR at startup
-        super.onResume();
-        setTotalIncomeAndExpenditure();
-        //Refresh your stuff here
-    }
-
-    private void openFragment(Fragment fragment) {
+    private void openDefaultFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.mainFrame, fragment);
+        fragmentTransaction.add(R.id.main_frame_content, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -372,4 +279,5 @@ public class Main2Activity extends AppCompatActivity {
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && keyguardManager.isKeyguardSecure();
     }
+
 }
