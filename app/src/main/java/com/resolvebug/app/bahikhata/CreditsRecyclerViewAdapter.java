@@ -35,8 +35,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
     }
 
 
-
-    public CreditsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase , OnItemClickListener mlistener) {
+    public CreditsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase, OnItemClickListener mlistener) {
         this.context = context;
         this.cardItemsList = cardItemsList;
         this.mDatabase = mDatabase;
@@ -134,7 +133,6 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
             item_date = itemView.findViewById(R.id.item_date);
             transactionCardlayout = itemView.findViewById(R.id.transaction_linear_layout);
             this.listener = listener;
-
         }
 
         void update(final Integer value) {
@@ -155,7 +153,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
             transactionCardlayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(!multiSelect){
+                    if (!multiSelect) {
                         if (listener != null) {
                             int position = getAdapterPosition();
                             if (position != RecyclerView.NO_POSITION) {

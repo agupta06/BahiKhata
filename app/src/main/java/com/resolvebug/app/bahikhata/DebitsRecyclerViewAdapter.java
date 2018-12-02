@@ -39,10 +39,11 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
         mListener = listener;
     }
 
-    public DebitsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase) {
+    public DebitsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase, OnItemClickListener mListener) {
         this.context = context;
         this.cardItemsList = cardItemsList;
         this.mDatabase = mDatabase;
+        this.mListener = mListener;
     }
 
     @Override
@@ -104,6 +105,8 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
         TextView itemMessage;
         TextView item_date;
         ImageView important;
+        OnItemClickListener listener;
+        LinearLayout transactionCardlayout;
 
         public RecyclerViewHolder(View itemView, final DebitsRecyclerViewAdapter.OnItemClickListener listener) {
             super(itemView);
@@ -123,6 +126,7 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
                     }
                 }
             });
+            this.listener = listener;
         }
 
         void update(final Integer value) {
@@ -142,6 +146,14 @@ public class DebitsRecyclerViewAdapter extends RecyclerView.Adapter<DebitsRecycl
             transactionCardlayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (!multiSelect) {
+                        if (listener != null) {
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                listener.onItemClick(position);
+                            }
+                        }
+                    }
                     selectItem(value);
                 }
             });

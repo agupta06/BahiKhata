@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DebitsFragment extends Fragment {
+public class DebitsFragment extends Fragment implements DebitsRecyclerViewAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private DebitsRecyclerViewAdapter debitsRecyclerViewAdapter;
@@ -42,7 +42,7 @@ public class DebitsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
         mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
-        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
+        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase, this);
         debitsRecyclerViewAdapter.setOnItemClickListener(new DebitsRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -78,5 +78,10 @@ public class DebitsFragment extends Fragment {
         editTransactionFragment.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.transactionFrames, editTransactionFragment, "EditTransactionFragment").commit();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        openEditTransactionFragment(position, cardItemsList);
     }
 }

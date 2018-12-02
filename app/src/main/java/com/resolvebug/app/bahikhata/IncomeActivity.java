@@ -22,7 +22,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncomeActivity extends AppCompatActivity {
+public class IncomeActivity extends AppCompatActivity implements DebitsRecyclerViewAdapter.OnItemClickListener {
 
     public AdView adView;
     private TextView pageTitle;
@@ -83,13 +83,7 @@ public class IncomeActivity extends AppCompatActivity {
         cardItemsList = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(this, cardItemsList, mDatabase);
-        debitsRecyclerViewAdapter.setOnItemClickListener(new DebitsRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                //openEditTransactionFragment(position,cardItemsList);
-            }
-        });
+        debitsRecyclerViewAdapter = new DebitsRecyclerViewAdapter(this, cardItemsList, mDatabase, this);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(debitsRecyclerViewAdapter);
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
@@ -120,7 +114,7 @@ public class IncomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(IncomeActivity.this, AddTransactionActivity.class);
-                intent.putExtra("addTransactionButton","Debit");
+                intent.putExtra("addTransactionButton", "Debit");
                 startActivity(intent);
             }
         });
@@ -153,5 +147,10 @@ public class IncomeActivity extends AppCompatActivity {
         showIncomeTransactions();
         setTotalIncomeAndExpenditure();
         //Refresh your stuff here
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
