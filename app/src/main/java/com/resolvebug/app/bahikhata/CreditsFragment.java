@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreditsFragment extends Fragment {
+public class CreditsFragment extends Fragment implements CreditsRecyclerViewAdapter.OnItemClickListener{
 
     private RecyclerView recyclerView;
     private CreditsRecyclerViewAdapter creditsRecyclerViewAdapter;
@@ -42,13 +42,7 @@ public class CreditsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getView().getContext()));
         mDatabase = getActivity().openOrCreateDatabase(MainActivity.DATABASE_NAME, android.content.Context.MODE_PRIVATE, null);
         getAllDataFromDB();
-        creditsRecyclerViewAdapter = new CreditsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase);
-        creditsRecyclerViewAdapter.setOnItemClickListener(new CreditsRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                openEditTransactionFragment(position,cardItemsList);
-            }
-        });
+        creditsRecyclerViewAdapter = new CreditsRecyclerViewAdapter(getView().getContext(), cardItemsList, mDatabase, this);
         recyclerView.setAdapter(creditsRecyclerViewAdapter);
     }
 
@@ -78,5 +72,10 @@ public class CreditsFragment extends Fragment {
         editTransactionFragment.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.transactionFrames, editTransactionFragment, "EditTransactionFragment").commit();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        openEditTransactionFragment(position,cardItemsList);
     }
 }

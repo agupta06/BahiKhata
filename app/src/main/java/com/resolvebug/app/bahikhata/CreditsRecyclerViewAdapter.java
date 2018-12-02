@@ -24,7 +24,6 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
 
     private Context context;
     private List<CardItems> cardItemsList;
-    private LinearLayout transactionCardlayout;
     private CreditsRecyclerViewAdapter.OnItemClickListener mListener;
     private ArrayList<Integer> selectedItems = new ArrayList<>();
     private boolean multiSelect = false;
@@ -35,14 +34,13 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(CreditsRecyclerViewAdapter.OnItemClickListener listener) {
-        mListener = listener;
-    }
 
-    public CreditsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase) {
+
+    public CreditsRecyclerViewAdapter(Context context, List<CardItems> cardItemsList, SQLiteDatabase mDatabase , OnItemClickListener mlistener) {
         this.context = context;
         this.cardItemsList = cardItemsList;
         this.mDatabase = mDatabase;
+        this.mListener = mlistener;
     }
 
     @Override
@@ -125,6 +123,8 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
         TextView itemMessage;
         TextView item_date;
         ImageView important;
+        OnItemClickListener listener;
+        LinearLayout transactionCardlayout;
 
         public RecyclerViewHolder(View itemView, final CreditsRecyclerViewAdapter.OnItemClickListener listener) {
             super(itemView);
@@ -133,17 +133,8 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
             important = itemView.findViewById(R.id.important);
             item_date = itemView.findViewById(R.id.item_date);
             transactionCardlayout = itemView.findViewById(R.id.transaction_linear_layout);
-            transactionCardlayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
+            this.listener = listener;
+
         }
 
         void update(final Integer value) {
@@ -156,6 +147,7 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
                 @Override
                 public boolean onLongClick(View view) {
                     ((AppCompatActivity) view.getContext()).startSupportActionMode(actionModeCallbacks);
+
                     selectItem(value);
                     return true;
                 }
@@ -163,6 +155,14 @@ public class CreditsRecyclerViewAdapter extends RecyclerView.Adapter<CreditsRecy
             transactionCardlayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(!multiSelect){
+                        if (listener != null) {
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                listener.onItemClick(position);
+                            }
+                        }
+                    }
                     selectItem(value);
                 }
             });

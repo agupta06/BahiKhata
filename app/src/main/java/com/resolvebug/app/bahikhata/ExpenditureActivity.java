@@ -22,7 +22,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpenditureActivity extends AppCompatActivity {
+public class ExpenditureActivity extends AppCompatActivity implements CreditsRecyclerViewAdapter.OnItemClickListener{
 
     public AdView adView;
     private TextView pageTitle;
@@ -83,13 +83,7 @@ public class ExpenditureActivity extends AppCompatActivity {
         cardItemsList = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        creditsRecyclerViewAdapter = new CreditsRecyclerViewAdapter(this, cardItemsList, mDatabase);
-        creditsRecyclerViewAdapter.setOnItemClickListener(new CreditsRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                //openEditTransactionFragment(position,cardItemsList);
-            }
-        });
+        creditsRecyclerViewAdapter = new CreditsRecyclerViewAdapter(this, cardItemsList, mDatabase, this);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(creditsRecyclerViewAdapter);
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
@@ -153,5 +147,10 @@ public class ExpenditureActivity extends AppCompatActivity {
         showExpenseTransactions();
         setTotalIncomeAndExpenditure();
         //Refresh your stuff here
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
