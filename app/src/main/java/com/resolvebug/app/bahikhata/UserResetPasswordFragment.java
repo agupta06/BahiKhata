@@ -66,6 +66,7 @@ public class UserResetPasswordFragment extends Fragment {
         signIn = view.findViewById(R.id.signinButton);
         resetPasswordButton = view.findViewById(R.id.resetPasswordButton);
         resetPasswordEmail = view.findViewById(R.id.resetPasswordEmail);
+        resetPasswordEmail.requestFocus();
     }
 
     private void setFirebaseAuthListener() {

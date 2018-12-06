@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,16 +49,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/loginAdView"
-            android:layout_below="@id/titleBar">
+            android:layout_below="@id/titleBar"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/forFrame"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.2"
                     android:layout_marginTop="@dimen/dp10">
 
                     <FrameLayout
@@ -72,8 +78,8 @@
                 <LinearLayout
                     android:id="@+id/separator"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/forFrame"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
                     android:layout_marginTop="@dimen/dp10"
                     android:gravity="center_horizontal|center_vertical"
                     android:orientation="horizontal"
@@ -104,8 +110,8 @@
                 <LinearLayout
                     android:id="@+id/socialLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/separator"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
                     android:layout_marginTop="@dimen/dp10"
                     android:orientation="vertical">
 
@@ -164,7 +170,6 @@
                                 android:textColor="@color/black" />
 
                         </LinearLayout>
-
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -226,7 +231,7 @@
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
 

@@ -1,7 +1,6 @@
 package com.resolvebug.app.bahikhata;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +17,6 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -58,8 +55,22 @@ public class UserMobileLoginFragment extends Fragment {
         signInOtp = view.findViewById(R.id.signInOtp);
         userPhoneNumber = view.findViewById(R.id.userPhoneNumber);
         userPhoneNumber.requestFocus();
+        checkFocusOnPhoneNumber();
         oneTimePassword = view.findViewById(R.id.oneTimePassword);
         firebaseAuth = FirebaseAuth.getInstance();
+    }
+
+    private void checkFocusOnPhoneNumber() {
+        userPhoneNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    otpRequestButton.setText("Send OTP");
+                } else {
+                    otpRequestButton.setText("Sign In");
+                }
+            }
+        });
     }
 
     private void setOnOtpButtonClickListeners() {
@@ -71,7 +82,6 @@ public class UserMobileLoginFragment extends Fragment {
                 if (!mobileNumber.equals("")) {
                     oneTimePassword.setVisibility(view.VISIBLE);
                     oneTimePassword.requestFocus();
-                    otpRequestButton.setText("Sign In");
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
                             mobileNumber,
                             60,

@@ -93,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp15"
             android:clickable="true"
             android:focusable="true"
             android:gravity="end"
@@ -110,7 +111,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp15"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -130,7 +131,7 @@
             android:id="@+id/registrationLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 

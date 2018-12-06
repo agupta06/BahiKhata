@@ -75,6 +75,7 @@ public class UserSignInFragment extends Fragment {
     private void initializeComponents(View view) {
         register = view.findViewById(R.id.register);
         signInEmail = view.findViewById(R.id.signInEmail);
+        signInEmail.requestFocus();
         signInPassword = view.findViewById(R.id.signInPassword);
         forgotPassword = view.findViewById(R.id.forgotPassword);
         signInButton = view.findViewById(R.id.signInButton);

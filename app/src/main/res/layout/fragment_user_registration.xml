@@ -30,7 +30,6 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="@dimen/dp30"
             android:layout_height="@dimen/dp2"
@@ -88,25 +87,6 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/emailTextInput"-->
-        <!--android:layout_marginLeft="@dimen/dp30"-->
-        <!--android:layout_marginRight="@dimen/dp30"-->
-        <!--app:passwordToggleEnabled="true">-->
-
-        <!--<EditText-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="@string/PASSWORD"-->
-        <!--android:inputType="textPassword"-->
-        <!--android:maxLines="1"-->
-        <!--android:textColorHint="@color/black"-->
-        <!--android:textSize="@dimen/dp14" />-->
-
-        <!--</android.support.design.widget.TextInputLayout>-->
-
     </LinearLayout>
 
     <LinearLayout
@@ -118,7 +98,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp24"
+            android:layout_marginTop="@dimen/dp30"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -136,7 +116,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
