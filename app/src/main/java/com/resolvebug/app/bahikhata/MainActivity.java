@@ -25,6 +25,11 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseAuth firebaseAuth;
     private static final int LOCK_REQUEST_CODE = 221;
     private static final int SECURITY_SETTING_REQUEST_CODE = 233;
 
@@ -53,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         navigationDrawerListener();
         setNavigationLayout();
         openDefaultFragment(new MainFragment());
-        appLogout();
     }
 
     private void initialize() {
@@ -171,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 title = "Events";
                 break;
             case "Logout":
-                firebaseAuth.signOut();
+                appLogout();
                 break;
             default:
                 break;
@@ -193,20 +195,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     private void appLogout() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser() == null) {    // user logged out
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    finish();
-                }
-            }
-        };
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        GoogleSignInClient googleSignInClient;
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+        googleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                });
     }
 
     private void rateAppOnPlayStore() {
@@ -229,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
     private void openDefaultFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_frame_content, fragment);
+        fragmentTransaction.replace(R.id.main_frame_content, fragment);
         fragmentTransaction.commit();
     }
 
